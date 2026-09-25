@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   formatDetection: { telephone: false },
-  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } : undefined,
+  // Google Search Console ownership token (public by design). Can be overridden via env.
+  verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "CZkU6iix6VgrIjIWR7leQbBWTCOIh0kqTWRP7gey720" },
 };
 
 export const viewport: Viewport = {

@@ -7,7 +7,7 @@ import { canEditProperty } from "@/lib/permissions";
 import { rateLimit } from "@/lib/rate-limit";
 import { deleteStoredImage } from "@/lib/storage";
 import { firstErrors, normalizePhone, phoneSchema, propertyFormSchema } from "@/lib/validation";
-import { buildTitleAndSlug, changeSlug, containsSaleLanguage, monthlyFrom, revalidateListing, slugify, uniqueSlug } from "@/lib/property-write";
+import { allSlugsFor, buildTitleAndSlug, changeSlug, containsSaleLanguage, monthlyFrom, revalidateListing, slugify, uniqueSlug } from "@/lib/property-write";
 import type { FormState } from "./auth";
 
 const DEFAULT_LISTING_DAYS = 90;
@@ -150,7 +150,8 @@ export async function saveProperty(_: FormState, formData: FormData): Promise<Fo
         amenities: { connect: amenities },
       },
     });
-    if (status === "PUBLISHED") revalidateListing(slug);
+    // Always refresh: a previously deleted listing may have used this slug (cached page or 404).
+    revalidateListing(slug);
     redirect(isAdmin ? `/admin/properties/${created.id}/photos/` : `/my-properties/${created.id}/photos/?new=1`);
   }
 
@@ -184,8 +185,7 @@ export async function saveProperty(_: FormState, formData: FormData): Promise<Fo
       amenities: { set: amenities },
     },
   });
-  revalidateListing(current.slug);
-  if (slug !== current.slug) revalidateListing(slug);
+  revalidateListing(await allSlugsFor(id!));
   return { ok: true, message };
 }
 
@@ -197,6 +197,7 @@ export async function submitForReview(propertyId: string): Promise<FormState> {
   if (images === 0) return { message: "Please add at least one photo before submitting your listing." };
   if (!["DRAFT", "REJECTED", "EXPIRED"].includes(p.status)) return { message: "This listing is already submitted." };
   await prisma.property.update({ where: { id: propertyId }, data: { status: "PENDING_REVIEW", rejectionReason: null } });
+  revalidateListing(await allSlugsFor(propertyId));
   return { ok: true, message: "Submitted for review. We'll publish it once it has been checked." };
 }
 
@@ -205,7 +206,7 @@ export async function markRented(propertyId: string): Promise<FormState> {
   const p = await canEditProperty(user, propertyId);
   if (!p) return { message: "Not allowed." };
   await prisma.property.update({ where: { id: propertyId }, data: { status: "RENTED", rentedAt: new Date(), featured: false } });
-  revalidateListing(p.slug);
+  revalidateListing(await allSlugsFor(propertyId));
   return { ok: true, message: "Marked as rented. It has been removed from search results." };
 }
 
@@ -214,9 +215,10 @@ export async function deleteProperty(propertyId: string): Promise<FormState> {
   const p = await canEditProperty(user, propertyId);
   if (!p) return { message: "Not allowed." };
   const images = await prisma.propertyImage.findMany({ where: { propertyId }, select: { url: true } });
+  const slugs = await allSlugsFor(propertyId);
   await prisma.property.delete({ where: { id: propertyId } });
   await Promise.all(images.map((i) => deleteStoredImage(i.url)));
-  revalidateListing(p.slug);
+  revalidateListing(slugs);
   return { ok: true, message: "Listing deleted." };
 }
 

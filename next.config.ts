@@ -21,9 +21,9 @@ const nextConfig: NextConfig = {
     return [
       // Canonical host is the apex domain.
       {
-        source: "/:path*",
+        source: "/:path(.*)",
         has: [{ type: "host", value: "www.rentnestlahore.pk" }],
-        destination: "https://rentnestlahore.pk/:path*",
+        destination: "https://rentnestlahore.pk/:path",
         permanent: true,
       },
       { source: "/commercial", destination: "/rent/commercial-properties/", permanent: true },

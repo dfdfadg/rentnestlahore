@@ -5,12 +5,14 @@ import { prisma } from "@/lib/db";
 import { canEditProperty } from "@/lib/permissions";
 import { rateLimit } from "@/lib/rate-limit";
 import { MAX_IMAGES_PER_PROPERTY, processImage, storeImage } from "@/lib/storage";
+import { isSameOrigin } from "@/lib/request-guard";
 
 export const runtime = "nodejs";
 
 /** Upload one or more images (multipart field "files") to a property the user may edit. */
 export async function POST(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
+  if (!isSameOrigin(req)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "Login required" }, { status: 401 });
   const property = await canEditProperty(user, id);

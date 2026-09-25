@@ -70,7 +70,7 @@ export function PropertyForm({ mode, values: v, types, locations, amenities, age
       noValidate
     >
       {v.id && <input type="hidden" name="id" value={v.id} />}
-      <FormMessage state={state} />
+      {!state?.ok && <FormMessage state={state} />}
 
       <Fieldset title="Basics" hint="Every listing on RentNest Lahore is for rent. Sale listings are not accepted.">
         <div className="grid gap-4 sm:grid-cols-2">

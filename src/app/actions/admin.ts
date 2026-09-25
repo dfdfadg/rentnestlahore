@@ -6,7 +6,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { slugify } from "@/lib/slug";
-import { revalidateListing } from "@/lib/property-write";
+import { allSlugsFor, revalidateListing } from "@/lib/property-write";
 import { RESERVED_RENT_SEGMENTS, TAXONOMY_TAG } from "@/lib/taxonomy";
 import { firstErrors, normalizePhone, phoneSchema } from "@/lib/validation";
 import { importCsv } from "@/lib/csv-import";
@@ -58,7 +58,7 @@ export async function moderateProperty(
       await prisma.property.update({ where: { id }, data: { verified: action === "verify" } });
       break;
   }
-  revalidateListing(p.slug);
+  revalidateListing(await allSlugsFor(id));
   revalidatePath("/admin/properties/");
   return { ok: true, message: "Updated." };
 }
@@ -97,7 +97,7 @@ export async function saveLocation(_: FormState, formData: FormData): Promise<Fo
   else await prisma.location.create({ data });
   updateTag(TAXONOMY_TAG);
   revalidatePath("/admin/locations/");
-  revalidatePath("/areas/");
+  revalidatePath("/areas", "page");
   return { ok: true, message: d.id ? "Location updated." : "Location added." };
 }
 
@@ -193,7 +193,7 @@ export async function saveAgent(_: FormState, formData: FormData): Promise<FormS
     for (let n = 2; await prisma.agent.findUnique({ where: { slug }, select: { id: true } }); n++) slug = `${base}-${n}`;
     await prisma.agent.create({ data: { ...data, slug, areasServed: { connect: areaIds.map((id) => ({ id })) } } });
   }
-  revalidatePath(`/agents/${slug}/`);
+  revalidatePath("/agents/[slug]", "page");
   revalidatePath("/admin/agents/");
   if (!d.id) redirect("/admin/agents/");
   return { ok: true, message: "Agent saved." };
@@ -228,7 +228,7 @@ export async function runCsvImport(_: FormState & { report?: unknown }, formData
   if (file.size > 5 * 1024 * 1024) return { message: "CSV is larger than 5 MB. Split it into smaller files." };
   const dryRun = formData.get("mode") !== "import";
   const report = await importCsv(await file.text(), { dryRun, markDemo: formData.get("demo") === "on" });
-  if (!dryRun && report.imported > 0) revalidateListing();
+  if (!dryRun && report.imported > 0) revalidateListing(undefined, { allProperties: true });
   return {
     ok: report.errors.length === 0,
     message: dryRun

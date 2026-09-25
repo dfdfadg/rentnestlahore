@@ -40,6 +40,13 @@ async function load(props: Props) {
   return { ctx, filters, result };
 }
 
+/** "1 shop" / "5 shops" / "12 rental properties" */
+function countNoun(ctx: ListingContext, n: number): string {
+  const plural = (ctx.landing?.pluralName ?? "rental properties").toLowerCase();
+  const singular = (ctx.landing?.singularName ?? "rental property").toLowerCase();
+  return n === 1 ? singular : plural;
+}
+
 function indexable(ctx: ListingContext, filters: SearchFilters, total: number): boolean {
   if (hasRefinements(filters)) return false;
   if (total === 0) return false;
@@ -48,19 +55,19 @@ function indexable(ctx: ListingContext, filters: SearchFilters, total: number): 
 }
 
 function description(ctx: ListingContext, total: number): string {
-  const { typeName, locName } = listingHeadings(ctx);
+  const { locName } = listingHeadings(ctx);
   const n = total > 0 ? `${formatNumber(total)} ` : "";
-  const lowerType = typeName.toLowerCase();
+  const noun = countNoun(ctx, total);
   if (!ctx.landing && !ctx.location) {
-    return `Browse ${n}rental properties across Lahore — houses, flats, portions, offices, shops and warehouses. Filter by area, monthly rent, bedrooms and size.`;
+    return `Browse ${n}${noun} across Lahore — houses, flats, portions, offices, shops and warehouses. Filter by area, monthly rent, bedrooms and size.`;
   }
   if (ctx.landing && !ctx.location) {
-    return `Find ${n}${lowerType} for rent in Lahore. Compare monthly rent, size, bedrooms and photos, and contact landlords and agents directly.`;
+    return `Find ${n}${noun} for rent in Lahore. Compare monthly rent, size, bedrooms and photos, and contact landlords and agents directly.`;
   }
   if (!ctx.landing && ctx.location) {
-    return `Explore ${n}rental properties in ${locName} — houses, portions, flats and commercial space. See monthly rents, photos and contact details.`;
+    return `Explore ${n}${noun} for rent in ${locName} — houses, portions, flats and commercial space. See monthly rents, photos and contact details.`;
   }
-  return `${n ? `${n}` : ""}${typeName} available for rent in ${locName}. Filter by rent, bedrooms, size and amenities to shortlist the right place.`;
+  return `${total > 0 ? `${formatNumber(total)} ${noun}` : `${ctx.landing!.pluralName}`} available for rent in ${locName}. Filter by rent, size and amenities to shortlist the right place.`;
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -103,16 +110,16 @@ export default async function RentListingPage(props: Props) {
       </header>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[300px_1fr] lg:items-start">
-        <aside>
+        <aside className="min-w-0">
           <FilterForm filters={filters} types={options.types} locations={options.locations} amenities={options.amenities} resultCount={result.total} />
         </aside>
 
-        <section aria-label="Rental results">
+        <section aria-label="Rental results" className="min-w-0">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-ink-600" aria-live="polite">
               {result.total > 0 ? (
                 <>
-                  Showing <strong className="text-ink-900">{from}–{to}</strong> of <strong className="text-ink-900">{formatNumber(result.total)}</strong> {typeName.toLowerCase()} for rent
+                  Showing <strong className="text-ink-900">{from}–{to}</strong> of <strong className="text-ink-900">{formatNumber(result.total)}</strong> {countNoun(ctx, result.total)} for rent
                 </>
               ) : (
                 "0 results"
@@ -152,16 +159,17 @@ export default async function RentListingPage(props: Props) {
 }
 
 function intro(ctx: ListingContext, total: number): string {
-  const { typeName, locName } = listingHeadings(ctx);
+  const { locName } = listingHeadings(ctx);
+  const noun = countNoun(ctx, total);
   const count = total > 0 ? `${formatNumber(total)} active` : "No active";
   if (!ctx.landing && !ctx.location) {
-    return `${count} rental listings across Lahore. Narrow down by property type, area, monthly rent, bedrooms, size and amenities.`;
+    return `${count} ${total === 1 ? "rental listing" : "rental listings"} across Lahore. Narrow down by property type, area, monthly rent, bedrooms, size and amenities.`;
   }
   if (ctx.landing && !ctx.location) {
-    return `${count} ${typeName.toLowerCase()} for rent across Lahore. Use the filters to pick an area, set your monthly budget and choose the size you need.`;
+    return `${count} ${noun} for rent across Lahore. Use the filters to pick an area, set your monthly budget and choose the size you need.`;
   }
   if (!ctx.landing && ctx.location) {
-    return `${count} rental listings in ${locName}. Filter by property type, rent and size, or read the area overview below.`;
+    return `${count} ${total === 1 ? "rental listing" : "rental listings"} in ${locName}. Filter by property type, rent and size, or read the area overview below.`;
   }
-  return `${count} ${typeName.toLowerCase()} for rent in ${locName}. Compare rents and sizes, then contact the landlord or agent directly.`;
+  return `${count} ${noun} for rent in ${locName}. Compare rents and sizes, then contact the landlord or agent directly.`;
 }

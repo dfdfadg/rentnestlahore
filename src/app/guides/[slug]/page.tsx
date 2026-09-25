@@ -32,7 +32,7 @@ export default async function GuidePage({ params }: Props) {
     <div className="container-page py-8">
       <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Guides", path: "/guides/" }, { name: g.title, path: `/guides/${g.slug}/` }]} />
       <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <article className="max-w-3xl">
+        <article className="min-w-0 max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-wide text-brick-600">{g.category}</p>
           <h1 className="mt-2 text-3xl font-extrabold leading-tight sm:text-4xl">{g.title}</h1>
           <p className="mt-3 text-lg text-ink-600">{g.description}</p>

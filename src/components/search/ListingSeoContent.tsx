@@ -50,7 +50,7 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
 
   return (
     <div className="mt-16 grid gap-10 border-t border-ink-100 pt-10 lg:grid-cols-[1fr_340px]">
-      <div className="space-y-10">
+      <div className="min-w-0 space-y-10">
         {ctx.location && description && (
           <section>
             <h2 className="text-xl font-bold">About renting in {ctx.location.name}</h2>
@@ -132,7 +132,7 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
         )}
       </div>
 
-      <aside className="space-y-8">
+      <aside className="min-w-0 space-y-8">
         {children.length > 0 && (
           <LinkList
             title={`Areas within ${ctx.location!.name}`}

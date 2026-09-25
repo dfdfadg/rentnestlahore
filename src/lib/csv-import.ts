@@ -15,6 +15,7 @@ import type { AreaUnit, FurnishedStatus, PriceFrequency, PropertyCondition, Prop
 import { toSqft } from "./area";
 import { generateTitle, slugify, titleToSlug } from "./slug";
 import { normalizePhone } from "./validation";
+import { containsSaleLanguage, monthlyFrom } from "./rent-rules";
 
 export type ImportReport = {
   total: number;
@@ -24,7 +25,6 @@ export type ImportReport = {
   preview: { row: number; title: string; status: string }[];
 };
 
-const SALE_WORDS = /\b(for\s+sale|on\s+sale|sale\s+price|sold|buy|purchase)\b/i;
 const PHONE_RE = /^(\+92|0092|0)\d{9,11}$/;
 const bool = (v?: string) => /^(1|true|yes|y)$/i.test((v ?? "").trim());
 const num = (v?: string) => {
@@ -96,7 +96,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
     if (Number.isNaN(beds) || Number.isNaN(baths)) msgs.push("bedrooms/bathrooms must be numbers");
     const description = (r.description ?? "").trim();
     if (description.length < 40) msgs.push("description must be at least 40 characters");
-    if (SALE_WORDS.test(`${r.title ?? ""} ${description}`)) msgs.push("sale / buy wording is not allowed — rentals only");
+    if (containsSaleLanguage(r.title, description)) msgs.push("sale / buy wording is not allowed — rentals only");
     const phoneRaw = (r.agent_phone ?? "").replace(/[\s()-]/g, "");
     if (!PHONE_RE.test(phoneRaw)) msgs.push("agent_phone must be a valid Pakistani number");
     const waRaw = (r.whatsapp ?? "").replace(/[\s()-]/g, "");
@@ -166,7 +166,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
     await prisma.property.create({
       data: {
         title, slug, purpose: "RENT", propertyTypeId: type.id,
-        price, priceFrequency: freq, monthlyRent: freq === "YEARLY" ? Math.round(price / 12) : freq === "QUARTERLY" ? Math.round(price / 3) : price,
+        price, priceFrequency: freq, monthlyRent: monthlyFrom(price, freq),
         securityDeposit: deposit && !Number.isNaN(deposit) ? Math.round(deposit) : null,
         area, areaUnit: unit, areaSqft, bedrooms: beds ?? null, bathrooms: baths ?? null,
         locationId: loc.id, society: (r.society ?? "").trim() || null, address: (r.address ?? "").trim() || null,

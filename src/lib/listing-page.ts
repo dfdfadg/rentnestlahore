@@ -1,5 +1,5 @@
 import "server-only";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getAmenities, getLandingTypes, getLocations, resolveLandingType, resolveLocation, locationLabel, type LandingType, type LocationRow } from "./taxonomy";
 import type { LocationOption, TypeOption } from "@/components/search/options";
 
@@ -22,7 +22,8 @@ export async function resolveListingSegments(segments: string[] = []): Promise<L
   let page = 1;
   if (segs.length >= 2 && segs[segs.length - 2] === "page") {
     const n = segs[segs.length - 1];
-    if (!/^\d{1,5}$/.test(n) || Number(n) < 2) notFound();
+    if (!/^\d{1,5}$/.test(n) || Number(n) < 1) notFound();
+    if (Number(n) === 1) permanentRedirect(`/${["rent", ...segs.slice(0, -2)].join("/")}/`);
     page = Number(n);
     segs = segs.slice(0, -2);
   }

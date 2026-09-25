@@ -11,7 +11,7 @@ import {
   safeNext,
   verifyPassword,
 } from "@/lib/auth";
-import { rateLimit } from "@/lib/rate-limit";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/email";
 import { absoluteUrl } from "@/lib/site";
 import { emailSchema, firstErrors, loginSchema, normalizePhone, passwordSchema, registerSchema } from "@/lib/validation";
@@ -22,11 +22,13 @@ export type FormState = { ok?: boolean; message?: string; errors?: Record<string
 const DUMMY_HASH = "$2b$12$BGut/Gt.ref8MjYkr98lLuG0Ens0Y3z58kRq9X3zHSEWS3JzS1ZAK";
 
 export async function loginAction(_: FormState, formData: FormData): Promise<FormState> {
-  if (!(await rateLimit("login", 10, 15 * 60_000))) {
-    return { message: "Too many login attempts. Please wait a few minutes and try again." };
-  }
   const parsed = loginSchema.safeParse({ email: formData.get("email"), password: formData.get("password") });
   if (!parsed.success) return { errors: firstErrors(parsed.error) };
+  // Per account+IP brute-force limit, plus a looser per-IP ceiling (many users share carrier/office IPs).
+  const ip = await clientIp();
+  if (!(await rateLimit("login-ip", 50, 15 * 60_000, ip)) || !(await rateLimit("login-account", 8, 15 * 60_000, `${ip}:${parsed.data.email}`))) {
+    return { message: "Too many login attempts. Please wait a few minutes and try again." };
+  }
   const user = await prisma.user.findUnique({ where: { email: parsed.data.email } });
   const valid = await verifyPassword(parsed.data.password, user?.passwordHash ?? DUMMY_HASH);
   if (!user || !valid) return { message: "Incorrect email or password." };

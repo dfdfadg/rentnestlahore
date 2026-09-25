@@ -39,12 +39,12 @@ export function HeroSearch({ types, locations }: { types: TypeOption[]; location
 
   return (
     <form onSubmit={onSubmit} method="get" action="/rent/" role="search" aria-label="Search rentals" className="rounded-2xl bg-white p-3 shadow-lift sm:p-4">
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1.1fr_1.3fr_1fr_1fr_0.8fr_0.9fr_auto]">
-        <Select name="type" label="Property type">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-[1.1fr_1.3fr_1fr_1fr_0.8fr_0.9fr_auto]">
+        <Select name="type" label="Property type" wide>
           <option value="">All types</option>
           {types.map((t) => <option key={t.slug} value={t.slug}>{t.name}</option>)}
         </Select>
-        <Select name="area" label="Location / area">
+        <Select name="area" label="Location / area" wide>
           <option value="">All of Lahore</option>
           {locations.map((l) => <option key={l.slug} value={l.slug}>{l.depth ? `  ${l.name}` : l.name}</option>)}
         </Select>
@@ -64,7 +64,7 @@ export function HeroSearch({ types, locations }: { types: TypeOption[]; location
           <option value="">Any size</option>
           {SIZE_OPTIONS.map((o, i) => <option key={o.label} value={i}>{o.label}</option>)}
         </Select>
-        <button type="submit" className="btn-primary h-full min-h-12 self-end px-6 text-base sm:col-span-2 lg:col-span-1">
+        <button type="submit" className="btn-primary col-span-2 h-full min-h-12 self-end px-6 text-base lg:col-span-1">
           <Search className="h-5 w-5" /> Search Rentals
         </button>
       </div>
@@ -72,10 +72,10 @@ export function HeroSearch({ types, locations }: { types: TypeOption[]; location
   );
 }
 
-function Select({ name, label, children }: { name: string; label: string; children: React.ReactNode }) {
+function Select({ name, label, wide = false, children }: { name: string; label: string; wide?: boolean; children: React.ReactNode }) {
   const id = `hero-${name}`;
   return (
-    <div className="rounded-xl bg-ink-50 px-3 pt-2 ring-1 ring-ink-100 focus-within:ring-2 focus-within:ring-ink-300">
+    <div className={`min-w-0 rounded-xl bg-ink-50 px-3 pt-2 ring-1 ring-ink-100 focus-within:ring-2 focus-within:ring-ink-300 ${wide ? "col-span-2 lg:col-span-1" : ""}`}>
       <label htmlFor={id} className="block text-[11px] font-semibold uppercase tracking-wide text-ink-500">{label}</label>
       <select id={id} name={name} className="w-full cursor-pointer bg-transparent pb-2 pt-0.5 text-sm font-medium text-ink-900 focus:outline-none">
         {children}

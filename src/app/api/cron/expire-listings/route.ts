@@ -29,6 +29,6 @@ export async function GET(req: Request) {
     prisma.session.deleteMany({ where: { expiresAt: { lt: now } } }),
     prisma.passwordResetToken.deleteMany({ where: { OR: [{ expiresAt: { lt: now } }, { usedAt: { not: null } }] } }),
   ]);
-  if (expired.count || unfeatured.count) revalidateListing();
+  if (expired.count || unfeatured.count) revalidateListing(undefined, { allProperties: true });
   return NextResponse.json({ expired: expired.count, unfeatured: unfeatured.count, sessionsDeleted: sessions.count, tokensDeleted: tokens.count });
 }

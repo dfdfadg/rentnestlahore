@@ -40,7 +40,7 @@ export async function updateProfile(_: FormState, formData: FormData): Promise<F
         whatsapp: d.whatsapp ? normalizePhone(d.whatsapp) : phone ?? agent.whatsapp,
       },
     });
-    revalidatePath(`/agents/${agent.slug}/`);
+    revalidatePath("/agents/[slug]", "page");
   }
   return { ok: true, message: "Profile updated." };
 }

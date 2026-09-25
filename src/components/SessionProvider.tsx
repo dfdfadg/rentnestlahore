@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 export type SessionUser = { id: string; name: string; role: "USER" | "AGENT" | "ADMIN" };
 
@@ -21,18 +21,23 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<SessionUser | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
+  const sessionPromise = useRef<Promise<SessionUser | null> | null>(null);
 
   useEffect(() => {
     let alive = true;
-    fetch("/api/me/", { credentials: "same-origin", cache: "no-store" })
+    sessionPromise.current = fetch("/api/me/", { credentials: "same-origin", cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { user: null, favoriteIds: [] }))
       .then((d: { user: SessionUser | null; favoriteIds: string[] }) => {
-        if (!alive) return;
-        setUser(d.user);
-        setFavoriteIds(new Set(d.favoriteIds));
+        if (alive) {
+          setUser(d.user);
+          setFavoriteIds(new Set(d.favoriteIds));
+        }
+        return d.user;
       })
-      .catch(() => {})
-      .finally(() => alive && setLoaded(true));
+      .catch(() => null)
+      .finally(() => {
+        if (alive) setLoaded(true);
+      });
     return () => {
       alive = false;
     };
@@ -40,7 +45,9 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
 
   const toggleFavorite = useCallback(
     async (propertyId: string) => {
-      if (!user) return "login" as const;
+      // If the session is still loading, wait for it instead of assuming the visitor is logged out.
+      const current = user ?? (loaded ? null : await sessionPromise.current);
+      if (!current) return "login" as const;
       const has = favoriteIds.has(propertyId);
       // Optimistic update
       setFavoriteIds((prev) => {
@@ -51,6 +58,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       });
       const res = await fetch("/api/favorites/", {
         method: has ? "DELETE" : "POST",
+        keepalive: true, // survive an immediate navigation away
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ propertyId }),
       });
@@ -68,7 +76,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       }
       return has ? ("removed" as const) : ("added" as const);
     },
-    [user, favoriteIds],
+    [user, loaded, favoriteIds],
   );
 
   const value = useMemo(() => ({ user, loaded, favoriteIds, toggleFavorite }), [user, loaded, favoriteIds, toggleFavorite]);

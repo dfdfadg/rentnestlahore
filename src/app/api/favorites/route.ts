@@ -4,10 +4,12 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { activeWhere } from "@/lib/properties";
 import { rateLimit } from "@/lib/rate-limit";
+import { isSameOrigin } from "@/lib/request-guard";
 
 const body = z.object({ propertyId: z.string().min(1).max(40) });
 
 async function handle(req: Request, add: boolean) {
+  if (!isSameOrigin(req)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "Login required" }, { status: 401 });
   if (!(await rateLimit("favorite", 120, 60_000, user.id))) return NextResponse.json({ error: "Too many requests" }, { status: 429 });

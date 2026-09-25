@@ -1,19 +1,10 @@
 import "server-only";
 import { revalidatePath } from "next/cache";
-import type { PriceFrequency } from "@prisma/client";
 import { prisma } from "./db";
 import { toSqft } from "./area";
 import { generateTitle, slugify, titleToSlug } from "./slug";
 
-export function monthlyFrom(price: number, freq: PriceFrequency): number {
-  return freq === "YEARLY" ? Math.round(price / 12) : freq === "QUARTERLY" ? Math.round(price / 3) : price;
-}
-
-/** Rent-only guard: listings may never be advertised for sale. */
-const SALE_WORDS = /\b(for\s+sale|on\s+sale|sale\s+price|sold|buy|purchase|installments?\s+plan|possession\s+for\s+sale)\b/i;
-export function containsSaleLanguage(...texts: (string | null | undefined)[]): boolean {
-  return texts.some((t) => !!t && SALE_WORDS.test(t));
-}
+export { monthlyFrom, containsSaleLanguage } from "./rent-rules";
 
 export async function uniqueSlug(base: string, excludeId?: string): Promise<string> {
   const root = base || "rental-property";
@@ -58,10 +49,29 @@ export async function changeSlug(propertyId: string, oldSlug: string, newSlug: s
   await prisma.slugRedirect.deleteMany({ where: { oldSlug: newSlug, propertyId } });
 }
 
-export function revalidateListing(slug?: string) {
+/**
+ * Refresh cached pages after a listing changes.
+ *
+ * Property and agent pages are ISR-cached on first request. Next.js only attaches the
+ * per-URL tag to such on-demand pages in some cases, so we invalidate by *route pattern*
+ * (always attached) — this reliably drops stale "available" pages of rented, expired or
+ * deleted listings (and cached 404s of newly published ones). Pages are re-cached on their
+ * next visit, so caching still applies between changes.
+ */
+export function revalidateListing(slugs?: string | string[], _opts: { allProperties?: boolean } = {}) {
+  void _opts;
   revalidatePath("/", "page");
   revalidatePath("/rent/[[...segments]]", "page");
-  if (slug) revalidatePath(`/property/${slug}/`);
+  revalidatePath("/areas", "page");
+  revalidatePath("/agents", "page");
+  revalidatePath("/agents/[slug]", "page");
+  revalidatePath("/property/[slug]", "page");
+  for (const slug of [slugs ?? []].flat()) revalidatePath(`/property/${slug}`);
 }
 
+/** Current slug plus every old slug that redirects to this listing. */
+export async function allSlugsFor(propertyId: string): Promise<string[]> {
+  const p = await prisma.property.findUnique({ where: { id: propertyId }, select: { slug: true, slugRedirects: { select: { oldSlug: true } } } });
+  return p ? [p.slug, ...p.slugRedirects.map((r) => r.oldSlug)] : [];
+}
 export { slugify };

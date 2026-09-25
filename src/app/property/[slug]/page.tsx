@@ -10,12 +10,9 @@ import { pageMetadata } from "@/lib/seo";
 import { propertyJsonLd } from "@/lib/property-jsonld";
 import { formatArea, formatPKR, FREQUENCY_LABEL } from "@/lib/format";
 
-export const revalidate = 600;
-
-export function generateStaticParams() {
-  // Rendered on first request and then cached (ISR); nothing is prebuilt at deploy time.
-  return [];
-}
+// Always render from the database so availability (published / rented / expired) is never stale.
+// Lookups are single indexed queries; images are served from the optimised image CDN.
+export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
 

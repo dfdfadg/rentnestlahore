@@ -3,7 +3,8 @@ import Script from "next/script";
 /** Loads GTM and/or GA4 only when configured via environment variables. */
 export function Analytics() {
   const gtm = process.env.NEXT_PUBLIC_GTM_ID;
-  const ga = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  // GA4 property for rentnestlahore.pk (public ID). Can be overridden via env.
+  const ga = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-Z40RJX8Q2H";
   const safe = (v: string) => /^[A-Z0-9-]+$/i.test(v);
   return (
     <>

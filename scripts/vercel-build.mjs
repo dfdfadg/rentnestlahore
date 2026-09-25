@@ -24,7 +24,8 @@ run("npx prisma generate");
 run("npx prisma migrate deploy");
 // Idempotent: upserts property types, amenities and Lahore locations (and the admin if configured)
 try {
-  run("npx tsx prisma/seed.ts");
+  // SEED_DEMO=1 also adds the labelled demo listings (skipped if already present)
+  run(`npx tsx prisma/seed.ts${process.env.SEED_DEMO === "1" ? " --demo" : ""}`);
 } catch {
   console.warn("\n⚠️  Seeding failed — continuing with the build. Check SEED_ADMIN_* variables.\n");
 }

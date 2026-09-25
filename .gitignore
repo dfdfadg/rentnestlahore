@@ -28,3 +28,4 @@ npm-debug.log*
 .vercel
 .scratch/
 rentnestlahore-code.zip
+.env*

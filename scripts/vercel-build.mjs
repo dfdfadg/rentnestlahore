@@ -22,4 +22,10 @@ if (!env.AUTH_SECRET?.trim()) {
 const run = (cmd) => execSync(cmd, { stdio: "inherit", env });
 run("npx prisma generate");
 run("npx prisma migrate deploy");
+// Idempotent: upserts property types, amenities and Lahore locations (and the admin if configured)
+try {
+  run("npx tsx prisma/seed.ts");
+} catch {
+  console.warn("\n⚠️  Seeding failed — continuing with the build. Check SEED_ADMIN_* variables.\n");
+}
 run("npx next build");

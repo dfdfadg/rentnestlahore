@@ -1,0 +1,365 @@
+// RentNest Lahore — rent-only, Lahore-only property marketplace.
+// There is intentionally no SALE purpose anywhere in this schema.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  AGENT
+  ADMIN
+}
+
+/// Listing purpose is permanently RENT. The enum exists so the constraint is explicit in the data model.
+enum ListingPurpose {
+  RENT
+}
+
+enum PriceFrequency {
+  MONTHLY
+  QUARTERLY
+  YEARLY
+}
+
+enum AreaUnit {
+  MARLA
+  KANAL
+  SQFT
+  SQYD
+}
+
+enum FurnishedStatus {
+  FURNISHED
+  SEMI_FURNISHED
+  UNFURNISHED
+}
+
+enum PropertyCondition {
+  BRAND_NEW
+  RENOVATED
+  USED
+}
+
+enum PropertyStatus {
+  DRAFT
+  PENDING_REVIEW
+  PUBLISHED
+  EXPIRED
+  RENTED
+  REJECTED
+}
+
+enum PropertyCategory {
+  RESIDENTIAL
+  COMMERCIAL
+}
+
+enum AgentType {
+  AGENT
+  LANDLORD
+}
+
+enum ContactMethod {
+  CALL
+  WHATSAPP
+  EMAIL
+}
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  CLOSED
+  SPAM
+}
+
+enum ReportStatus {
+  OPEN
+  RESOLVED
+  DISMISSED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  phone        String?
+  passwordHash String
+  role         Role      @default(USER)
+  disabled     Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  lastLoginAt  DateTime?
+
+  sessions       Session[]
+  resetTokens    PasswordResetToken[]
+  favorites      Favorite[]
+  agent          Agent?
+  enquiries      Enquiry[]
+  reports        Report[]
+
+  @@index([role])
+  @@index([createdAt])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+/// Agent or landlord profile. A registered user who submits listings gets one automatically.
+model Agent {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  agency      String?
+  type        AgentType @default(AGENT)
+  imageUrl    String?
+  phone       String
+  whatsapp    String?
+  email       String?
+  about       String?   @db.Text
+  verified    Boolean   @default(false)
+  /// Future monetization: free | pro | premium subscription tiers.
+  plan        String    @default("free")
+  isDemo      Boolean   @default(false)
+  userId      String?   @unique
+  user        User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  areasServed Location[] @relation("AgentAreas")
+  properties  Property[]
+  enquiries   Enquiry[]
+
+  @@index([verified])
+}
+
+/// Lahore areas. Hierarchical (e.g. DHA Lahore -> DHA Phase 6). New areas can be added from the admin panel.
+model Location {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  parentId    String?
+  parent      Location?  @relation("LocationTree", fields: [parentId], references: [id], onDelete: SetNull)
+  children    Location[] @relation("LocationTree")
+  description String?    @db.Text
+  latitude    Float?
+  longitude   Float?
+  isPopular   Boolean    @default(false)
+  sortOrder   Int        @default(0)
+  active      Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  properties Property[]
+  agents     Agent[]    @relation("AgentAreas")
+
+  @@index([parentId])
+  @@index([active, isPopular])
+}
+
+model PropertyType {
+  id          String           @id @default(cuid())
+  name        String           @unique
+  slug        String           @unique
+  pluralName  String
+  /// URL segment used under /rent/, e.g. "houses"
+  pluralSlug  String           @unique
+  category    PropertyCategory
+  description String?          @db.Text
+  sortOrder   Int              @default(0)
+  active      Boolean          @default(true)
+  createdAt   DateTime         @default(now())
+
+  properties Property[]
+
+  @@index([category])
+}
+
+model Amenity {
+  id         String     @id @default(cuid())
+  name       String     @unique
+  slug       String     @unique
+  /// general | utilities | commercial
+  group      String     @default("general")
+  sortOrder  Int        @default(0)
+  properties Property[] @relation("PropertyAmenities")
+}
+
+model Property {
+  id              String             @id @default(cuid())
+  /// Public reference number shown as "Property ID" (e.g. RN-100045)
+  refNo           Int                @unique @default(autoincrement())
+  title           String
+  slug            String             @unique
+  purpose         ListingPurpose     @default(RENT)
+  propertyTypeId  String
+  propertyType    PropertyType       @relation(fields: [propertyTypeId], references: [id])
+  price           Int
+  priceFrequency  PriceFrequency     @default(MONTHLY)
+  /// Normalised monthly rent in PKR — used for filtering and sorting.
+  monthlyRent     Int
+  securityDeposit Int?
+  advanceMonths   Int?
+  area            Float
+  areaUnit        AreaUnit
+  /// Normalised area in square feet — used for filtering and sorting.
+  areaSqft        Float
+  bedrooms        Int?
+  bathrooms       Int?
+  locationId      String
+  location        Location           @relation(fields: [locationId], references: [id])
+  /// Block / sector / sub-area within the society, e.g. "Block E"
+  society         String?
+  address         String?
+  latitude        Float?
+  longitude       Float?
+  description     String             @db.Text
+  features        String[]
+  furnished       FurnishedStatus?
+  condition       PropertyCondition?
+  floor           Int?
+  mainRoad        Boolean            @default(false)
+  corner          Boolean            @default(false)
+  frontFt         Float?
+  loadingArea     Boolean            @default(false)
+  ceilingHeightFt Float?
+  videoUrl        String?
+  agentId         String
+  agent           Agent              @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  status          PropertyStatus     @default(DRAFT)
+  rejectionReason String?
+  featured        Boolean            @default(false)
+  featuredUntil   DateTime?
+  verified        Boolean            @default(false)
+  /// Demo / sample listings are clearly labelled in the UI and can be bulk-removed.
+  isDemo          Boolean            @default(false)
+  views           Int                @default(0)
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  publishedAt     DateTime?
+  expiresAt       DateTime?
+  rentedAt        DateTime?
+
+  amenities     Amenity[]       @relation("PropertyAmenities")
+  images        PropertyImage[]
+  favorites     Favorite[]
+  enquiries     Enquiry[]
+  reports       Report[]
+  slugRedirects SlugRedirect[]
+
+  @@index([status, purpose, publishedAt])
+  @@index([purpose])
+  @@index([propertyTypeId, status])
+  @@index([locationId, status])
+  @@index([society])
+  @@index([monthlyRent])
+  @@index([bedrooms])
+  @@index([bathrooms])
+  @@index([areaSqft])
+  @@index([status])
+  @@index([featured, status])
+  @@index([createdAt])
+  @@index([expiresAt])
+  @@index([agentId, status])
+  @@index([isDemo])
+}
+
+model PropertyImage {
+  id         String   @id @default(cuid())
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  url        String
+  alt        String   @default("")
+  width      Int?
+  height     Int?
+  /// 0 = primary image
+  position   Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  @@index([propertyId, position])
+}
+
+/// Old slugs keep working (301) after a listing title changes.
+model SlugRedirect {
+  oldSlug    String   @id
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@index([propertyId])
+}
+
+model Favorite {
+  userId     String
+  propertyId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@id([userId, propertyId])
+  @@index([propertyId])
+}
+
+model Enquiry {
+  id               String        @id @default(cuid())
+  propertyId       String?
+  property         Property?     @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  agentId          String?
+  agent            Agent?        @relation(fields: [agentId], references: [id], onDelete: SetNull)
+  userId           String?
+  user             User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name             String
+  phone            String
+  email            String?
+  message          String        @db.Text
+  preferredContact ContactMethod @default(CALL)
+  status           EnquiryStatus @default(NEW)
+  createdAt        DateTime      @default(now())
+
+  @@index([agentId, createdAt])
+  @@index([propertyId])
+  @@index([userId])
+  @@index([status])
+}
+
+model Report {
+  id         String       @id @default(cuid())
+  propertyId String
+  property   Property     @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  userId     String?
+  user       User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  reason     String
+  details    String?      @db.Text
+  email      String?
+  status     ReportStatus @default(OPEN)
+  createdAt  DateTime     @default(now())
+
+  @@index([status])
+  @@index([propertyId])
+}

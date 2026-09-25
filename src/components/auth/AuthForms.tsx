@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { forgotPasswordAction, loginAction, registerAction, resetPasswordAction } from "@/app/actions/auth";
+import {
+  forgotPasswordAction,
+  loginAction,
+  registerAction,
+  resendVerificationAction,
+  resetPasswordAction,
+  verifyEmailAction,
+} from "@/app/actions/auth";
 import { FieldError, FormMessage } from "../ui/FormBits";
 
 export function LoginForm({ next }: { next?: string }) {
@@ -47,8 +54,8 @@ export function RegisterForm({ next }: { next?: string }) {
         <FieldError state={state} name="email" />
       </div>
       <div>
-        <label htmlFor="phone" className="label">Mobile number <span className="normal-case text-ink-400">(optional)</span></label>
-        <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="03XX XXXXXXX" className="input" />
+        <label htmlFor="phone" className="label">Mobile number</label>
+        <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="03XX XXXXXXX" required className="input" />
         <FieldError state={state} name="phone" />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -69,6 +76,42 @@ export function RegisterForm({ next }: { next?: string }) {
         By creating an account you agree to our <Link href="/terms/" className="underline">Terms</Link> and <Link href="/privacy/" className="underline">Privacy Policy</Link>.
       </p>
     </form>
+  );
+}
+
+export function VerifyEmailForm({ next }: { next?: string }) {
+  const [state, action, pending] = useActionState(verifyEmailAction, undefined);
+  const [resendState, resend, resending] = useActionState(resendVerificationAction, undefined);
+  return (
+    <div className="space-y-4">
+      <form action={action} className="space-y-4" noValidate>
+        <input type="hidden" name="next" value={next ?? ""} />
+        <FormMessage state={state} />
+        <div>
+          <label htmlFor="code" className="label">6-digit code</label>
+          <input
+            id="code"
+            name="code"
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            pattern="[0-9]*"
+            maxLength={6}
+            required
+            autoFocus
+            placeholder="123456"
+            className="input text-center text-2xl font-bold tracking-[0.5em]"
+          />
+          <FieldError state={state} name="code" />
+        </div>
+        <button type="submit" disabled={pending} className="btn-primary w-full">{pending ? "Checking…" : "Verify email"}</button>
+      </form>
+      <form action={resend} className="text-center">
+        <FormMessage state={resendState} />
+        <button type="submit" disabled={resending} className="mt-2 text-sm font-semibold text-brick-700 hover:underline disabled:opacity-60">
+          {resending ? "Sending…" : "Didn't get it? Send a new code"}
+        </button>
+      </form>
+    </div>
   );
 }
 

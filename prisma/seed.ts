@@ -67,7 +67,7 @@ async function seedAdmin() {
     return;
   }
   await prisma.user.create({
-    data: { email, name: "RentNest Admin", role: "ADMIN", passwordHash: await bcrypt.hash(password, 12) },
+    data: { email, name: "RentNest Admin", role: "ADMIN", emailVerifiedAt: new Date(), passwordHash: await bcrypt.hash(password, 12) },
   });
   console.log(`Admin: created ${email}`);
 }
@@ -127,7 +127,7 @@ const COM_FEATURES = [
 ];
 const IND_FEATURES = ["Three-phase electricity", "Heavy vehicle access", "Covered shed", "Guard room", "Office block on site", "Wide gate"];
 
-const IMG = (scene: string, n: number) => `/demo/${scene}-${n}.webp`;
+const IMG = (scene: string, n: number) => `/demo/photos/${scene}-${n}.webp`;
 
 type Built = {
   typeSlug: string;
@@ -385,7 +385,7 @@ async function seedDemo() {
       const n1 = between(1, 6);
       const images = b.scenes.map((scene, idx) => ({
         url: IMG(scene, ((n1 + idx) % 6) + 1),
-        alt: `${title} — ${["front view", "living area", "bedroom", "kitchen"][idx] ?? "interior"} (sample illustration)`,
+        alt: `${title} — ${["front view", "living area", "bedroom", "kitchen"][idx] ?? "interior"} (sample photo)`,
         width: 1200, height: 900, position: idx,
       }));
 

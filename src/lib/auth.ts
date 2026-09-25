@@ -57,7 +57,14 @@ export async function destroySession() {
   jar.delete(SESSION_COOKIE);
 }
 
-export type CurrentUser = { id: string; name: string; email: string; phone: string | null; role: "USER" | "AGENT" | "ADMIN" };
+export type CurrentUser = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  role: "USER" | "AGENT" | "ADMIN";
+  emailVerified: boolean;
+};
 
 export const getCurrentUser = cache(async (): Promise<CurrentUser | null> => {
   const jar = await cookies();
@@ -65,12 +72,12 @@ export const getCurrentUser = cache(async (): Promise<CurrentUser | null> => {
   if (!token) return null;
   const session = await prisma.session.findUnique({
     where: { tokenHash: hashToken(token) },
-    include: { user: { select: { id: true, name: true, email: true, phone: true, role: true, disabled: true } } },
+    include: { user: { select: { id: true, name: true, email: true, phone: true, role: true, disabled: true, emailVerifiedAt: true } } },
   });
   if (!session || session.expiresAt < new Date() || session.user.disabled) return null;
-  const { disabled: _disabled, ...user } = session.user;
+  const { disabled: _disabled, emailVerifiedAt, ...user } = session.user;
   void _disabled;
-  return user;
+  return { ...user, emailVerified: emailVerifiedAt != null };
 });
 
 export async function requireUser(nextPath = "/dashboard/"): Promise<CurrentUser> {

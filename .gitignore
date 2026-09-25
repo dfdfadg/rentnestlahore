@@ -29,3 +29,8 @@ npm-debug.log*
 .scratch/
 rentnestlahore-code.zip
 .env*
+
+# Agent skills installed by the Vercel/Neon integration
+.agents/
+.claude/skills/
+skills-lock.json

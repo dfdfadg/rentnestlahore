@@ -135,7 +135,7 @@ No Google Maps key is needed — maps use an OpenStreetMap embed with rounded co
 ## Deploying to Vercel
 
 1. **Import the GitHub repo** in Vercel (framework: Next.js). `vercel.json` sets the build command to
-   `npm run vercel-build` (= `prisma generate && prisma migrate deploy && next build`) and a daily cron.
+   `npm run vercel-build` (`scripts/vercel-build.mjs`: finds the database URL created by the Vercel/Neon integration, runs migrations, builds) and a daily cron.
 2. **Database:** Vercel → Storage → create a Postgres database (Neon) and connect it to the project, or use any
    managed PostgreSQL. Make sure `DATABASE_URL` is set for Production and Preview.
    (Use a separate database — or Neon branch — for Preview so previews never touch production data.)

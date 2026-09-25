@@ -28,7 +28,7 @@ export const passwordSchema = z
 export const registerSchema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
   email: emailSchema,
-  phone: z.union([phoneSchema, z.literal("").transform(() => undefined)]).optional(),
+  phone: z.string({ error: "Enter your mobile number" }).trim().min(1, "Enter your mobile number").pipe(phoneSchema),
   password: passwordSchema,
 });
 
@@ -99,7 +99,7 @@ export const propertyFormSchema = z.object({
   ceilingHeightFt: optNum(0, 200),
   videoUrl: z.preprocess(
     (v) => (typeof v === "string" && v.trim() === "" ? undefined : v),
-    z.string().trim().url("Enter a valid URL").max(300).refine((u) => /^https:\/\/(www\.)?(youtube\.com|youtu\.be|vimeo\.com)\//.test(u), "Only YouTube or Vimeo links are supported").optional(),
+    z.string().trim().url("Enter a valid URL").max(300).refine((u) => /^https:\/\/(www\.|m\.)?(youtube\.com|youtu\.be|vimeo\.com)\//.test(u), "Only YouTube or Vimeo links are supported").optional(),
   ),
   amenityIds: z.array(z.string()).max(40).default([]),
   // admin-only fields (ignored for regular users)

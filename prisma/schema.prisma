@@ -95,9 +95,12 @@ model User {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   lastLoginAt  DateTime?
+  /// Set once the user enters the emailed one-time code. Null = not verified yet.
+  emailVerifiedAt DateTime?
 
   sessions       Session[]
   resetTokens    PasswordResetToken[]
+  emailCodes     EmailVerificationCode[]
   favorites      Favorite[]
   agent          Agent?
   enquiries      Enquiry[]
@@ -127,6 +130,19 @@ model PasswordResetToken {
   expiresAt DateTime
   usedAt    DateTime?
   createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+/// 6-digit code emailed at sign-up. Only an HMAC of the code is stored.
+model EmailVerificationCode {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  codeHash  String
+  attempts  Int      @default(0)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 
   @@index([userId])
 }

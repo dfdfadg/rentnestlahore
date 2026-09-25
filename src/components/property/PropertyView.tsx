@@ -84,9 +84,14 @@ export function PropertyView({ property: p, landing, similar, unavailableReason,
       <Breadcrumbs items={crumbs} />
 
       {p.isDemo && (
-        <div className="mt-4 flex items-start gap-3 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-900 ring-1 ring-amber-200">
-          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
-          <p><strong>Demo listing.</strong> This is a sample record used to test RentNest Lahore. It is not a real property and is not available for rent; contact numbers are non-working placeholders.</p>
+        <div className="mt-4 flex items-start gap-3 rounded-2xl bg-amber-400 px-5 py-4 text-amber-950 shadow-sm">
+          <AlertTriangle className="mt-0.5 h-7 w-7 shrink-0" />
+          <div>
+            <p className="text-lg font-extrabold uppercase tracking-wide">Demo Property</p>
+            <p className="mt-0.5 text-sm font-medium">
+              This is a sample listing used to show how RentNest Lahore works. It is not a real property and is not available for rent. Photos are stock images and contact numbers are non-working placeholders.
+            </p>
+          </div>
         </div>
       )}
       {unavailableReason && (

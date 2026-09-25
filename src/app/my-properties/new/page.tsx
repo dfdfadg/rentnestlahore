@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { AccountShell } from "@/components/account/AccountShell";
 import { PropertyForm } from "@/components/manage/PropertyForm";
-import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { requireVerifiedUser } from "@/lib/email-verification";
 import { getFormOptions } from "@/lib/form-options";
 import { PRIVATE_ROBOTS } from "@/lib/seo";
 
 export const metadata: Metadata = { title: "Post a rental property | RentNest Lahore", robots: PRIVATE_ROBOTS };
 
 export default async function NewPropertyPage() {
-  const user = await requireUser("/my-properties/new/");
+  const user = await requireVerifiedUser("/my-properties/new/");
   const [options, agent] = await Promise.all([getFormOptions(), prisma.agent.findUnique({ where: { userId: user.id } })]);
   return (
     <AccountShell user={user} active="/my-properties/" title="Post a rental property">

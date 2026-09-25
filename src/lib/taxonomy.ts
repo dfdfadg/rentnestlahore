@@ -35,7 +35,7 @@ export const getPropertyTypes = unstable_cache(
       orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
       select: { id: true, name: true, slug: true, pluralName: true, pluralSlug: true, category: true, description: true },
     }),
-  ["property-types-v1"],
+  ["property-types-v2"],
   { tags: [TAXONOMY_TAG], revalidate: 3600 },
 );
 
@@ -49,14 +49,14 @@ export const getLocations = unstable_cache(
         latitude: true, longitude: true, isPopular: true, sortOrder: true,
       },
     }),
-  ["locations-v1"],
+  ["locations-v2"],
   { tags: [TAXONOMY_TAG], revalidate: 3600 },
 );
 
 export const getAmenities = unstable_cache(
   async (): Promise<AmenityRow[]> =>
     prisma.amenity.findMany({ orderBy: [{ sortOrder: "asc" }, { name: "asc" }], select: { id: true, name: true, slug: true, group: true } }),
-  ["amenities-v1"],
+  ["amenities-v2"],
   { tags: [TAXONOMY_TAG], revalidate: 3600 },
 );
 

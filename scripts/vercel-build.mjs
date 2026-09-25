@@ -21,5 +21,18 @@ if (!env.AUTH_SECRET?.trim()) {
 }
 const run = (cmd) => execSync(cmd, { stdio: "inherit", env });
 run("npx prisma generate");
-run("npx prisma migrate deploy");
+// Migrations take an advisory lock; a lock left behind on Neon's pooler makes every later build time out (P1002).
+// Use a direct connection and skip the lock — only one build migrates at a time here.
+const direct = ["DATABASE_URL_UNPOOLED", "POSTGRES_URL_NON_POOLING"].map((k) => process.env[k]?.trim()).find(Boolean);
+execSync("npx prisma migrate deploy", {
+  stdio: "inherit",
+  env: { ...env, ...(direct && { DATABASE_URL: direct }), PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK: "1" },
+});
+// Idempotent: upserts property types, amenities and Lahore locations (and the admin if configured)
+try {
+  // SEED_DEMO=1 also adds the labelled demo listings (skipped if already present)
+  run(`npx tsx prisma/seed.ts${process.env.SEED_DEMO?.trim() === "1" ? " --demo" : ""}`);
+} catch {
+  console.warn("\n⚠️  Seeding failed — continuing with the build. Check SEED_ADMIN_* variables.\n");
+}
 run("npx next build");

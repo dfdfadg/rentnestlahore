@@ -253,9 +253,12 @@ export function PropertyForm({ mode, values: v, types, locations, amenities, age
               ))}
             </div>
           </fieldset>
-          <div>
-            <label htmlFor="pf-video" className="label">Video tour URL (YouTube or Vimeo)</label>
-            <input id="pf-video" name="videoUrl" type="url" defaultValue={v.videoUrl ?? ""} className="input" />
+          <div className="rounded-xl bg-brick-50 p-4 ring-1 ring-brick-100">
+            <label htmlFor="pf-video" className="label">Video tour <span className="normal-case text-ink-400">(optional, recommended)</span></label>
+            <input id="pf-video" name="videoUrl" type="url" inputMode="url" defaultValue={v.videoUrl ?? ""} className="input" placeholder="https://youtu.be/…" />
+            <p className="mt-1.5 text-xs text-ink-600">
+              Upload a walkthrough video to YouTube (it can be &ldquo;Unlisted&rdquo;), tap <strong>Share → Copy link</strong> and paste it here. Listings with a video get more enquiries.
+            </p>
             {err("videoUrl")}
           </div>
         </div>

@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import {
   createSession,
   destroySession,
+  getCurrentUser,
   hashPassword,
   hashToken,
   newToken,
@@ -13,6 +14,7 @@ import {
 } from "@/lib/auth";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/email";
+import { checkVerificationCode, emailVerificationEnabled, sendVerificationCode } from "@/lib/email-verification";
 import { absoluteUrl } from "@/lib/site";
 import { emailSchema, firstErrors, loginSchema, normalizePhone, passwordSchema, registerSchema } from "@/lib/validation";
 
@@ -54,16 +56,51 @@ export async function registerAction(_: FormState, formData: FormData): Promise<
   }
   const exists = await prisma.user.findUnique({ where: { email: parsed.data.email }, select: { id: true } });
   if (exists) return { errors: { email: "An account with this email already exists. Try logging in." } };
+  const verify = emailVerificationEnabled();
   const user = await prisma.user.create({
     data: {
       name: parsed.data.name,
       email: parsed.data.email,
-      phone: parsed.data.phone ? normalizePhone(parsed.data.phone) : null,
+      phone: normalizePhone(parsed.data.phone),
       passwordHash: await hashPassword(parsed.data.password),
+      emailVerifiedAt: verify ? null : new Date(),
     },
   });
   await createSession(user.id);
-  redirect(safeNext(formData.get("next")?.toString(), "/dashboard/"));
+  const next = safeNext(formData.get("next")?.toString(), "/dashboard/");
+  if (verify) {
+    await sendVerificationCode(user);
+    redirect(`/verify-email/?next=${encodeURIComponent(next)}`);
+  }
+  redirect(next);
+}
+
+export async function verifyEmailAction(_: FormState, formData: FormData): Promise<FormState> {
+  const user = await getCurrentUser();
+  if (!user) return { message: "Please log in again." };
+  const next = safeNext(formData.get("next")?.toString(), "/dashboard/");
+  if (user.emailVerified) redirect(next);
+  if (!(await rateLimit("verify-email", 20, 15 * 60_000, user.id))) {
+    return { message: "Too many attempts. Please wait a few minutes and try again." };
+  }
+  const code = String(formData.get("code") ?? "").replace(/\s/g, "");
+  if (!/^\d{6}$/.test(code)) return { errors: { code: "Enter the 6-digit code from the email" } };
+  const result = await checkVerificationCode(user.id, code);
+  if (result === "ok") redirect(next);
+  if (result === "invalid") return { errors: { code: "That code is not correct. Please check the email and try again." } };
+  return { message: "This code has expired or been used too many times. Tap “Send a new code”." };
+}
+
+export async function resendVerificationAction(): Promise<FormState> {
+  const user = await getCurrentUser();
+  if (!user) return { message: "Please log in again." };
+  if (user.emailVerified) return { ok: true, message: "Your email is already verified." };
+  if (!(await rateLimit("resend-code", 5, 60 * 60_000, user.id))) {
+    return { message: "You've requested several codes. Please wait a while before asking for another." };
+  }
+  const sent = await sendVerificationCode(user);
+  if (!sent) return { message: "We couldn't send the email right now. Please try again in a minute." };
+  return { ok: true, message: `A new code has been sent to ${user.email}.` };
 }
 
 export async function logoutAction() {

@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { getCurrentUser, requireUser, type CurrentUser } from "@/lib/auth";
+import { needsEmailVerification } from "@/lib/email-verification";
 import { canEditProperty } from "@/lib/permissions";
 import { rateLimit } from "@/lib/rate-limit";
 import { deleteStoredImage } from "@/lib/storage";
@@ -32,6 +33,7 @@ async function ensureOwnAgent(user: CurrentUser, phone: string, whatsapp?: strin
 export async function saveProperty(_: FormState, formData: FormData): Promise<FormState> {
   const user = await getCurrentUser();
   if (!user) return { message: "Please log in again." };
+  if (needsEmailVerification(user)) return { message: "Please verify your email address before posting a property." };
   const isAdmin = user.role === "ADMIN";
   const id = String(formData.get("id") ?? "") || null;
 
@@ -191,6 +193,7 @@ export async function saveProperty(_: FormState, formData: FormData): Promise<Fo
 
 export async function submitForReview(propertyId: string): Promise<FormState> {
   const user = await requireUser();
+  if (needsEmailVerification(user)) return { message: "Please verify your email address before submitting a listing." };
   const p = await canEditProperty(user, propertyId);
   if (!p) return { message: "Not allowed." };
   const images = await prisma.propertyImage.count({ where: { propertyId } });

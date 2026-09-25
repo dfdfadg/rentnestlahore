@@ -45,6 +45,11 @@ export function PropertyCard({ property: p, priority = false, layout = "grid" }:
         <div className="absolute right-3 top-3 z-10">
           <FavoriteButton propertyId={p.id} />
         </div>
+        {p.isDemo && (
+          <p className="absolute inset-x-0 bottom-0 bg-amber-400/95 py-1.5 text-center text-sm font-extrabold uppercase tracking-[0.2em] text-amber-950">
+            Demo Property
+          </p>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-4">
@@ -62,6 +67,11 @@ export function PropertyCard({ property: p, priority = false, layout = "grid" }:
           <MapPin className="h-3.5 w-3.5 shrink-0" />
           <span className="truncate">{place}, Lahore</span>
         </p>
+        {p.isDemo && (
+          <p className="mt-2 rounded-lg bg-amber-100 px-2.5 py-1.5 text-xs font-bold text-amber-900">
+            Demo property — sample only, not available for rent
+          </p>
+        )}
 
         <ul className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-ink-700">
           {p.bedrooms != null && p.bedrooms > 0 && (

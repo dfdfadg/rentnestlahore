@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { CONTACT_EMAIL, CONTACT_PHONE, SITE_TAGLINE } from "@/lib/site";
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_WHATSAPP, SITE_TAGLINE } from "@/lib/site";
 
 const COLUMNS = [
   {
@@ -59,6 +59,14 @@ export function Footer() {
           </p>
           <p className="mt-4 text-sm">
             <a href={`mailto:${CONTACT_EMAIL}`} className="text-white hover:underline">{CONTACT_EMAIL}</a>
+            {CONTACT_WHATSAPP && (
+              <>
+                <br />
+                <a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="text-white hover:underline">
+                  WhatsApp: +{CONTACT_WHATSAPP.replace(/^(\d{2})(\d{3})(\d+)$/, "$1 $2 $3")}
+                </a>
+              </>
+            )}
             {CONTACT_PHONE && (
               <>
                 <br />

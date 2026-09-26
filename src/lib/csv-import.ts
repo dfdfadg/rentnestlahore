@@ -96,8 +96,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
     const beds = num(r.bedrooms);
     const baths = num(r.bathrooms);
     if (Number.isNaN(beds) || Number.isNaN(baths)) msgs.push("bedrooms/bathrooms must be numbers");
-    const description = (r.description ?? "").trim();
-    if (description.length < 40) msgs.push("description must be at least 40 characters");
+    let description = (r.description ?? "").trim();
     if (containsSaleLanguage(r.title, description)) msgs.push("sale / buy wording is not allowed — rentals only");
     const phoneRaw = (r.agent_phone ?? "").replace(/[\s()-]/g, "");
     if (!PHONE_RE.test(phoneRaw)) msgs.push("agent_phone must be a valid Pakistani number");
@@ -146,6 +145,15 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
     const title =
       (r.title ?? "").trim().slice(0, 120) ||
       generateTitle({ typeName: type.name, typeSlug: type.slug, area, areaUnit: unit, bedrooms: beds ?? null, locationName: loc.name });
+    if (description.length < 40) {
+      // Complete short/missing descriptions from the row's own facts (never invented).
+      const facts = [
+        `${area} ${unit === "SQFT" ? "sq ft" : unit === "SQYD" ? "sq yd" : unit.toLowerCase()} ${type.name.toLowerCase()} available for rent in ${(r.society ?? "").trim() ? `${r.society.trim()}, ` : ""}${loc.name}, Lahore.`,
+        beds ? `${beds} bedroom${beds > 1 ? "s" : ""}${baths ? `, ${baths} bathroom${baths > 1 ? "s" : ""}` : ""}.` : "",
+        `Monthly rent PKR ${monthlyFrom(price, freq).toLocaleString("en-US")}.`,
+      ].filter(Boolean).join(" ");
+      description = [description, facts].filter(Boolean).join("\n\n");
+    }
     report.valid++;
     report.preview.push({ row: rowNo, title, status });
     if (opts.dryRun) continue;
@@ -174,7 +182,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
         locationId: loc.id, society: (r.society ?? "").trim() || null, address: (r.address ?? "").trim() || null,
         latitude: lat ?? null, longitude: lng ?? null, description, features: [],
         furnished: furnished ?? null, condition: condition ?? null,
-        agentId: agent.id, status, featured: bool(r.featured), verified: bool(r.verified), isDemo: !!opts.markDemo,
+        agentId: agent.id, status, featured: bool(r.featured), verified: bool(r.verified), isDemo: !!opts.markDemo, source: "csv",
         publishedAt: status === "PUBLISHED" ? now : null,
         expiresAt: status === "PUBLISHED" ? new Date(now.getTime() + 90 * 86_400_000) : null,
         amenities: { connect: amenities.filter((a) => amenitySlugs.includes(a.slug)).map((a) => ({ id: a.id })) },

@@ -1,58 +1,60 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ClipboardList, ImagePlus, ShieldCheck } from "lucide-react";
+import { CheckCircle2, ImagePlus, ShieldCheck, UserPlus } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { QuickListingForm } from "@/components/manage/QuickListingForm";
+import { WhatsAppListButton } from "@/components/WhatsAppListButton";
+import { getFormOptions } from "@/lib/form-options";
 import { pageMetadata } from "@/lib/seo";
+import { CONTACT_WHATSAPP } from "@/lib/site";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
   title: "List Your Property for Rent in Lahore — Free | RentNest Lahore",
-  description: "Rent out your house, flat, portion, office or shop in Lahore. Create a free listing, add photos and receive enquiries directly from tenants.",
+  description:
+    "Rent out your house, portion, flat, office or shop in Lahore for free. Submit details and photos in two minutes — no account needed — and get calls from tenants.",
   path: "/add-property/",
 });
 
-export default function AddPropertyPage() {
-  const steps = [
-    { icon: ClipboardList, title: "Add the details", text: "Property type, monthly rent, size, rooms, area and amenities. We'll suggest a clear title." },
-    { icon: ImagePlus, title: "Upload photos", text: "Add up to 20 photos you own. The first photo becomes the cover image." },
-    { icon: ShieldCheck, title: "Quick review", text: "Our team checks every listing for accuracy and duplicates before it goes live." },
-    { icon: CheckCircle2, title: "Get enquiries", text: "Tenants call, WhatsApp or send enquiries. Mark it rented when you're done." },
-  ];
+export default async function AddPropertyPage() {
+  const options = await getFormOptions();
   return (
     <div className="container-page py-8">
       <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Add Property", path: "/add-property/" }]} />
-      <div className="mt-6 grid items-center gap-10 lg:grid-cols-2">
-        <div>
-          <h1 className="text-3xl font-extrabold sm:text-4xl">List your property for rent in Lahore</h1>
-          <p className="mt-4 text-lg text-ink-600">
-            Reach people actively looking to rent in Lahore. Listing is free for landlords and agents, and every listing is reviewed to keep the marketplace trustworthy.
+      <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="min-w-0">
+          <h1 className="text-3xl font-extrabold sm:text-4xl">List your property for rent — free</h1>
+          <p className="mt-3 max-w-2xl text-lg text-ink-600">
+            Ghar, portion, flat, office ya shop kiraye par deni hai? Details aur photos bhejein — no account needed. Our team checks every
+            listing, then tenants call or WhatsApp you directly.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/my-properties/new/" className="btn-primary px-6">Post Property</Link>
-            <Link href="/register/?next=/my-properties/new/" className="btn-outline">Create a free account</Link>
+          <div className="mt-6">
+            <QuickListingForm types={options.types} locations={options.locations} whatsapp={CONTACT_WHATSAPP} />
           </div>
-          <p className="mt-4 text-sm text-ink-500">RentNest Lahore accepts rental listings only — no properties for sale.</p>
         </div>
-        <ol className="grid gap-4 sm:grid-cols-2">
-          {steps.map((s, i) => (
-            <li key={s.title} className="card p-5">
-              <s.icon className="h-7 w-7 text-brick-600" />
-              <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-ink-400">Step {i + 1}</p>
-              <h2 className="text-lg font-bold">{s.title}</h2>
-              <p className="mt-1 text-sm text-ink-600">{s.text}</p>
-            </li>
-          ))}
-        </ol>
+
+        <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
+          {CONTACT_WHATSAPP && (
+            <div className="card p-5">
+              <h2 className="font-bold">Prefer WhatsApp?</h2>
+              <p className="mt-1 text-sm text-ink-600">Send us the photos, rent, size and location — we&apos;ll create the listing for you.</p>
+              <div className="mt-4"><WhatsAppListButton number={CONTACT_WHATSAPP} label="List via WhatsApp" className="btn-whatsapp w-full" /></div>
+            </div>
+          )}
+          <div className="card p-5">
+            <h2 className="flex items-center gap-2 font-bold"><UserPlus className="h-5 w-5 text-brick-600" /> Agents & regular landlords</h2>
+            <p className="mt-1 text-sm text-ink-600">Create a free account to manage all your listings, edit photos, mark properties rented and see enquiries.</p>
+            <Link href="/my-properties/new/" className="btn-outline mt-4 w-full">Post with an account</Link>
+            <p className="mt-3 text-xs text-ink-500">Have many listings? Send us a spreadsheet — we can bulk-import them for you.</p>
+          </div>
+          <ul className="card space-y-3 p-5 text-sm text-ink-700">
+            <li className="flex gap-2"><ImagePlus className="h-5 w-5 shrink-0 text-brick-600" /> Up to 8 photos — listings with photos get far more calls.</li>
+            <li className="flex gap-2"><ShieldCheck className="h-5 w-5 shrink-0 text-brick-600" /> Every listing is reviewed before going live.</li>
+            <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 shrink-0 text-brick-600" /> Rental properties in Lahore only — no sale listings.</li>
+          </ul>
+        </aside>
       </div>
-      <section className="mt-14 max-w-3xl">
-        <h2 className="text-xl font-bold">Listing guidelines</h2>
-        <ul className="mt-3 list-disc space-y-1.5 pl-6 text-[15px] text-ink-700">
-          <li>Only list properties that are genuinely available for rent in Lahore and that you are authorised to rent out.</li>
-          <li>Use your own photos, or photos you have permission to use. Don&apos;t copy images or text from other websites.</li>
-          <li>Show the real monthly rent. Mention the security deposit and advance if you know them.</li>
-          <li>One listing per property. Duplicate listings are removed.</li>
-          <li>Mark your listing as rented as soon as it is taken so tenants aren&apos;t disappointed.</li>
-        </ul>
-      </section>
     </div>
   );
 }

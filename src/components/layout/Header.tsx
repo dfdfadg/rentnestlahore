@@ -19,7 +19,7 @@ export function Header() {
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <AccountMenu />
-          <Link href="/my-properties/new/" className="btn-primary hidden sm:inline-flex">
+          <Link href="/add-property/" className="btn-primary hidden sm:inline-flex">
             Post Property
           </Link>
           <MobileNav />

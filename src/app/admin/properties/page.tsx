@@ -28,7 +28,7 @@ export default async function AdminProperties({ searchParams }: { searchParams: 
       skip: (page - 1) * PER_PAGE,
       take: PER_PAGE,
       select: {
-        id: true, slug: true, title: true, status: true, price: true, refNo: true, featured: true, verified: true, isDemo: true, updatedAt: true, views: true,
+        id: true, slug: true, title: true, status: true, price: true, refNo: true, featured: true, verified: true, isDemo: true, updatedAt: true, views: true, source: true,
         location: { select: { name: true } }, agent: { select: { name: true } }, _count: { select: { images: true, enquiries: true } },
       },
     }),
@@ -65,6 +65,8 @@ export default async function AdminProperties({ searchParams }: { searchParams: 
             <div className="flex flex-wrap items-center gap-2 text-xs text-ink-500">
               <StatusBadge status={p.status} />
               {p.isDemo && <span className="badge bg-amber-200 text-amber-900">Demo</span>}
+              {p.source === "quick_form" && <span className="badge bg-sky-50 text-sky-700">Quick form</span>}
+              {p.source === "csv" && <span className="badge bg-ink-100 text-ink-700">CSV</span>}
               <span>{propertyRef(p.refNo)}</span>·<span>{p.location.name}</span>·<span>{p.agent.name}</span>·<span>{p._count.images} photos</span>·<span>{p._count.enquiries} enquiries</span>·<span>{p.views} views</span>·<span>updated {formatDate(p.updatedAt)}</span>
             </div>
             <p className="mt-1 font-semibold">{p.title} <span className="font-normal text-ink-500">— {formatPKR(p.price)}</span></p>

@@ -52,6 +52,7 @@ export function StatusBadge({ status }: { status: string }) {
     EXPIRED: "bg-ink-100 text-ink-600 ring-ink-200",
     RENTED: "bg-sky-50 text-sky-700 ring-sky-200",
     NEW: "bg-brick-50 text-brick-700 ring-brick-200",
+    MATCHED: "bg-emerald-50 text-emerald-700 ring-emerald-200",
     CONTACTED: "bg-sky-50 text-sky-700 ring-sky-200",
     CLOSED: "bg-ink-50 text-ink-600 ring-ink-200",
     SPAM: "bg-red-50 text-red-700 ring-red-200",

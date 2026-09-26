@@ -1,0 +1,4 @@
+property_type,location,society,price,area,area_unit,bedrooms,bathrooms,description,agent_name,agent_phone,images
+house,Johar Town,Block E,85000,10,marla,4,4,,Your Name / Agency,03001234567,
+upper portion,Wapda Town,,45000,10,marla,2,2,Separate entrance and meters,Your Name / Agency,03001234567,
+office,Gulberg,,150000,1200,sqft,,2,,Your Name / Agency,03001234567,

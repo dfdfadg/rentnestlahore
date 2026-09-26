@@ -78,6 +78,14 @@ enum EnquiryStatus {
   SPAM
 }
 
+enum RequirementStatus {
+  NEW
+  CONTACTED
+  MATCHED
+  CLOSED
+  SPAM
+}
+
 enum ReportStatus {
   OPEN
   RESOLVED
@@ -275,6 +283,8 @@ model Property {
   verified        Boolean            @default(false)
   /// Demo / sample listings are clearly labelled in the UI and can be bulk-removed.
   isDemo          Boolean            @default(false)
+  /// How the listing arrived: account | quick_form | csv | admin
+  source          String             @default("account")
   views           Int                @default(0)
   createdAt       DateTime           @default(now())
   updatedAt       DateTime           @updatedAt
@@ -378,4 +388,23 @@ model Report {
 
   @@index([status])
   @@index([propertyId])
+}
+
+/// "I'm looking for a place to rent" leads from renters — shared with agents/landlords by the admin.
+model RentRequirement {
+  id           String            @id @default(cuid())
+  name         String
+  phone        String
+  email        String?
+  propertyType String?
+  areas        String
+  budgetMin    Int?
+  budgetMax    Int?
+  bedrooms     Int?
+  moveIn       String?
+  notes        String?           @db.Text
+  status       RequirementStatus @default(NEW)
+  createdAt    DateTime          @default(now())
+
+  @@index([status, createdAt])
 }

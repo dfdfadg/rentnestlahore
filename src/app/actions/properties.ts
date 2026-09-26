@@ -148,6 +148,7 @@ export async function saveProperty(_: FormState, formData: FormData): Promise<Fo
         ...adminFields,
         slug,
         status,
+        source: isAdmin ? "admin" : "account",
         publishedAt: status === "PUBLISHED" ? now : null,
         expiresAt: adminFields.expiresAt ?? (status === "PUBLISHED" ? new Date(now.getTime() + DEFAULT_LISTING_DAYS * 86_400_000) : null),
         amenities: { connect: amenities },

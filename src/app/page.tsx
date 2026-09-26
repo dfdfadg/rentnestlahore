@@ -214,6 +214,13 @@ export default async function HomePage() {
             </div>
             <Link href="/add-property/" className="btn-primary">List your property</Link>
           </div>
+          <div className="mt-4 flex flex-col items-start gap-4 rounded-2xl border border-ink-100 bg-sand-50 p-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-bold">Looking for a rental but can&apos;t find the right one?</p>
+              <p className="text-sm text-ink-600">Share your area, budget and needs — we&apos;ll connect you with landlords and agents.</p>
+            </div>
+            <Link href="/rent-requirement/" className="btn-dark">Post your requirement</Link>
+          </div>
         </div>
       </section>
 

@@ -44,7 +44,7 @@ export function MobileNav() {
               </Link>
             ))}
             <div className="mt-6 grid gap-3">
-              <Link href="/my-properties/new/" className="btn-primary">Post Property</Link>
+              <Link href="/add-property/" className="btn-primary">Post Property</Link>
               {user ? (
                 <>
                   <Link href="/dashboard/" className="btn-outline">Dashboard</Link>

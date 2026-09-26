@@ -18,6 +18,11 @@ export function EmptyResults({ clearHref, hasFilters }: { clearHref: string; has
         <Link href="/rent/" className="btn-outline">View All Rentals</Link>
         <Link href="/areas/" className="btn-outline">Try Another Area</Link>
       </div>
+      <p className="mt-6 text-sm text-ink-600">
+        Can&apos;t find what you need?{" "}
+        <Link href="/rent-requirement/" className="font-semibold text-brick-700 hover:underline">Tell us your requirement</Link> and we&apos;ll
+        connect you with landlords and agents.
+      </p>
     </div>
   );
 }

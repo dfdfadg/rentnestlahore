@@ -7,6 +7,8 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://rentnestla
 
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@rentnestlahore.pk";
 export const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "";
+/** Site owner's WhatsApp (international format, e.g. 923001234567). Enables "list via WhatsApp" buttons. */
+export const CONTACT_WHATSAPP = (process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "").replace(/[^\d]/g, "");
 
 /** Absolute URL for a site path. Paths always end with a trailing slash (except files). */
 export function absoluteUrl(path = "/"): string {

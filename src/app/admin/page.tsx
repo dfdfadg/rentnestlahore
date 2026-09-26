@@ -7,6 +7,10 @@ import { formatDate, formatPKR } from "@/lib/format";
 
 export default async function AdminHome() {
   await requireAdmin();
+  const [newReq, quickPending] = await Promise.all([
+    prisma.rentRequirement.count({ where: { status: "NEW" } }),
+    prisma.property.count({ where: { status: "PENDING_REVIEW", source: "quick_form" } }),
+  ]);
   const [byStatus, users, agents, newEnq, openReports, demo, pending] = await Promise.all([
     prisma.property.groupBy({ by: ["status"], _count: { _all: true } }),
     prisma.user.count(),
@@ -18,7 +22,7 @@ export default async function AdminHome() {
       where: { status: "PENDING_REVIEW" },
       orderBy: { updatedAt: "asc" },
       take: 10,
-      select: { id: true, slug: true, title: true, status: true, price: true, featured: true, verified: true, updatedAt: true, agent: { select: { name: true } }, _count: { select: { images: true } } },
+      select: { id: true, slug: true, title: true, status: true, price: true, featured: true, verified: true, updatedAt: true, source: true, agent: { select: { name: true, phone: true } }, _count: { select: { images: true } } },
     }),
   ]);
   const c = (s: string) => byStatus.find((b) => b.status === s)?._count._all ?? 0;
@@ -30,6 +34,8 @@ export default async function AdminHome() {
     ["Expired", c("EXPIRED"), "/admin/properties/?status=EXPIRED"],
     ["Rejected", c("REJECTED"), "/admin/properties/?status=REJECTED"],
     ["New enquiries", newEnq, "/admin/enquiries/"],
+    ["New requirements", newReq, "/admin/requirements/"],
+    ["Quick-form submissions", quickPending, "/admin/properties/?status=PENDING_REVIEW"],
     ["Open reports", openReports, "/admin/reports/"],
     ["Users", users, "/admin/users/"],
     ["Agents", agents, "/admin/agents/"],
@@ -58,7 +64,9 @@ export default async function AdminHome() {
           {pending.map((p) => (
             <li key={p.id} className="card p-4">
               <div className="flex flex-wrap items-center gap-2 text-xs text-ink-500">
-                <StatusBadge status={p.status} /> {p.agent.name} · {formatPKR(p.price)} · {p._count.images} photos · updated {formatDate(p.updatedAt)}
+                <StatusBadge status={p.status} />
+                {p.source === "quick_form" && <span className="badge bg-sky-50 text-sky-700 ring-1 ring-sky-200">Quick form — call to confirm</span>}
+                {p.agent.name} · {p.agent.phone} · {formatPKR(p.price)} · {p._count.images} photos · updated {formatDate(p.updatedAt)}
               </div>
               <p className="mt-1 font-semibold">{p.title}</p>
               <div className="mt-2"><AdminPropertyActions id={p.id} slug={p.slug} status={p.status} featured={p.featured} verified={p.verified} /></div>

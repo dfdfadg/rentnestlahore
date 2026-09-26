@@ -26,6 +26,7 @@ test("register a new account", async ({ page }) => {
   await page.goto("/register/");
   await page.getByLabel("Full name").fill(user.name);
   await page.getByLabel("Email").fill(user.email);
+  await page.getByLabel("Mobile number").fill("0333 9998877");
   await page.getByLabel("Password", { exact: true }).fill(user.password);
   await page.getByLabel("Confirm password").fill(user.password);
   await page.getByRole("button", { name: "Create account" }).click();
@@ -40,6 +41,7 @@ test("duplicate registration and bad login are rejected", async ({ page }) => {
   await page.goto("/register/");
   await page.getByLabel("Full name").fill(user.name);
   await page.getByLabel("Email").fill(user.email);
+  await page.getByLabel("Mobile number").fill("0333 9998877");
   await page.getByLabel("Password", { exact: true }).fill(user.password);
   await page.getByLabel("Confirm password").fill(user.password);
   await page.getByRole("button", { name: "Create account" }).click();
@@ -92,7 +94,7 @@ test("submit a rental property with a photo", async ({ page }) => {
   await page.getByRole("button", { name: "Submit for review" }).click();
   await expect(page.getByText("Please add at least one photo")).toBeVisible();
 
-  await page.locator('input[type="file"]').setInputFiles(path.join(process.cwd(), "public/demo/house-3.webp"));
+  await page.locator('input[type="file"]').setInputFiles(path.join(process.cwd(), "public/demo/photos/house-3.webp"));
   await expect(page.getByText("Primary")).toBeVisible({ timeout: 20_000 });
   const img = await prisma.propertyImage.findFirstOrThrow({ where: { propertyId } });
   expect(img.url).toMatch(/\.webp$/);

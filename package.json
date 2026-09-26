@@ -19,7 +19,8 @@
     "db:remove-demo": "tsx scripts/remove-demo.ts",
     "import:csv": "tsx scripts/import-csv.ts",
     "demo:images": "tsx scripts/generate-demo-images.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

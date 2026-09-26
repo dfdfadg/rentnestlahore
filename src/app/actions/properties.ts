@@ -10,6 +10,7 @@ import { deleteStoredImage } from "@/lib/storage";
 import { firstErrors, normalizePhone, phoneSchema, propertyFormSchema } from "@/lib/validation";
 import { allSlugsFor, buildTitleAndSlug, changeSlug, containsSaleLanguage, monthlyFrom, revalidateListing, slugify, uniqueSlug } from "@/lib/property-write";
 import type { FormState } from "./auth";
+import { notifyListingChange } from "@/lib/indexnow";
 
 const DEFAULT_LISTING_DAYS = 90;
 
@@ -154,6 +155,7 @@ export async function saveProperty(_: FormState, formData: FormData): Promise<Fo
     });
     // Always refresh: a previously deleted listing may have used this slug (cached page or 404).
     revalidateListing(slug);
+    if (status === "PUBLISHED") notifyListingChange(slug);
     redirect(isAdmin ? `/admin/properties/${created.id}/photos/` : `/my-properties/${created.id}/photos/?new=1`);
   }
 
@@ -187,7 +189,10 @@ export async function saveProperty(_: FormState, formData: FormData): Promise<Fo
       amenities: { set: amenities },
     },
   });
-  revalidateListing(await allSlugsFor(id!));
+  const slugsNow = await allSlugsFor(id!);
+  revalidateListing(slugsNow);
+  // Tell search engines when a public page appeared, changed or disappeared.
+  if (current.status === "PUBLISHED" || status === "PUBLISHED") notifyListingChange(slugsNow);
   return { ok: true, message };
 }
 
@@ -209,7 +214,9 @@ export async function markRented(propertyId: string): Promise<FormState> {
   const p = await canEditProperty(user, propertyId);
   if (!p) return { message: "Not allowed." };
   await prisma.property.update({ where: { id: propertyId }, data: { status: "RENTED", rentedAt: new Date(), featured: false } });
-  revalidateListing(await allSlugsFor(propertyId));
+  const rentedSlugs = await allSlugsFor(propertyId);
+  revalidateListing(rentedSlugs);
+  if (p.status === "PUBLISHED") notifyListingChange(rentedSlugs);
   return { ok: true, message: "Marked as rented. It has been removed from search results." };
 }
 
@@ -222,6 +229,7 @@ export async function deleteProperty(propertyId: string): Promise<FormState> {
   await prisma.property.delete({ where: { id: propertyId } });
   await Promise.all(images.map((i) => deleteStoredImage(i.url)));
   revalidateListing(slugs);
+  if (p.status === "PUBLISHED") notifyListingChange(slugs);
   return { ok: true, message: "Listing deleted." };
 }
 

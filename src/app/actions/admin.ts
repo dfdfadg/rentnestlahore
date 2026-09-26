@@ -11,6 +11,7 @@ import { RESERVED_RENT_SEGMENTS, TAXONOMY_TAG } from "@/lib/taxonomy";
 import { firstErrors, normalizePhone, phoneSchema } from "@/lib/validation";
 import { importCsv } from "@/lib/csv-import";
 import type { FormState } from "./auth";
+import { notifyListingChange } from "@/lib/indexnow";
 
 const DEFAULT_LISTING_DAYS = 90;
 
@@ -22,7 +23,7 @@ export async function moderateProperty(
   reason?: string,
 ): Promise<FormState> {
   await requireAdmin();
-  const p = await prisma.property.findUnique({ where: { id }, select: { slug: true, publishedAt: true, expiresAt: true, images: { select: { id: true }, take: 1 } } });
+  const p = await prisma.property.findUnique({ where: { id }, select: { slug: true, status: true, publishedAt: true, expiresAt: true, images: { select: { id: true }, take: 1 } } });
   if (!p) return { message: "Listing not found" };
   const now = new Date();
   switch (action) {
@@ -58,7 +59,10 @@ export async function moderateProperty(
       await prisma.property.update({ where: { id }, data: { verified: action === "verify" } });
       break;
   }
-  revalidateListing(await allSlugsFor(id));
+  const slugs = await allSlugsFor(id);
+  revalidateListing(slugs);
+  // Visibility changed (or a live page changed): notify search engines.
+  if (action === "approve" || p.status === "PUBLISHED") notifyListingChange(slugs);
   revalidatePath("/admin/properties/");
   return { ok: true, message: "Updated." };
 }
@@ -228,7 +232,10 @@ export async function runCsvImport(_: FormState & { report?: unknown }, formData
   if (file.size > 5 * 1024 * 1024) return { message: "CSV is larger than 5 MB. Split it into smaller files." };
   const dryRun = formData.get("mode") !== "import";
   const report = await importCsv(await file.text(), { dryRun, markDemo: formData.get("demo") === "on" });
-  if (!dryRun && report.imported > 0) revalidateListing(undefined, { allProperties: true });
+  if (!dryRun && report.imported > 0) {
+    revalidateListing(undefined, { allProperties: true });
+    notifyListingChange(report.publishedSlugs);
+  }
   return {
     ok: report.errors.length === 0,
     message: dryRun

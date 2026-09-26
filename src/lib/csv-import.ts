@@ -23,6 +23,8 @@ export type ImportReport = {
   imported: number;
   errors: { row: number; messages: string[] }[];
   preview: { row: number; title: string; status: string }[];
+  /** Slugs of rows imported directly as PUBLISHED (for search-engine notification). */
+  publishedSlugs: string[];
 };
 
 const PHONE_RE = /^(\+92|0092|0)\d{9,11}$/;
@@ -53,7 +55,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
     skipEmptyLines: "greedy",
     transformHeader: (h) => h.trim().toLowerCase().replace(/\s+/g, "_"),
   });
-  const report: ImportReport = { total: parsed.data.length, valid: 0, imported: 0, errors: [], preview: [] };
+  const report: ImportReport = { total: parsed.data.length, valid: 0, imported: 0, errors: [], preview: [], publishedSlugs: [] };
   if (parsed.errors.length) {
     for (const e of parsed.errors.slice(0, 20)) report.errors.push({ row: (e.row ?? 0) + 2, messages: [`CSV format: ${e.message}`] });
   }
@@ -180,6 +182,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
       },
     });
     report.imported++;
+    if (status === "PUBLISHED") report.publishedSlugs.push(slug);
   }
   return report;
 }

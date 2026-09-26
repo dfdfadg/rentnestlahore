@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { timingSafeEqual } from "node:crypto";
 import { prisma } from "@/lib/db";
 import { revalidateListing } from "@/lib/property-write";
+import { notifyListingChange } from "@/lib/indexnow";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,7 @@ function authorized(req: Request): boolean {
 export async function GET(req: Request) {
   if (!authorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const now = new Date();
+  const expiring = await prisma.property.findMany({ where: { status: "PUBLISHED", expiresAt: { lt: now }, isDemo: false }, select: { slug: true }, take: 10_000 });
   const [expired, unfeatured, sessions, tokens] = await Promise.all([
     prisma.property.updateMany({ where: { status: "PUBLISHED", expiresAt: { lt: now } }, data: { status: "EXPIRED", featured: false } }),
     prisma.property.updateMany({ where: { featured: true, featuredUntil: { lt: now } }, data: { featured: false, featuredUntil: null } }),
@@ -30,5 +32,6 @@ export async function GET(req: Request) {
     prisma.passwordResetToken.deleteMany({ where: { OR: [{ expiresAt: { lt: now } }, { usedAt: { not: null } }] } }),
   ]);
   if (expired.count || unfeatured.count) revalidateListing(undefined, { allProperties: true });
+  notifyListingChange(expiring.map((p) => p.slug));
   return NextResponse.json({ expired: expired.count, unfeatured: unfeatured.count, sessionsDeleted: sessions.count, tokensDeleted: tokens.count });
 }

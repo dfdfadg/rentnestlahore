@@ -15,6 +15,7 @@ import { searchProperties } from "@/lib/properties";
 import { itemListJsonLd, pageMetadata, type Crumb } from "@/lib/seo";
 import { formatNumber } from "@/lib/format";
 import { PAGE_SIZE } from "@/lib/site";
+import { landingContent } from "@/content/landing";
 
 type Props = {
   params: Promise<{ segments?: string[] }>;
@@ -76,9 +77,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const cleanPath = listingPath({ type: ctx.landing?.slug, area: ctx.location?.slug, page: ctx.page });
   const refined = hasRefinements(filters);
   const pageSuffix = ctx.page > 1 ? ` – Page ${ctx.page}` : "";
+  const content = landingContent(ctx.landing?.slug, ctx.location?.slug);
+  const useEditorial = content?.seoTitle && ctx.page === 1 && !refined;
   return pageMetadata({
-    title: `${titleBase}${pageSuffix} | RentNest Lahore`,
-    description: `${description(ctx, result.total)}${ctx.page > 1 ? ` Page ${ctx.page}.` : ""}`,
+    title: useEditorial ? content!.seoTitle! : `${titleBase}${pageSuffix} | RentNest Lahore`,
+    description:
+      useEditorial && content!.metaDescription
+        ? content!.metaDescription
+        : `${description(ctx, result.total)}${ctx.page > 1 ? ` Page ${ctx.page}.` : ""}`,
     path: cleanPath,
     // Filtered URLs canonicalise to the clean (unfiltered) page and are not indexed.
     canonicalPath: refined ? listingPath({ type: ctx.landing?.slug, area: ctx.location?.slug }) : cleanPath,

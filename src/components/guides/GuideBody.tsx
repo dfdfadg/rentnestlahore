@@ -1,28 +1,10 @@
 import Link from "next/link";
+import { Inline } from "../ui/Inline";
 import { Fragment } from "react";
 import type { GuideBlock } from "@/content/guides";
 import { rentStatsByType } from "@/lib/stats";
 import { descendantIds, getLocations, getPropertyTypes } from "@/lib/taxonomy";
 import { formatNumber, formatPKR } from "@/lib/format";
-
-/** Renders [text](/path/) links and **bold** from trusted, in-repo guide content. */
-function Inline({ text }: { text: string }) {
-  const parts: React.ReactNode[] = [];
-  const re = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
-  let last = 0;
-  let m: RegExpExecArray | null;
-  let k = 0;
-  while ((m = re.exec(text))) {
-    if (m.index > last) parts.push(text.slice(last, m.index));
-    if (m[1]) {
-      const href = m[2];
-      parts.push(href.startsWith("/") ? <Link key={k++} href={href}>{m[1]}</Link> : <a key={k++} href={href} rel="noopener noreferrer">{m[1]}</a>);
-    } else if (m[3]) parts.push(<strong key={k++}>{m[3]}</strong>);
-    last = re.lastIndex;
-  }
-  if (last < text.length) parts.push(text.slice(last));
-  return <>{parts}</>;
-}
 
 async function StatsBlock({ kind }: { kind: "lahore-types" | "house-areas" }) {
   if (kind === "lahore-types") {

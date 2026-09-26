@@ -9,6 +9,10 @@ import { descendantIds, getLandingTypes, getLocations, locationLabel, nearbyLoca
 import { formatNumber, formatPKR } from "@/lib/format";
 import { prisma } from "@/lib/db";
 import { activeWhere } from "@/lib/properties";
+import { landingContent } from "@/content/landing";
+import { Inline, plainText } from "../ui/Inline";
+import { JsonLd } from "../JsonLd";
+import { faqJsonLd } from "@/lib/seo";
 
 const MIN_LINKABLE_COMBO = 3;
 
@@ -47,6 +51,7 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
   const nearby = ctx.location ? nearbyLocations(ctx.parentLocation ?? ctx.location, locations, 6) : [];
   const description = ctx.location?.description ?? ctx.parentLocation?.description ?? null;
   const typeDescription = ctx.landing?.description ?? null;
+  const content = landingContent(ctx.landing?.slug, ctx.location?.slug);
 
   return (
     <div className="mt-16 grid gap-10 border-t border-ink-100 pt-10 lg:grid-cols-[1fr_340px]">
@@ -57,7 +62,7 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
             <p className="mt-3 text-[15px] leading-7 text-ink-700">{description}</p>
           </section>
         )}
-        {ctx.landing && typeDescription && (
+        {ctx.landing && typeDescription && !content && (
           <section>
             <h2 className="text-xl font-bold">{ctx.location ? `${typeName} in ${ctx.location.name}` : `Renting ${typeName.toLowerCase()} in Lahore`}</h2>
             <p className="mt-3 text-[15px] leading-7 text-ink-700">{typeDescription}</p>
@@ -74,6 +79,20 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
             </p>
           </section>
         )}
+
+        {content?.sections.map((sec) => (
+          <section key={sec.h}>
+            <h2 className="text-xl font-bold">{sec.h}</h2>
+            <div className="prose-rn mt-3">
+              {sec.p?.map((para, i) => <p key={i}><Inline text={para} /></p>)}
+              {sec.ul && (
+                <ul>
+                  {sec.ul.map((li, i) => <li key={i}><Inline text={li} /></li>)}
+                </ul>
+              )}
+            </div>
+          </section>
+        ))}
 
         {stats.length > 0 && (
           <section>
@@ -128,6 +147,23 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
                 );
               })}
             </ul>
+          </section>
+        )}
+        {content && content.faqs.length > 0 && (
+          <section>
+            <h2 className="text-xl font-bold">Frequently asked questions</h2>
+            <div className="mt-4 divide-y divide-ink-100 rounded-2xl border border-ink-100 bg-white">
+              {content.faqs.map((f) => (
+                <details key={f.q} className="group p-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink-900">
+                    {f.q}
+                    <span className="text-xl text-brick-600 transition group-open:rotate-45" aria-hidden="true">+</span>
+                  </summary>
+                  <p className="mt-3 text-[15px] leading-7 text-ink-600"><Inline text={f.a} /></p>
+                </details>
+              ))}
+            </div>
+            <JsonLd data={faqJsonLd(content.faqs.map((f) => ({ q: f.q, a: plainText(f.a) })))} />
           </section>
         )}
       </div>

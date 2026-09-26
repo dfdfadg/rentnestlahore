@@ -19,10 +19,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Canonical host is the apex domain.
+      // Canonical host is the apex domain (www and the production *.vercel.app alias redirect to it).
+      // Preview deployment URLs (rentnestlahore-git-…vercel.app) are not affected.
       {
         source: "/:path(.*)",
-        has: [{ type: "host", value: "www.rentnestlahore.pk" }],
+        has: [{ type: "host", value: "(?:www\\.rentnestlahore\\.pk|rentnestlahore\\.vercel\\.app)" }],
         destination: "https://rentnestlahore.pk/:path",
         permanent: true,
       },

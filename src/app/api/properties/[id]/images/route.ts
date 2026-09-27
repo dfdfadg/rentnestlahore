@@ -43,7 +43,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
       const url = await storeImage(data, id);
       created.push(
         await prisma.propertyImage.create({
-          data: { propertyId: id, url, width, height, position: position++, alt: `${title} — photo ${position}` },
+          data: { propertyId: id, url, width, height, position: position++, alt: `${title}, photo ${position}` },
         }),
       );
     } catch (e) {

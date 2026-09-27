@@ -34,7 +34,7 @@ export async function submitPropertyLead(_: FormState, formData: FormData): Prom
   const d = parsed.data;
   const phone = normalizePhone(d.phone);
   const recent = await prisma.propertyLead.findFirst({ where: { phone, intent: d.intent, createdAt: { gt: new Date(Date.now() - 86_400_000) } }, select: { id: true } });
-  if (recent) return { ok: true, message: "We already have your request from today — a consultant will contact you soon." };
+  if (recent) return { ok: true, message: "We already have your request from today. A consultant will contact you soon." };
   await prisma.propertyLead.create({
     data: {
       intent: d.intent, name: d.name, phone, email: d.email, propertyType: d.propertyType || null, area: d.area,

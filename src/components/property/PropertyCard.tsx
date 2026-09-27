@@ -69,7 +69,7 @@ export function PropertyCard({ property: p, priority = false, layout = "grid" }:
         </p>
         {p.isDemo && (
           <p className="mt-2 rounded-lg bg-amber-100 px-2.5 py-1.5 text-xs font-bold text-amber-900">
-            Demo property — sample only, not available for rent
+            Demo property: sample only, not available for rent
           </p>
         )}
 

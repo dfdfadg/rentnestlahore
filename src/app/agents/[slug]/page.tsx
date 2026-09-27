@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { agent, properties } = await load(slug);
   const role = agent.type === "LANDLORD" ? "Landlord" : "Property agent";
   return pageMetadata({
-    title: `${agent.name}${agent.agency ? ` – ${agent.agency}` : ""} | Rentals in Lahore | RentNest Lahore`,
+    title: `${agent.name}${agent.agency ? `, ${agent.agency}` : ""} | Rentals in Lahore | RentNest Lahore`,
     description: `${role} with ${properties.length} active rental listing${properties.length === 1 ? "" : "s"} in Lahore${agent.areasServed.length ? `, serving ${agent.areasServed.slice(0, 4).map((a) => a.name).join(", ")}` : ""}.`,
     path: `/agents/${agent.slug}/`,
     noindex: properties.length === 0 || agent.isDemo,

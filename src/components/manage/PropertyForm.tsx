@@ -93,7 +93,7 @@ export function PropertyForm({ mode, values: v, types, locations, amenities, age
             <p className="input flex items-center bg-ink-50 font-semibold text-ink-700">For Rent</p>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="pf-title" className="label">Title <span className="normal-case text-ink-400">(optional — we&apos;ll generate one like &quot;5 Marla House for Rent in Johar Town&quot;)</span></label>
+            <label htmlFor="pf-title" className="label">Title <span className="normal-case text-ink-400">(optional, we&apos;ll generate one like &quot;5 Marla House for Rent in Johar Town&quot;)</span></label>
             <input id="pf-title" name="title" defaultValue={v.title} maxLength={120} className="input" />
             {err("title")}
           </div>
@@ -217,7 +217,7 @@ export function PropertyForm({ mode, values: v, types, locations, amenities, age
             <input id="pf-soc" name="society" defaultValue={v.society ?? ""} maxLength={120} className="input" placeholder="e.g. Block E" />
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="pf-addr" className="label">Full address <span className="normal-case text-ink-400">(private — for our records only)</span></label>
+            <label htmlFor="pf-addr" className="label">Full address <span className="normal-case text-ink-400">(private, for our records only)</span></label>
             <input id="pf-addr" name="address" defaultValue={v.address ?? ""} maxLength={200} className="input" />
           </div>
           <div>

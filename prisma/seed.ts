@@ -75,12 +75,12 @@ async function seedAdmin() {
 // ---------------------------------------------------------------- demo data
 
 const DEMO_AGENTS = [
-  { name: "Nestway Estates (Demo)", agency: "Nestway Estates — Demo Agency", type: "AGENT" as const, areas: ["dha-lahore", "cantt", "askari", "state-life-housing-society"] },
-  { name: "Brickline Realty (Demo)", agency: "Brickline Realty — Demo Agency", type: "AGENT" as const, areas: ["gulberg", "garden-town", "model-town", "muslim-town"] },
-  { name: "Canal Side Properties (Demo)", agency: "Canal Side Properties — Demo Agency", type: "AGENT" as const, areas: ["johar-town", "pia-housing-society", "wapda-town", "jubilee-town", "faisal-town"] },
-  { name: "Orchard Gate Realtors (Demo)", agency: "Orchard Gate Realtors — Demo Agency", type: "AGENT" as const, areas: ["bahria-town", "bahria-orchard", "lake-city", "valencia-town", "fazaia-housing-scheme"] },
-  { name: "Township Homes (Demo)", agency: "Township Homes — Demo Agency", type: "AGENT" as const, areas: ["township", "allama-iqbal-town", "central-park", "lda-avenue", "sabzazar"] },
-  { name: "Ring Road Commercial (Demo)", agency: "Ring Road Commercial — Demo Agency", type: "AGENT" as const, areas: ["raiwind-road", "bedian-road"] },
+  { name: "Nestway Estates (Demo)", agency: "Nestway Estates (Demo Agency)", type: "AGENT" as const, areas: ["dha-lahore", "cantt", "askari", "state-life-housing-society"] },
+  { name: "Brickline Realty (Demo)", agency: "Brickline Realty (Demo Agency)", type: "AGENT" as const, areas: ["gulberg", "garden-town", "model-town", "muslim-town"] },
+  { name: "Canal Side Properties (Demo)", agency: "Canal Side Properties (Demo Agency)", type: "AGENT" as const, areas: ["johar-town", "pia-housing-society", "wapda-town", "jubilee-town", "faisal-town"] },
+  { name: "Orchard Gate Realtors (Demo)", agency: "Orchard Gate Realtors (Demo Agency)", type: "AGENT" as const, areas: ["bahria-town", "bahria-orchard", "lake-city", "valencia-town", "fazaia-housing-scheme"] },
+  { name: "Township Homes (Demo)", agency: "Township Homes (Demo Agency)", type: "AGENT" as const, areas: ["township", "allama-iqbal-town", "central-park", "lda-avenue", "sabzazar"] },
+  { name: "Ring Road Commercial (Demo)", agency: "Ring Road Commercial (Demo Agency)", type: "AGENT" as const, areas: ["raiwind-road", "bedian-road"] },
   { name: "Sample Landlord (Demo)", agency: null, type: "LANDLORD" as const, areas: ["model-town", "johar-town"] },
 ];
 
@@ -314,7 +314,7 @@ function describe(b: Built, typeName: string, locationName: string, society: str
   if (b.loadingArea) body.push(`Loading area for trucks${b.ceilingHeightFt ? ` and a clear height of about ${b.ceilingHeightFt} ft` : ""}.`);
   if (b.features.length) body.push(`Highlights: ${b.features.slice(0, 3).join(", ").toLowerCase()}.`);
   return [
-    "DEMO LISTING — this sample record was created to test the RentNest Lahore platform. It is not a real property and is not available for rent.",
+    "DEMO LISTING: this sample record was created to test the RentNest Lahore platform. It is not a real property and is not available for rent.",
     body.join(" "),
     `Monthly rent is PKR ${rent.toLocaleString("en-US")} with a security deposit of PKR ${deposit.toLocaleString("en-US")}.`,
   ].join("\n\n");
@@ -348,7 +348,7 @@ async function seedDemo() {
 
   const existingDemo = await prisma.property.count({ where: { isDemo: true } });
   if (existingDemo > 0) {
-    console.log(`Demo: ${existingDemo} demo listings already present — skipping (run db:remove-demo first to regenerate)`);
+    console.log(`Demo: ${existingDemo} demo listings already present, skipping (run db:remove-demo first to regenerate)`);
     return;
   }
 
@@ -385,7 +385,7 @@ async function seedDemo() {
       const n1 = between(1, 6);
       const images = b.scenes.map((scene, idx) => ({
         url: IMG(scene, ((n1 + idx) % 6) + 1),
-        alt: `${title} — ${["front view", "living area", "bedroom", "kitchen"][idx] ?? "interior"} (sample photo)`,
+        alt: `${title}, ${["front view", "living area", "bedroom", "kitchen"][idx] ?? "interior"} (sample photo)`,
         width: 1200, height: 900, position: idx,
       }));
 

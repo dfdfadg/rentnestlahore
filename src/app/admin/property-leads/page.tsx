@@ -28,9 +28,9 @@ export default async function AdminPropertyLeads() {
         {leads.map((l) => {
           const money = l.intent === "SELL"
             ? l.budgetMin ? `Expected price: ${formatPKR(l.budgetMin)}` : ""
-            : l.budgetMin || l.budgetMax ? `Budget: ${l.budgetMin ? formatPKR(l.budgetMin) : "…"} – ${l.budgetMax ? formatPKR(l.budgetMax) : "…"}` : "";
+            : l.budgetMin || l.budgetMax ? `Budget: ${l.budgetMin ? formatPKR(l.budgetMin) : "…"} to ${l.budgetMax ? formatPKR(l.budgetMax) : "…"}` : "";
           const text = [
-            `RentNest lead (${l.intent === "BUY" ? "BUYER" : "SELLER"}) — ${formatDate(l.createdAt)}`,
+            `RentNest lead (${l.intent === "BUY" ? "BUYER" : "SELLER"}), ${formatDate(l.createdAt)}`,
             `Name: ${l.name}`,
             `Phone: ${l.phone}`,
             l.email ? `Email: ${l.email}` : "",

@@ -57,7 +57,7 @@ export function Footer() {
         <div>
           <Logo light />
           <p className="mt-4 max-w-xs text-sm leading-6 text-ink-300">
-            {SITE_TAGLINE}. A rent-only marketplace for houses, flats, offices, shops and more — exclusively in Lahore.
+            {SITE_TAGLINE}. A rent-only marketplace for houses, flats, offices, shops and more, only in Lahore.
           </p>
           <p className="mt-4 text-sm">
             <a href={`mailto:${CONTACT_EMAIL}`} className="text-white hover:underline">{CONTACT_EMAIL}</a>

@@ -69,7 +69,7 @@ export default async function AdminProperties({ searchParams }: { searchParams: 
               {p.source === "csv" && <span className="badge bg-ink-100 text-ink-700">CSV</span>}
               <span>{propertyRef(p.refNo)}</span>·<span>{p.location.name}</span>·<span>{p.agent.name}</span>·<span>{p._count.images} photos</span>·<span>{p._count.enquiries} enquiries</span>·<span>{p.views} views</span>·<span>updated {formatDate(p.updatedAt)}</span>
             </div>
-            <p className="mt-1 font-semibold">{p.title} <span className="font-normal text-ink-500">— {formatPKR(p.price)}</span></p>
+            <p className="mt-1 font-semibold">{p.title} <span className="font-normal text-ink-500">· {formatPKR(p.price)}</span></p>
             <div className="mt-2"><AdminPropertyActions id={p.id} slug={p.slug} status={p.status} featured={p.featured} verified={p.verified} /></div>
           </li>
         ))}

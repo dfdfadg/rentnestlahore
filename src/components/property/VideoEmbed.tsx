@@ -21,7 +21,7 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
   if (!src || !/^[\w:/.?=-]+$/.test(src)) return null;
   return (
     <div className="relative aspect-video overflow-hidden rounded-2xl bg-ink-900">
-      <iframe src={src} title={`Video tour — ${title}`} loading="lazy" allow="encrypted-media; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full" />
+      <iframe src={src} title={`Video tour: ${title}`} loading="lazy" allow="encrypted-media; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full" />
     </div>
   );
 }

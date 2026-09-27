@@ -60,13 +60,13 @@ function description(ctx: ListingContext, total: number): string {
   const n = total > 0 ? `${formatNumber(total)} ` : "";
   const noun = countNoun(ctx, total);
   if (!ctx.landing && !ctx.location) {
-    return `Browse ${n}${noun} across Lahore — houses, flats, portions, offices, shops and warehouses. Filter by area, monthly rent, bedrooms and size.`;
+    return `Browse ${n}${noun} across Lahore, including houses, flats, portions, offices, shops and warehouses. Filter by area, monthly rent, bedrooms and size.`;
   }
   if (ctx.landing && !ctx.location) {
     return `Find ${n}${noun} for rent in Lahore. Compare monthly rent, size, bedrooms and photos, and contact landlords and agents directly.`;
   }
   if (!ctx.landing && ctx.location) {
-    return `Explore ${n}${noun} for rent in ${locName} — houses, portions, flats and commercial space. See monthly rents, photos and contact details.`;
+    return `Explore ${n}${noun} for rent in ${locName}, including houses, portions, flats and commercial space. See monthly rents, photos and contact details.`;
   }
   return `${total > 0 ? `${formatNumber(total)} ${noun}` : `${ctx.landing!.pluralName}`} available for rent in ${locName}. Filter by rent, size and amenities to shortlist the right place.`;
 }
@@ -76,7 +76,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { titleBase } = listingHeadings(ctx);
   const cleanPath = listingPath({ type: ctx.landing?.slug, area: ctx.location?.slug, page: ctx.page });
   const refined = hasRefinements(filters);
-  const pageSuffix = ctx.page > 1 ? ` – Page ${ctx.page}` : "";
+  const pageSuffix = ctx.page > 1 ? `, Page ${ctx.page}` : "";
   const content = landingContent(ctx.landing?.slug, ctx.location?.slug);
   const useEditorial = content?.seoTitle && ctx.page === 1 && !refined;
   return pageMetadata({
@@ -125,7 +125,7 @@ export default async function RentListingPage(props: Props) {
             <p className="text-sm text-ink-600" aria-live="polite">
               {result.total > 0 ? (
                 <>
-                  Showing <strong className="text-ink-900">{from}–{to}</strong> of <strong className="text-ink-900">{formatNumber(result.total)}</strong> {countNoun(ctx, result.total)} for rent
+                  Showing <strong className="text-ink-900">{from}-{to}</strong> of <strong className="text-ink-900">{formatNumber(result.total)}</strong> {countNoun(ctx, result.total)} for rent
                 </>
               ) : (
                 "0 results"

@@ -7,7 +7,7 @@ import type { LandingContent } from "./landing-types-def";
 
 export const AREA_CONTENT: Record<string, LandingContent> = {
   "dha-lahore": {
-    seoTitle: "Property for Rent in DHA Lahore – Houses, Portions & Offices",
+    seoTitle: "Property for Rent in DHA Lahore | RentNest Lahore",
     metaDescription:
       "Houses, upper portions, apartments and offices for rent in DHA Lahore, all phases. Compare monthly rent by phase, photos and contact owners and agents directly.",
     sections: [
@@ -20,9 +20,9 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
       {
         h: "Phases at a glance",
         ul: [
-          "**Older phases (1–4)** — closer to Cantt, fully developed with mature trees and established markets such as Y Block in Phase 3.",
-          "**Phases 5 and 6** — large, popular residential phases with many modern houses and good commercial areas.",
-          "**Newer phases (7, 8, 9)** — more recently built homes, often at lower rents, with a slightly longer drive to the city centre.",
+          "**Older phases (1 to 4)**: closer to Cantt, fully developed with mature trees and established markets such as Y Block in Phase 3.",
+          "**Phases 5 and 6**: large, popular residential phases with many modern houses and good commercial areas.",
+          "**Newer phases (7, 8, 9)**: more recently built homes, often at lower rents, with a slightly longer drive to the city centre.",
           "Browse by phase: [Phase 1](/rent/dha-phase-1/), [Phase 2](/rent/dha-phase-2/), [Phase 3](/rent/dha-phase-3/), [Phase 4](/rent/dha-phase-4/), [Phase 5](/rent/dha-phase-5/), [Phase 6](/rent/dha-phase-6/), [Phase 7](/rent/dha-phase-7/), [Phase 8](/rent/dha-phase-8/).",
         ],
       },
@@ -30,7 +30,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
         h: "What you can rent in DHA",
         ul: [
           "[Houses](/rent/dha-lahore/houses/) from 5 Marla to 2 Kanal.",
-          "Upper and lower [portions](/rent/portions/) of larger homes — a popular way to live in DHA for less.",
+          "Upper and lower [portions](/rent/portions/) of larger homes, a popular way to live in DHA for less.",
           "[Apartments](/rent/apartments/) in newer buildings and commercial zones.",
           "[Offices](/rent/dha-lahore/offices/) and shops in commercial blocks.",
         ],
@@ -38,7 +38,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
       {
         h: "Tips for renting in DHA",
         ul: [
-          "Compare like-for-like: the same size house can rent very differently from one phase to another — check the rent snapshot below.",
+          "Compare like-for-like: the same size house can rent very differently from one phase to another, so check the rent snapshot below.",
           "Ask whether DHA maintenance and security charges are included in the rent.",
           "Keep CNIC copies ready: tenant details must be registered with the police, and some phases have their own entry procedures.",
           "For portions, confirm separate meters and who uses the car porch.",
@@ -46,7 +46,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
       },
     ],
     faqs: [
-      { q: "Which DHA phase is best to rent in?", a: "It depends on your budget and commute. Older phases (1–4) are closest to Cantt and fully developed; Phases 5 and 6 are popular family areas with modern homes; newer phases usually offer lower rents with a longer drive." },
+      { q: "Which DHA phase is best to rent in?", a: "It depends on your budget and commute. Older phases (1 to 4) are closest to Cantt and fully developed; Phases 5 and 6 are popular family areas with modern homes; newer phases usually offer lower rents with a longer drive." },
       { q: "Can I rent a portion in DHA?", a: "Yes. Many larger DHA houses are rented as separate upper and lower portions, which is one of the most affordable ways to live in DHA." },
       { q: "Is DHA good for offices?", a: "Yes. DHA's commercial areas have modern office buildings with better parking than many central areas, and they are popular with software houses, consultancies and brand offices." },
       { q: "How much is rent in DHA Lahore?", a: "The rent snapshot on this page shows the median and range of asking rents for each property type in DHA, based on current listings. Rents vary a lot by phase and plot size." },
@@ -54,7 +54,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
   },
 
   "bahria-town": {
-    seoTitle: "Property for Rent in Bahria Town Lahore – Houses & Apartments",
+    seoTitle: "Property for Rent in Bahria Town Lahore | RentNest Lahore",
     metaDescription: "Houses, apartments and portions for rent in Bahria Town Lahore. Compare rents by sector, see photos and contact owners and agents directly.",
     sections: [
       {
@@ -66,8 +66,8 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
       {
         h: "What you can rent",
         ul: [
-          "[Houses](/rent/bahria-town/houses/) — 5, 8 and 10 Marla homes are the most common, plus 1 Kanal homes in established sectors.",
-          "Apartments above commercial blocks — a budget-friendly way into Bahria Town.",
+          "[Houses](/rent/bahria-town/houses/): 5, 8 and 10 Marla homes are the most common, plus 1 Kanal homes in established sectors.",
+          "Apartments above commercial blocks, a budget-friendly way into Bahria Town.",
           "Shops and offices in the commercial areas.",
           "Nearby alternative: [Bahria Orchard](/rent/bahria-orchard/) on Raiwind Road, often at lower rents.",
         ],
@@ -75,10 +75,10 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
       {
         h: "Things to consider",
         ul: [
-          "**Commute** — Bahria Town is some distance from Gulberg and the city centre; test your route at peak hours.",
-          "**Maintenance charges** — confirm whether the tenant or owner pays them.",
-          "**Utilities** — ask how electricity and water are billed in the specific sector.",
-          "**Access** — ask how residents' vehicle stickers or passes are issued to tenants.",
+          "**Commute**: Bahria Town is some distance from Gulberg and the city centre; test your route at peak hours.",
+          "**Maintenance charges**: confirm whether the tenant or owner pays them.",
+          "**Utilities**: ask how electricity and water are billed in the specific sector.",
+          "**Access**: ask how residents' vehicle stickers or passes are issued to tenants.",
         ],
       },
     ],
@@ -90,8 +90,8 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
   },
 
   gulberg: {
-    seoTitle: "Property for Rent in Gulberg Lahore – Offices, Apartments & Houses",
-    metaDescription: "Offices, apartments, flats and houses for rent in Gulberg, Lahore — near MM Alam Road, Main Boulevard and Liberty Market. Compare rents and contact owners directly.",
+    seoTitle: "Property for Rent in Gulberg Lahore | RentNest Lahore",
+    metaDescription: "Offices, apartments, flats and houses for rent in Gulberg, Lahore, near MM Alam Road, Main Boulevard and Liberty Market. Compare rents and contact owners directly.",
     sections: [
       {
         h: "Why rent in Gulberg",
@@ -102,8 +102,8 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
       {
         h: "What you can rent",
         ul: [
-          "[Offices](/rent/gulberg/offices/) — from small furnished units to full floors on Main Boulevard and surrounding roads.",
-          "[Apartments](/rent/apartments/) and [flats](/rent/flats/) — popular with professionals, often furnished.",
+          "[Offices](/rent/gulberg/offices/): from small furnished units to full floors on Main Boulevard and surrounding roads.",
+          "[Apartments](/rent/apartments/) and [flats](/rent/flats/): popular with professionals, often furnished.",
           "Larger houses on quieter residential streets in [Gulberg II](/rent/gulberg-2/) and [Gulberg III](/rent/gulberg-3/).",
           "[Shops](/rent/shops/) and showrooms on commercial roads.",
         ],
@@ -111,7 +111,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
       {
         h: "Tips for renting in Gulberg",
         ul: [
-          "Traffic on the main boulevards is heavy at peak hours — a place on a side street can be much quieter.",
+          "Traffic on the main boulevards is heavy at peak hours. A place on a side street can be much quieter.",
           "For offices and apartments, ask about building maintenance charges, parking allocation and backup power.",
           "Nearby alternatives: [Lahore Cantt](/rent/cantt/), [Garden Town](/rent/garden-town/) and [Model Town](/rent/model-town/).",
         ],
@@ -125,28 +125,28 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
   },
 
   "johar-town": {
-    seoTitle: "Property for Rent in Johar Town Lahore – Houses, Portions, Flats & Rooms",
-    metaDescription: "Houses, portions, flats, rooms and offices for rent in Johar Town, Lahore — near Expo Centre, Emporium Mall, universities and hospitals. Compare rents and contact owners.",
+    seoTitle: "Property for Rent in Johar Town Lahore | RentNest Lahore",
+    metaDescription: "Houses, portions, flats, rooms and offices for rent in Johar Town, Lahore, near Expo Centre, Emporium Mall, universities and hospitals. Compare rents and contact owners.",
     sections: [
       {
         h: "Why Johar Town is so popular with renters",
         p: [
-          "Johar Town is one of Lahore's largest and best-connected areas, with easy access to Canal Road and Khayaban-e-Jinnah. Expo Centre, Emporium Mall, several universities and major hospitals are nearby, which is why it has one of the widest ranges of rentals in the city — from single rooms for students to family houses and offices.",
+          "Johar Town is one of Lahore's largest and best-connected areas, with easy access to Canal Road and Khayaban-e-Jinnah. Expo Centre, Emporium Mall, several universities and major hospitals are nearby, which is why it has one of the widest ranges of rentals in the city, from single rooms for students to family houses and offices.",
         ],
       },
       {
         h: "Who it suits",
         ul: [
-          "**Students** — [rooms](/rent/rooms/) and shared flats near universities.",
-          "**Young professionals** — flats and upper portions close to offices and main roads.",
-          "**Families** — [houses](/rent/johar-town/houses/) and [portions](/rent/portions/) in residential blocks.",
-          "**Businesses** — offices and shops on the main commercial roads.",
+          "**Students**: [rooms](/rent/rooms/) and shared flats near universities.",
+          "**Young professionals**: flats and upper portions close to offices and main roads.",
+          "**Families**: [houses](/rent/johar-town/houses/) and [portions](/rent/portions/) in residential blocks.",
+          "**Businesses**: offices and shops on the main commercial roads.",
         ],
       },
       {
         h: "Tips for renting in Johar Town",
         ul: [
-          "Blocks differ a lot in character — some are quiet residential streets, others busy commercial strips. Visit in the evening as well as the daytime.",
+          "Blocks differ a lot in character. Some are quiet residential streets, others busy commercial strips. Visit in the evening as well as the daytime.",
           "For rooms and flats, confirm what utilities and internet are included in the rent.",
           "Compare nearby [PIA Housing Society](/rent/pia-housing-society/), [Wapda Town](/rent/wapda-town/) and [Jubilee Town](/rent/jubilee-town/) for similar homes.",
           "Read our [Johar Town rental guide](/guides/johar-town-rental-guide/).",
@@ -161,8 +161,8 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
   },
 
   "model-town": {
-    seoTitle: "Property for Rent in Model Town Lahore – Houses & Portions",
-    metaDescription: "Houses, portions and offices for rent in Model Town, Lahore — spacious homes on tree-lined roads near Ferozepur Road. Compare rents and contact owners directly.",
+    seoTitle: "Property for Rent in Model Town Lahore | RentNest Lahore",
+    metaDescription: "Houses, portions and offices for rent in Model Town, Lahore. Spacious homes on tree-lined roads near Ferozepur Road. Compare rents and contact owners directly.",
     sections: [
       {
         h: "About renting in Model Town",
@@ -172,7 +172,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
         ul: [
           "Good for families who want a central, established, green neighbourhood.",
           "Easy access to Ferozepur Road and the Metro Bus route.",
-          "Older houses can be large — check the condition of wiring, plumbing and roofs.",
+          "Older houses can be large, so check the condition of wiring, plumbing and roofs.",
           "Nearby: [Garden Town](/rent/garden-town/), [Faisal Town](/rent/faisal-town/) and [Township](/rent/township/).",
         ],
       },
@@ -185,7 +185,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   "wapda-town": {
     seoTitle: "Property for Rent in Wapda Town Lahore | RentNest Lahore",
-    metaDescription: "Houses and portions for rent in Wapda Town, Lahore — family homes near Johar Town with parks and commercial areas.",
+    metaDescription: "Houses and portions for rent in Wapda Town, Lahore. Family homes near Johar Town with parks and commercial areas.",
     sections: [
       {
         h: "About renting in Wapda Town",
@@ -206,7 +206,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   cantt: {
     seoTitle: "Property for Rent in Lahore Cantt | RentNest Lahore",
-    metaDescription: "Houses, apartments and offices for rent in Lahore Cantt — central, well-maintained and close to Gulberg, DHA and the airport.",
+    metaDescription: "Houses, apartments and offices for rent in Lahore Cantt, a central and well-kept area close to Gulberg, DHA and the airport.",
     sections: [
       {
         h: "About renting in Lahore Cantt",
@@ -214,7 +214,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
           "Lahore Cantonment is a central, well-maintained area with older bungalows, houses, apartments and commercial space along its main roads. Its location between Gulberg, DHA and the airport keeps rental demand steady.",
         ],
         ul: [
-          "Some parts have security checkpoints and specific rules for residents and tenants — ask the landlord what applies.",
+          "Some parts have security checkpoints and specific rules for residents and tenants. Ask the landlord what applies.",
           "Commercial space is available around Fortress Stadium and main Cantt roads.",
           "Nearby: [DHA Lahore](/rent/dha-lahore/), [Askari](/rent/askari/), [Gulberg](/rent/gulberg/).",
         ],
@@ -227,7 +227,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   "allama-iqbal-town": {
     seoTitle: "Property for Rent in Allama Iqbal Town Lahore | RentNest Lahore",
-    metaDescription: "Houses, portions, flats and shops for rent in Allama Iqbal Town, Lahore — around Moon Market and Karim Block at mid-range rents.",
+    metaDescription: "Houses, portions, flats and shops for rent in Allama Iqbal Town, Lahore, around Moon Market and Karim Block, at mid-range rents.",
     sections: [
       {
         h: "About renting in Allama Iqbal Town",
@@ -236,19 +236,19 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
         ],
         ul: [
           "Good for families and students who want an established area with markets nearby.",
-          "Flats above markets are an affordable option — check noise and parking.",
+          "Flats above markets are an affordable option, but check noise and parking.",
           "Nearby: [Sabzazar](/rent/sabzazar/), [Muslim Town](/rent/muslim-town/), [Johar Town](/rent/johar-town/).",
         ],
       },
     ],
     faqs: [
-      { q: "Is Allama Iqbal Town the same as Iqbal Town?", a: "Yes — Allama Iqbal Town is commonly called Iqbal Town. All its listings are shown on this page." },
+      { q: "Is Allama Iqbal Town the same as Iqbal Town?", a: "Yes. Allama Iqbal Town is commonly called Iqbal Town. All its listings are shown on this page." },
     ],
   },
 
   township: {
     seoTitle: "Property for Rent in Township Lahore | RentNest Lahore",
-    metaDescription: "Affordable houses, portions and shops for rent in Township, Lahore — near Green Town and College Road.",
+    metaDescription: "Affordable houses, portions and shops for rent in Township, Lahore, near Green Town and College Road.",
     sections: [
       {
         h: "About renting in Township",
@@ -257,7 +257,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
         ],
         ul: [
           "A good choice for families looking for value close to central-south Lahore.",
-          "Many portions are available — confirm separate meters.",
+          "Many portions are available. Confirm separate meters before you agree.",
           "Nearby: [Faisal Town](/rent/faisal-town/), [Johar Town](/rent/johar-town/), [Model Town](/rent/model-town/).",
         ],
       },
@@ -267,7 +267,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   "garden-town": {
     seoTitle: "Property for Rent in Garden Town Lahore | RentNest Lahore",
-    metaDescription: "Houses, portions and offices for rent in Garden Town, Lahore — central location between Model Town and Gulberg near Kalma Chowk.",
+    metaDescription: "Houses, portions and offices for rent in Garden Town, Lahore, a central area between Model Town and Gulberg near Kalma Chowk.",
     sections: [
       {
         h: "About renting in Garden Town",
@@ -286,7 +286,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   "faisal-town": {
     seoTitle: "Property for Rent in Faisal Town Lahore | RentNest Lahore",
-    metaDescription: "Houses, portions and offices for rent in Faisal Town, Lahore — central, near Model Town and Johar Town.",
+    metaDescription: "Houses, portions and offices for rent in Faisal Town, Lahore, a central area near Model Town and Johar Town.",
     sections: [
       {
         h: "About renting in Faisal Town",
@@ -301,7 +301,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   "valencia-town": {
     seoTitle: "Property for Rent in Valencia Town Lahore | RentNest Lahore",
-    metaDescription: "Houses and portions for rent in Valencia Town, Lahore — a gated society near Wapda Town and Raiwind Road.",
+    metaDescription: "Houses and portions for rent in Valencia Town, Lahore, a gated society near Wapda Town and Raiwind Road.",
     sections: [
       {
         h: "About renting in Valencia Town",
@@ -316,7 +316,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   "lake-city": {
     seoTitle: "Property for Rent in Lake City Lahore | RentNest Lahore",
-    metaDescription: "Modern houses and portions for rent in Lake City, Lahore — a gated society on Raiwind Road with a golf course and landscaped areas.",
+    metaDescription: "Modern houses and portions for rent in Lake City, Lahore, a gated society on Raiwind Road with a golf course and landscaped areas.",
     sections: [
       {
         h: "About renting in Lake City",
@@ -334,8 +334,8 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
   },
 
   askari: {
-    seoTitle: "Property for Rent in Askari Lahore – Apartments & Houses",
-    metaDescription: "Apartments and houses for rent in Askari housing schemes, Lahore — gated communities with strong security and parking.",
+    seoTitle: "Property for Rent in Askari Lahore | RentNest Lahore",
+    metaDescription: "Apartments and houses for rent in Askari housing schemes, Lahore. These gated communities have strong security and parking.",
     sections: [
       {
         h: "About renting in Askari",
@@ -353,12 +353,12 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 
   "bahria-orchard": {
     seoTitle: "Property for Rent in Bahria Orchard Lahore | RentNest Lahore",
-    metaDescription: "Houses and portions for rent in Bahria Orchard, Lahore — budget-friendly gated living on Raiwind Road.",
+    metaDescription: "Houses and portions for rent in Bahria Orchard, Lahore, for budget-friendly gated living on Raiwind Road.",
     sections: [
       {
         h: "About renting in Bahria Orchard",
         p: [
-          "Bahria Orchard is a planned housing society off Raiwind Road. Its newer phases offer comparatively budget-friendly houses and portions for rent — an option for families who want a gated community at a lower monthly rent.",
+          "Bahria Orchard is a planned housing society off Raiwind Road. Its newer phases offer comparatively budget-friendly houses and portions for rent, an option for families who want a gated community at a lower monthly rent.",
         ],
         ul: ["Compare with [Bahria Town](/rent/bahria-town/), [Lake City](/rent/lake-city/) and [LDA Avenue](/rent/lda-avenue/)."],
       },
@@ -370,7 +370,7 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
 /** Area + property type pages with enough demand for dedicated content. */
 export const COMBO_CONTENT: Record<string, LandingContent> = {
   "dha-lahore/houses": {
-    seoTitle: "Houses for Rent in DHA Lahore – 5 Marla to 2 Kanal | RentNest Lahore",
+    seoTitle: "Houses for Rent in DHA Lahore | RentNest Lahore",
     metaDescription: "Houses for rent in DHA Lahore, all phases: 5 Marla, 10 Marla, 1 Kanal and 2 Kanal homes. Compare rent by phase and contact owners directly.",
     sections: [
       {
@@ -387,12 +387,12 @@ export const COMBO_CONTENT: Record<string, LandingContent> = {
   },
   "johar-town/houses": {
     seoTitle: "Houses for Rent in Johar Town Lahore | RentNest Lahore",
-    metaDescription: "Houses for rent in Johar Town, Lahore — 5, 10 Marla and 1 Kanal family homes near universities, hospitals and Expo Centre.",
+    metaDescription: "Houses for rent in Johar Town, Lahore. Family homes of 5 Marla, 10 Marla and 1 Kanal near universities, hospitals and Expo Centre.",
     sections: [
       {
         h: "Renting a house in Johar Town",
         p: [
-          "Johar Town has houses in most sizes, from 5 Marla homes in residential blocks to 1 Kanal houses on wider roads. Because the area is so central to universities, hospitals and Canal Road, well-kept houses are rented quickly — shortlist a few and arrange visits the same week.",
+          "Johar Town has houses in most sizes, from 5 Marla homes in residential blocks to 1 Kanal houses on wider roads. Because the area is so central to universities, hospitals and Canal Road, well-kept houses are rented quickly. Shortlist a few and arrange visits the same week.",
         ],
       },
     ],
@@ -400,7 +400,7 @@ export const COMBO_CONTENT: Record<string, LandingContent> = {
   },
   "bahria-town/houses": {
     seoTitle: "Houses for Rent in Bahria Town Lahore | RentNest Lahore",
-    metaDescription: "Houses for rent in Bahria Town Lahore — 5, 8, 10 Marla and 1 Kanal family homes in a gated community.",
+    metaDescription: "Houses for rent in Bahria Town Lahore. Family homes from 5 Marla to 1 Kanal in a gated community.",
     sections: [
       {
         h: "Renting a house in Bahria Town",
@@ -413,12 +413,12 @@ export const COMBO_CONTENT: Record<string, LandingContent> = {
   },
   "gulberg/offices": {
     seoTitle: "Office Space for Rent in Gulberg Lahore | RentNest Lahore",
-    metaDescription: "Office space for rent in Gulberg, Lahore — furnished and unfurnished offices near Main Boulevard and MM Alam Road.",
+    metaDescription: "Office space for rent in Gulberg, Lahore. Furnished and unfurnished offices near Main Boulevard and MM Alam Road.",
     sections: [
       {
         h: "Renting an office in Gulberg",
         p: [
-          "Gulberg offices range from small furnished suites for startups to full floors in corporate buildings along Main Boulevard and surrounding roads. Parking is the main constraint in Gulberg — ask for the number of allocated spaces, and check backup power, internet providers and after-hours access.",
+          "Gulberg offices range from small furnished suites for startups to full floors in corporate buildings along Main Boulevard and surrounding roads. Parking is the main constraint in Gulberg, so ask for the number of allocated spaces, and check backup power, internet providers and after-hours access.",
         ],
       },
     ],
@@ -426,7 +426,7 @@ export const COMBO_CONTENT: Record<string, LandingContent> = {
   },
   "dha-lahore/offices": {
     seoTitle: "Office Space for Rent in DHA Lahore | RentNest Lahore",
-    metaDescription: "Offices for rent in DHA Lahore commercial areas — modern buildings with parking, security and backup power.",
+    metaDescription: "Offices for rent in DHA Lahore's commercial areas, in modern buildings with parking, security and backup power.",
     sections: [
       {
         h: "Renting an office in DHA",

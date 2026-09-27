@@ -10,7 +10,7 @@ export default async function AdminRequirements() {
   return (
     <div>
       <h1 className="text-2xl font-extrabold">Renter requirements</h1>
-      <p className="mt-1 text-sm text-ink-500">Leads from people looking to rent. Share them with agents/landlords who have matching properties — a strong reason for agents to list with you.</p>
+      <p className="mt-1 text-sm text-ink-500">Leads from people looking to rent. Share them with agents/landlords who have matching properties. It gives agents a strong reason for agents to list with you.</p>
       <ul className="mt-5 space-y-3">
         {items.length === 0 && <li className="text-sm text-ink-500">No requirements yet.</li>}
         {items.map((r) => (
@@ -22,7 +22,7 @@ export default async function AdminRequirements() {
             <p className="mt-2 font-semibold">
               {r.propertyType ?? "Any property"} in {r.areas}
               {r.bedrooms ? ` · ${r.bedrooms}+ beds` : ""}
-              {r.budgetMin || r.budgetMax ? ` · ${r.budgetMin ? formatPKR(r.budgetMin) : "…"} – ${r.budgetMax ? formatPKR(r.budgetMax) : "…"}` : ""}
+              {r.budgetMin || r.budgetMax ? ` · ${r.budgetMin ? formatPKR(r.budgetMin) : "…"} to ${r.budgetMax ? formatPKR(r.budgetMax) : "…"}` : ""}
               {r.moveIn ? ` · move-in: ${r.moveIn}` : ""}
             </p>
             {r.notes && <p className="mt-1 whitespace-pre-line text-ink-700">{r.notes}</p>}

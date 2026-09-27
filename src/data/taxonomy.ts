@@ -21,7 +21,7 @@ export const PROPERTY_TYPES: SeedPropertyType[] = [
   {
     name: "House", slug: "house", pluralName: "Houses", pluralSlug: "houses", category: "RESIDENTIAL",
     description:
-      "Houses are the most searched rental category in Lahore. Sizes are usually quoted in Marla or Kanal — 5 and 10 Marla homes suit smaller families, while 1 Kanal and larger homes offer extra bedrooms, lawns and servant quarters. Compare monthly rent, security deposit and advance terms before shortlisting.",
+      "Houses are the most searched rental category in Lahore. Sizes are usually quoted in Marla or Kanal. 5 and 10 Marla homes suit smaller families, while 1 Kanal and larger homes offer extra bedrooms, lawns and servant quarters. Compare monthly rent, security deposit and advance terms before shortlisting.",
   },
   {
     name: "Flat", slug: "flat", pluralName: "Flats", pluralSlug: "flats", category: "RESIDENTIAL",
@@ -41,7 +41,7 @@ export const PROPERTY_TYPES: SeedPropertyType[] = [
   {
     name: "Lower Portion", slug: "lower-portion", pluralName: "Lower Portions", pluralSlug: "lower-portions", category: "RESIDENTIAL",
     description:
-      "A lower portion is the ground floor of a house rented separately. Tenants often get easier access, a car porch and sometimes a lawn — a good fit for families with elderly members or young children.",
+      "A lower portion is the ground floor of a house rented separately. Tenants often get easier access, a car porch and sometimes a lawn, which suits families with elderly members or young children.",
   },
   {
     name: "Room", slug: "room", pluralName: "Rooms", pluralSlug: "rooms", category: "RESIDENTIAL",
@@ -51,7 +51,7 @@ export const PROPERTY_TYPES: SeedPropertyType[] = [
   {
     name: "Hostel", slug: "hostel", pluralName: "Hostels", pluralSlug: "hostels", category: "RESIDENTIAL",
     description:
-      "Hostels and paying-guest (PG) accommodation for students and working professionals — shared or single rooms with meals, laundry and security often included in one monthly charge.",
+      "Hostels and paying-guest (PG) accommodation for students and working professionals. Rooms are shared or single, with meals, laundry and security often included in one monthly charge.",
   },
   {
     name: "Farm House", slug: "farm-house", pluralName: "Farm Houses", pluralSlug: "farm-houses", category: "RESIDENTIAL",
@@ -76,7 +76,7 @@ export const PROPERTY_TYPES: SeedPropertyType[] = [
   {
     name: "Showroom", slug: "showroom", pluralName: "Showrooms", pluralSlug: "showrooms", category: "COMMERCIAL",
     description:
-      "Showrooms offer wide frontage and large display floors on busy commercial roads — suited to car dealers, furniture, apparel and electronics retailers.",
+      "Showrooms offer wide frontage and large display floors on busy commercial roads and suit car dealers, furniture, apparel and electronics retailers.",
   },
   {
     name: "Warehouse", slug: "warehouse", pluralName: "Warehouses", pluralSlug: "warehouses", category: "COMMERCIAL",
@@ -101,7 +101,7 @@ export const PROPERTY_TYPES: SeedPropertyType[] = [
   {
     name: "Industrial Space", slug: "industrial-space", pluralName: "Industrial Spaces", pluralSlug: "industrial-spaces", category: "COMMERCIAL",
     description:
-      "Industrial spaces — open plots with sheds, yards and workshops — are rented for manufacturing, storage and fabrication work on Lahore's outskirts.",
+      "Industrial spaces (open plots with sheds, yards and workshops) are rented for manufacturing, storage and fabrication work on Lahore's outskirts.",
   },
 ];
 
@@ -153,7 +153,7 @@ export const LOCATIONS: SeedLocation[] = [
   {
     name: "Bahria Town Lahore", slug: "bahria-town", lat: 31.3700, lng: 74.1850, popular: true,
     description:
-      "Bahria Town Lahore is a gated private housing society in the south-west of the city with its own commercial areas, schools, hospital and parks. It offers a wide mix of rentals — apartments above commercial blocks, 5 to 10 Marla houses, larger homes and shops — and is popular with families looking for a self-contained community.",
+      "Bahria Town Lahore is a gated private housing society in the south-west of the city with its own commercial areas, schools, hospital and parks. It offers a wide mix of rentals, from apartments above commercial blocks and 5 to 10 Marla houses to larger homes and shops, and is popular with families looking for a self-contained community.",
   },
   {
     name: "Bahria Orchard", slug: "bahria-orchard", lat: 31.3600, lng: 74.2250,
@@ -170,7 +170,7 @@ export const LOCATIONS: SeedLocation[] = [
   {
     name: "Johar Town", slug: "johar-town", lat: 31.4690, lng: 74.2720, popular: true,
     description:
-      "Johar Town is a large, well-connected residential and commercial area in south-west Lahore, close to the Expo Centre, Emporium Mall and several universities and hospitals. It has one of the city's widest ranges of rental stock — houses, portions, flats, rooms, offices and shops — which makes it a common choice for students, professionals and families.",
+      "Johar Town is a large, well-connected residential and commercial area in south-west Lahore, close to the Expo Centre, Emporium Mall and several universities and hospitals. It has one of the city's widest ranges of rental stock, including houses, portions, flats, rooms, offices and shops, which makes it a common choice for students, professionals and families.",
   },
   {
     name: "Model Town", slug: "model-town", lat: 31.4830, lng: 74.3260, popular: true,

@@ -30,7 +30,7 @@ export default async function AdminEnquiries({ searchParams }: { searchParams: P
         {items.map((e) => (
           <li key={e.id} className="card p-4 text-sm">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2"><StatusBadge status={e.status} /><span className="text-ink-500">{formatDate(e.createdAt)} · to {e.agent?.name ?? "—"}</span></div>
+              <div className="flex items-center gap-2"><StatusBadge status={e.status} /><span className="text-ink-500">{formatDate(e.createdAt)} · to {e.agent?.name ?? "-"}</span></div>
               <EnquiryStatusSelect id={e.id} status={e.status} />
             </div>
             {e.property && <p className="mt-2">Re: <Link className="font-semibold text-brick-700 hover:underline" href={`/property/${e.property.slug}/`}>{e.property.title}</Link></p>}

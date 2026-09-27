@@ -143,7 +143,7 @@ export async function saveAmenity(_: FormState, formData: FormData): Promise<For
   await requireAdmin();
   const name = String(formData.get("name") ?? "").trim();
   const group = String(formData.get("group") ?? "general");
-  if (name.length < 2 || name.length > 60) return { errors: { name: "Enter a name (2–60 characters)" } };
+  if (name.length < 2 || name.length > 60) return { errors: { name: "Enter a name (2 to 60 characters)" } };
   const slug = slugify(name);
   if (await prisma.amenity.findFirst({ where: { OR: [{ slug }, { name }] } })) return { errors: { name: "Amenity already exists" } };
   await prisma.amenity.create({ data: { name, slug, group: ["general", "utilities", "commercial"].includes(group) ? group : "general", sortOrder: 100 } });

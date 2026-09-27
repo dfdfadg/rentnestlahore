@@ -77,7 +77,7 @@ test("admin sees quick-form submissions and requirements", async ({ page }) => {
   test.skip(!ADMIN_PASSWORD, "Set E2E_ADMIN_PASSWORD to run admin tests");
   await login(page, ADMIN_EMAIL, ADMIN_PASSWORD);
   await page.goto("/admin/");
-  await expect(page.getByText("Quick form — call to confirm").first()).toBeVisible();
+  await expect(page.getByText("Quick form: call to confirm").first()).toBeVisible();
   await page.goto("/admin/requirements/");
   await expect(page.getByText("House in Johar Town, Wapda Town")).toBeVisible();
 });
@@ -86,7 +86,7 @@ test("category and area pages show editorial content with FAQs", async ({ page }
   await page.goto("/rent/houses/");
   await expect(page.getByRole("heading", { name: "Finding a house on rent in Lahore" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Frequently asked questions" })).toBeVisible();
-  await expect(page).toHaveTitle(/House on Rent/);
+  await expect(page).toHaveTitle(/Houses for Rent in Lahore/);
   await page.goto("/rent/johar-town/");
   await expect(page.getByRole("heading", { name: "Why Johar Town is so popular with renters" })).toBeVisible();
   const ld = await page.locator('script[type="application/ld+json"]').allInnerTexts();

@@ -49,7 +49,7 @@ export function ImageManager({ propertyId, initial }: { propertyId: string; init
         if (data.errors?.length) errs.push(...data.errors);
         if (data.error) errs.push(data.error);
       } catch {
-        errs.push("Upload failed — check your connection and try again.");
+        errs.push("Upload failed. Check your connection and try again.");
       }
     }
     setErrors(errs);

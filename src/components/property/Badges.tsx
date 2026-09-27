@@ -20,7 +20,7 @@ export function VerifiedBadge({ label = "Verified" }: { label?: string }) {
 /** Demo/sample records are always clearly labelled. */
 export function DemoBadge() {
   return (
-    <span className="badge bg-amber-300 text-amber-950 shadow-sm" title="Sample record for testing — not a real rental">
+    <span className="badge bg-amber-300 text-amber-950 shadow-sm" title="Sample record for testing, not a real rental">
       <FlaskConical className="h-3 w-3" /> Demo Listing
     </span>
   );

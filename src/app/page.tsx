@@ -15,7 +15,7 @@ import { SITE_DESCRIPTION } from "@/lib/site";
 export const revalidate = 300;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Properties for Rent in Lahore — Houses, Flats, Offices & Shops | RentNest Lahore",
+  title: "Properties for Rent in Lahore | RentNest Lahore",
   description: SITE_DESCRIPTION,
   path: "/",
 });
@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
 const FAQS = [
   {
     q: "Is RentNest Lahore only for rental properties?",
-    a: "Yes. RentNest Lahore is a rent-only marketplace. Every listing is a property available for rent in Lahore — houses, flats, apartments, portions, rooms, offices, shops, warehouses and other commercial space. We do not list properties for sale.",
+    a: "Yes. RentNest Lahore is a rent-only marketplace. Every listing is a property available for rent in Lahore: houses, flats, apartments, portions, rooms, offices, shops, warehouses and other commercial space. We do not list properties for sale.",
   },
   {
     q: "How do I contact a landlord or agent?",
@@ -99,7 +99,7 @@ export default async function HomePage() {
             Properties for Rent in <span className="text-brick-400">Lahore</span>
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-200">
-            Find your place — search houses, flats, portions, offices and shops for rent across Lahore.
+            Search houses, flats, portions, offices and shops for rent across Lahore.
           </p>
           <div className="mt-8">
             <HeroSearch types={options.types} locations={options.locations} />
@@ -189,11 +189,11 @@ export default async function HomePage() {
       <section className="mt-20 bg-white py-16">
         <div className="container-page">
           <h2 className="text-2xl font-extrabold sm:text-3xl">Why RentNest Lahore</h2>
-          <p className="mt-2 max-w-2xl text-ink-600">One focus — rentals in Lahore — so every search, filter and page is built around finding a place to rent.</p>
+          <p className="mt-2 max-w-2xl text-ink-600">We focus only on rentals in Lahore, so every search, filter and page is built around finding a place to rent.</p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: <Search className="h-6 w-6" />, title: "Rent-only search", text: "No sale listings to wade through. Filter by monthly rent, size, bedrooms, furnishing and amenities." },
-              { icon: <MapPin className="h-6 w-6" />, title: "Lahore expertise", text: "Areas, phases and blocks organised the way Lahore renters actually search — with live rent snapshots." },
+              { icon: <MapPin className="h-6 w-6" />, title: "Lahore expertise", text: "Areas, phases and blocks organised the way Lahore renters actually search, with live rent snapshots." },
               { icon: <ShieldCheck className="h-6 w-6" />, title: "Moderated listings", text: "Every new listing is reviewed before it goes live, and anyone can report a problem listing." },
               { icon: <MessageCircle className="h-6 w-6" />, title: "Contact directly", text: "Call, WhatsApp or send an enquiry to the landlord or agent straight from the listing." },
             ].map((f) => (
@@ -209,7 +209,7 @@ export default async function HomePage() {
               <BadgeCheck className="h-8 w-8 text-brick-400" />
               <div>
                 <p className="font-bold">Have a property to rent out in Lahore?</p>
-                <p className="text-sm text-ink-300">List it free — our team reviews every listing before it goes live.</p>
+                <p className="text-sm text-ink-300">List it free. Our team reviews every listing before it goes live.</p>
               </div>
             </div>
             <Link href="/add-property/" className="btn-primary">List your property</Link>
@@ -217,7 +217,7 @@ export default async function HomePage() {
           <div className="mt-4 flex flex-col items-start gap-4 rounded-2xl border border-ink-100 bg-sand-50 p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-bold">Looking for a rental but can&apos;t find the right one?</p>
-              <p className="text-sm text-ink-600">Share your area, budget and needs — we&apos;ll connect you with landlords and agents.</p>
+              <p className="text-sm text-ink-600">Share your area, budget and needs and we&apos;ll connect you with landlords and agents.</p>
             </div>
             <Link href="/rent-requirement/" className="btn-dark">Post your requirement</Link>
           </div>
@@ -264,7 +264,7 @@ export default async function HomePage() {
           <Link href="/rent/apartments/" className="text-brick-700 hover:underline">apartments</Link> for families and professionals, or find{" "}
           <Link href="/rent/offices/" className="text-brick-700 hover:underline">offices</Link>,{" "}
           <Link href="/rent/shops/" className="text-brick-700 hover:underline">shops</Link> and{" "}
-          <Link href="/rent/warehouses/" className="text-brick-700 hover:underline">warehouses</Link> for your business. Every listing on RentNest Lahore is a rental — with the monthly rent, size and location up front.
+          <Link href="/rent/warehouses/" className="text-brick-700 hover:underline">warehouses</Link> for your business. Every listing on RentNest Lahore is a rental, with the monthly rent, size and location up front.
         </p>
       </section>
     </>

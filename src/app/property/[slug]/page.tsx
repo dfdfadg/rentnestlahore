@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     p.bathrooms ? `${p.bathrooms} bath` : null,
   ].filter(Boolean).join(", ");
   return pageMetadata({
-    title: `${p.title} – ${formatPKR(p.price)}/${FREQUENCY_LABEL[p.priceFrequency]} | RentNest Lahore`,
+    title: `${p.title}, ${formatPKR(p.price)}/${FREQUENCY_LABEL[p.priceFrequency]} | RentNest Lahore`,
     description: `${p.propertyType.name} for rent in ${place}, Lahore: ${bits}. Rent ${formatPKR(p.price)} per ${FREQUENCY_LABEL[p.priceFrequency]}. View photos, details and contact the ${p.agent.type === "LANDLORD" ? "landlord" : "agent"}.`,
     path: `/property/${p.slug}/`,
     image: p.images[0]?.url,

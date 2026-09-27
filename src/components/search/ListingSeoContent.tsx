@@ -96,7 +96,7 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
 
         {stats.length > 0 && (
           <section>
-            <h2 className="text-xl font-bold">Monthly rent snapshot{ctx.location ? ` — ${ctx.location.name}` : " — Lahore"}</h2>
+            <h2 className="text-xl font-bold">Monthly rent snapshot in {ctx.location ? ctx.location.name : "Lahore"}</h2>
             <p className="mt-2 text-sm text-ink-500">Calculated from active listings on RentNest Lahore today. Asking rents only.</p>
             <div className="mt-4 overflow-x-auto rounded-2xl border border-ink-100 bg-white">
               <table className="w-full min-w-[480px] text-left text-sm">
@@ -120,7 +120,7 @@ export async function ListingSeoContent({ ctx }: { ctx: ListingContext }) {
                         </td>
                         <td className="px-4 py-3">{formatNumber(s.count)}</td>
                         <td className="px-4 py-3 font-semibold">{formatPKR(s.median)}</td>
-                        <td className="px-4 py-3 text-ink-500">{s.count > 1 ? `${formatPKR(s.min)} – ${formatPKR(s.max)}` : "—"}</td>
+                        <td className="px-4 py-3 text-ink-500">{s.count > 1 ? `${formatPKR(s.min)} to ${formatPKR(s.max)}` : "-"}</td>
                       </tr>
                     );
                   })}

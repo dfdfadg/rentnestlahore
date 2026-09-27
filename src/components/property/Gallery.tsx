@@ -55,7 +55,7 @@ export function Gallery({ images, title }: { images: Img[]; title: string }) {
           <SmartImage
             key={current.url}
             src={current.url}
-            alt={current.alt || `${title} — photo ${index + 1}`}
+            alt={current.alt || `${title}, photo ${index + 1}`}
             fill
             priority={index === 0}
             sizes="(min-width: 1024px) 760px, 100vw"
@@ -98,7 +98,7 @@ export function Gallery({ images, title }: { images: Img[]; title: string }) {
         ref={dialogRef}
         onClose={() => setFull(false)}
         className="m-0 h-dvh max-h-none w-screen max-w-none bg-ink-950 p-0 text-white backdrop:bg-ink-950"
-        aria-label={`${title} — photo gallery`}
+        aria-label={`${title} photo gallery`}
       >
         {full && (
           <div className="relative flex h-full flex-col" {...swipe}>
@@ -109,7 +109,7 @@ export function Gallery({ images, title }: { images: Img[]; title: string }) {
               </button>
             </div>
             <div className="relative flex-1">
-              <SmartImage key={`full-${current.url}`} src={current.url} alt={current.alt || `${title} — photo ${index + 1}`} fill sizes="100vw" className="object-contain" />
+              <SmartImage key={`full-${current.url}`} src={current.url} alt={current.alt || `${title}, photo ${index + 1}`} fill sizes="100vw" className="object-contain" />
               {count > 1 && (
                 <>
                   <NavButton side="left" onClick={() => go(-1)} dark />

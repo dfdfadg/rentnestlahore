@@ -13,7 +13,7 @@ export function MapEmbed({ lat, lng, label }: { lat: number; lng: number; label:
     <div>
       <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-ink-100 bg-ink-50">
         <iframe
-          title={`Approximate location map — ${label}`}
+          title={`Approximate location map: ${label}`}
           src={src}
           loading="lazy"
           referrerPolicy="no-referrer"

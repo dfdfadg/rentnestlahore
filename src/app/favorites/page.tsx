@@ -33,7 +33,7 @@ export default async function FavoritesPage() {
               <div key={p.id} className="relative">
                 {unavailable && (
                   <div className="absolute inset-x-0 top-0 z-20 rounded-t-2xl bg-ink-900/90 px-3 py-1.5 text-center text-xs font-semibold text-white">
-                    {p.status === "RENTED" ? "Rented — no longer available" : "No longer available"}
+                    {p.status === "RENTED" ? "Rented, no longer available" : "No longer available"}
                   </div>
                 )}
                 <PropertyCard property={p} />

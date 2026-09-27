@@ -128,7 +128,7 @@ export async function forgotPasswordAction(_: FormState, formData: FormData): Pr
   const sent = await sendEmail({
     to: user.email,
     subject: "Reset your RentNest Lahore password",
-    text: `Hello ${user.name},\n\nUse the link below to set a new password. It expires in 1 hour.\n\n${link}\n\nIf you did not request this, you can ignore this email.\n\n— RentNest Lahore`,
+    text: `Hello ${user.name},\n\nUse the link below to set a new password. It expires in 1 hour.\n\n${link}\n\nIf you did not request this, you can ignore this email.\n\nRentNest Lahore`,
   });
   if (!sent) return { message: "We couldn't send the email right now. Please try again later or contact support." };
   return generic;

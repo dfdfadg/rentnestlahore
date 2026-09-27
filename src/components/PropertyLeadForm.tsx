@@ -49,8 +49,8 @@ export function PropertyLeadForm({ types, areas, defaultIntent = "BUY" }: { type
           <select id="l-time" name="timeline" className="input" defaultValue="">
             <option value="">Not decided</option>
             <option value="Within 1 month">Within 1 month</option>
-            <option value="1–3 months">1–3 months</option>
-            <option value="3–6 months">3–6 months</option>
+            <option value="1 to 3 months">1 to 3 months</option>
+            <option value="3 to 6 months">3 to 6 months</option>
             <option value="Just exploring">Just exploring</option>
           </select>
         </div>

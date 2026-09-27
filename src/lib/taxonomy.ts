@@ -80,7 +80,7 @@ const GROUPS: { slug: string; pluralName: string; singularName: string; match: (
     match: (t) => t.slug === "upper-portion" || t.slug === "lower-portion",
     category: "RESIDENTIAL",
     description:
-      "Upper and lower portions let you rent one floor of a house — usually with a separate entrance and meters — for less than the rent of an entire home. They are one of the most practical rental options for small families in Lahore.",
+      "Upper and lower portions let you rent one floor of a house, usually with a separate entrance and meters, for less than the rent of an entire home. They are one of the most practical rental options for small families in Lahore.",
   },
   {
     slug: "commercial-properties",

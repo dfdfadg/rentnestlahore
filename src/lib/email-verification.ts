@@ -36,7 +36,7 @@ export async function sendVerificationCode(user: { id: string; name: string; ema
   return sendEmail({
     to: user.email,
     subject: `${code} is your RentNest Lahore verification code`,
-    text: `Hello ${user.name},\n\nYour RentNest Lahore verification code is:\n\n${code}\n\nIt expires in 15 minutes. If you did not create an account, you can ignore this email.\n\n— RentNest Lahore`,
+    text: `Hello ${user.name},\n\nYour RentNest Lahore verification code is:\n\n${code}\n\nIt expires in 15 minutes. If you did not create an account, you can ignore this email.\n\nRentNest Lahore`,
   });
 }
 

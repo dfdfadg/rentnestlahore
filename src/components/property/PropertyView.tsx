@@ -105,7 +105,7 @@ export function PropertyView({ property: p, landing, similar, unavailableReason,
       )}
       {preview && (
         <div className="mt-4 rounded-2xl bg-brick-50 px-5 py-3 text-sm text-brick-800 ring-1 ring-brick-200">
-          Preview — status: <strong>{p.status.replace("_", " ").toLowerCase()}</strong>. This page is only visible to you.
+          Preview. Status: <strong>{p.status.replace("_", " ").toLowerCase()}</strong>. This page is only visible to you.
         </div>
       )}
 

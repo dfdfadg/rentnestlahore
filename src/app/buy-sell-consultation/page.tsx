@@ -9,7 +9,7 @@ export const revalidate = 3600;
 
 // RentNest's search presence stays focused on rentals, so this partner-service page is not indexed.
 export const metadata: Metadata = pageMetadata({
-  title: "Buy or Sell Property in Lahore — Free Consultation | RentNest Lahore",
+  title: "Buy or Sell Property in Lahore: Free Consultation | RentNest Lahore",
   description: "Planning to buy or sell a property in Lahore? Share your requirement and our partner property consultant will contact you.",
   path: "/buy-sell-consultation/",
   noindex: true,
@@ -24,7 +24,7 @@ export default async function BuySellPage({ searchParams }: { searchParams: Prom
       <div className="mt-6 max-w-3xl">
         <h1 className="text-3xl font-extrabold">Buying or selling a property in Lahore?</h1>
         <p className="mt-3 text-lg text-ink-600">
-          RentNest Lahore lists rentals only — but if you&apos;re ready to buy or sell, our partner property consultant can help. Share a few
+          RentNest Lahore lists rentals only, but if you&apos;re ready to buy or sell, our partner property consultant can help. Share a few
           details and they&apos;ll call or WhatsApp you. The consultation is free.
         </p>
         <p className="mt-3 flex items-start gap-2 rounded-xl bg-sand-100 p-3 text-sm text-ink-700 ring-1 ring-sand-200">

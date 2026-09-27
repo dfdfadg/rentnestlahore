@@ -97,7 +97,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
     const baths = num(r.bathrooms);
     if (Number.isNaN(beds) || Number.isNaN(baths)) msgs.push("bedrooms/bathrooms must be numbers");
     let description = (r.description ?? "").trim();
-    if (containsSaleLanguage(r.title, description)) msgs.push("sale / buy wording is not allowed — rentals only");
+    if (containsSaleLanguage(r.title, description)) msgs.push("sale / buy wording is not allowed (rentals only)");
     const phoneRaw = (r.agent_phone ?? "").replace(/[\s()-]/g, "");
     if (!PHONE_RE.test(phoneRaw)) msgs.push("agent_phone must be a valid Pakistani number");
     const waRaw = (r.whatsapp ?? "").replace(/[\s()-]/g, "");
@@ -186,7 +186,7 @@ export async function importCsv(csv: string, opts: { dryRun: boolean; markDemo?:
         publishedAt: status === "PUBLISHED" ? now : null,
         expiresAt: status === "PUBLISHED" ? new Date(now.getTime() + 90 * 86_400_000) : null,
         amenities: { connect: amenities.filter((a) => amenitySlugs.includes(a.slug)).map((a) => ({ id: a.id })) },
-        images: { create: images.map((url, position) => ({ url, position, alt: `${title} — photo ${position + 1}` })) },
+        images: { create: images.map((url, position) => ({ url, position, alt: `${title}, photo ${position + 1}` })) },
       },
     });
     report.imported++;

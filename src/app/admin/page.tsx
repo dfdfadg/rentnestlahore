@@ -67,7 +67,7 @@ export default async function AdminHome() {
             <li key={p.id} className="card p-4">
               <div className="flex flex-wrap items-center gap-2 text-xs text-ink-500">
                 <StatusBadge status={p.status} />
-                {p.source === "quick_form" && <span className="badge bg-sky-50 text-sky-700 ring-1 ring-sky-200">Quick form — call to confirm</span>}
+                {p.source === "quick_form" && <span className="badge bg-sky-50 text-sky-700 ring-1 ring-sky-200">Quick form: call to confirm</span>}
                 {p.agent.name} · {p.agent.phone} · {formatPKR(p.price)} · {p._count.images} photos · updated {formatDate(p.updatedAt)}
               </div>
               <p className="mt-1 font-semibold">{p.title}</p>

@@ -15,7 +15,7 @@ function LocationFields({ l, parents }: { l?: Loc; parents: { id: string; name: 
         <div>
           <label className="label">Parent area</label>
           <select name="parentId" defaultValue={l?.parentId ?? ""} className="input">
-            <option value="">— none (top level) —</option>
+            <option value="">None (top level)</option>
             {parents.filter((p) => p.id !== l?.id).map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
           </select>
         </div>

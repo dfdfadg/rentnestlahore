@@ -8,35 +8,35 @@ import type { LandingContent } from "./landing-types-def";
 
 export const TYPE_CONTENT: Record<string, LandingContent> = {
   houses: {
-    seoTitle: "Houses for Rent in Lahore – House on Rent in DHA, Johar Town & More",
+    seoTitle: "Houses for Rent in Lahore | RentNest Lahore",
     metaDescription:
       "Find a house for rent in Lahore: 5 Marla, 10 Marla and 1 Kanal homes in DHA, Bahria Town, Johar Town, Model Town and more. Compare monthly rent, photos and contact owners directly.",
     sections: [
       {
         h: "Finding a house on rent in Lahore",
         p: [
-          "Houses are the most searched rental category in Lahore, and the right choice depends on three things: **size**, **area** and **budget**. Sizes are quoted in Marla and Kanal — in most housing societies 1 Marla is 225 sq ft and 1 Kanal is 20 Marla. A 5 Marla house usually has 3 bedrooms, a 10 Marla house 4–5 bedrooms with parking, and 1 Kanal homes add a lawn, drawing/dining rooms and often a servant quarter.",
+          "Houses are the most searched rental category in Lahore, and the right choice depends on three things: **size**, **area** and **budget**. Sizes are quoted in Marla and Kanal. In most housing societies 1 Marla is 225 sq ft and 1 Kanal is 20 Marla. A 5 Marla house usually has 3 bedrooms, a 10 Marla house 4 or 5 bedrooms with parking, and 1 Kanal homes add a lawn, drawing/dining rooms and often a servant quarter.",
           "Use the filters above to set your monthly budget, bedrooms and size, then shortlist a few houses in two or three areas. The rent snapshot below shows what houses are currently listed for in each area, so you can see quickly where your budget goes furthest.",
         ],
       },
       {
         h: "Popular areas for rental houses",
         ul: [
-          "[DHA Lahore](/rent/dha-lahore/houses/) — planned phases, wide roads and managed security; rents vary noticeably by phase.",
-          "[Bahria Town](/rent/bahria-town/houses/) — gated community with its own schools, hospital and markets.",
-          "[Johar Town](/rent/johar-town/houses/) — central-south location near universities, hospitals and Expo Centre.",
-          "[Model Town](/rent/model-town/) and [Garden Town](/rent/garden-town/) — established, leafy central neighbourhoods.",
-          "[Wapda Town](/rent/wapda-town/), [Valencia](/rent/valencia-town/) and [Lake City](/rent/lake-city/) — family societies with newer homes, usually at lower rents than central Lahore.",
+          "[DHA Lahore](/rent/dha-lahore/houses/): planned phases, wide roads and managed security; rents vary noticeably by phase.",
+          "[Bahria Town](/rent/bahria-town/houses/): gated community with its own schools, hospital and markets.",
+          "[Johar Town](/rent/johar-town/houses/): central-south location near universities, hospitals and Expo Centre.",
+          "[Model Town](/rent/model-town/) and [Garden Town](/rent/garden-town/): established, leafy central neighbourhoods.",
+          "[Wapda Town](/rent/wapda-town/), [Valencia](/rent/valencia-town/) and [Lake City](/rent/lake-city/): family societies with newer homes, usually at lower rents than central Lahore.",
         ],
       },
       {
         h: "What decides the rent of a house",
         ul: [
-          "**Area and block** — the same 10 Marla house can rent for very different amounts in different phases or blocks.",
-          "**Condition** — brand-new and recently renovated houses command a premium.",
-          "**Portions** — renting the full house costs more than an [upper or lower portion](/rent/portions/) of the same house.",
-          "**Extras** — solar/UPS backup, a servant quarter, a lawn, gas availability and a corner or park-facing plot.",
-          "**Furnishing** — most houses in Lahore are rented unfurnished; furnished houses cost more.",
+          "**Area and block**: the same 10 Marla house can rent for very different amounts in different phases or blocks.",
+          "**Condition**: brand-new and recently renovated houses command a premium.",
+          "**Portions**: renting the full house costs more than an [upper or lower portion](/rent/portions/) of the same house.",
+          "**Extras**: solar/UPS backup, a servant quarter, a lawn, gas availability and a corner or park-facing plot.",
+          "**Furnishing**: most houses in Lahore are rented unfurnished; furnished houses cost more.",
         ],
       },
       {
@@ -45,13 +45,13 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
           "Separate electricity (LESCO) and gas (SNGPL) meters, and recent bills paid up to date.",
           "Water pressure on the upper floor, tank size and any seepage on walls and ceilings.",
           "Who pays society maintenance or security charges.",
-          "A written tenancy agreement covering rent, deposit, advance, notice period and annual increase — see our [rent agreement format and checklist](/guides/rent-agreement-format-pakistan/).",
+          "A written tenancy agreement covering rent, deposit, advance, notice period and annual increase. Our [rent agreement format and checklist](/guides/rent-agreement-format-pakistan/) can help.",
         ],
       },
     ],
     faqs: [
       { q: "How much is the rent of a house in Lahore?", a: "It depends mainly on the area, size and condition. The rent snapshot on this page shows the typical (median) and range of asking rents for houses listed on RentNest Lahore right now, and each area page shows the same for that area." },
-      { q: "What size house do I need for a family of four or five?", a: "A 5 Marla house (usually 3 bedrooms) suits a small family, while a 10 Marla house (4–5 bedrooms, parking for one or two cars) gives more space. If you only need two or three bedrooms, a portion can be a cheaper alternative." },
+      { q: "What size house do I need for a family of four or five?", a: "A 5 Marla house (usually 3 bedrooms) suits a small family, while a 10 Marla house (4 or 5 bedrooms, parking for one or two cars) gives more space. If you only need two or three bedrooms, a portion can be a cheaper alternative." },
       { q: "How much advance and security deposit do landlords ask for?", a: "Most landlords in Lahore ask for a refundable security deposit plus one or more months of rent in advance. The exact amounts are negotiated, so always confirm them and write them into the tenancy agreement." },
       { q: "Is it better to rent through an agent or directly from the owner?", a: "Both are common. Agents can show several houses quickly but usually charge a commission; renting directly avoids that. On RentNest Lahore you can see whether a listing is posted by an agent or a landlord and contact them directly." },
       { q: "Do I need to register as a tenant with the police?", a: "Yes. In Punjab, landlords are required to register tenants' details with the local police, so keep copies of your CNIC ready. Our guide on documents needed to rent a house explains the process." },
@@ -59,7 +59,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   flats: {
-    seoTitle: "Flats for Rent in Lahore – 1, 2 & 3 Bed Flats on Rent",
+    seoTitle: "Flats for Rent in Lahore | RentNest Lahore",
     metaDescription:
       "Flats for rent in Lahore for students, professionals and small families. Compare 1, 2 and 3 bedroom flats in Johar Town, Gulberg, Allama Iqbal Town, DHA and Bahria Town.",
     sections: [
@@ -73,17 +73,17 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       {
         h: "Where to find flats for rent",
         ul: [
-          "[Johar Town](/rent/johar-town/) — flats near universities, hospitals and commercial boulevards.",
-          "[Allama Iqbal Town](/rent/allama-iqbal-town/) — flats around Moon Market and main commercial blocks.",
-          "[Gulberg](/rent/gulberg/) — flats close to offices, MM Alam Road and Liberty Market.",
-          "[Bahria Town](/rent/bahria-town/) and [DHA](/rent/dha-lahore/) — flats above commercial areas inside gated communities.",
+          "[Johar Town](/rent/johar-town/): flats near universities, hospitals and commercial boulevards.",
+          "[Allama Iqbal Town](/rent/allama-iqbal-town/): flats around Moon Market and main commercial blocks.",
+          "[Gulberg](/rent/gulberg/): flats close to offices, MM Alam Road and Liberty Market.",
+          "[Bahria Town](/rent/bahria-town/) and [DHA](/rent/dha-lahore/): flats above commercial areas inside gated communities.",
         ],
       },
       {
         h: "What to check in a flat",
         ul: [
           "Which floor it is on, and whether there is a lift and backup power for it.",
-          "Water supply and storage — ask how often water comes and whether there is a pump.",
+          "Water supply and storage: ask how often water comes and whether there is a pump.",
           "Parking for a car or motorbike, and who manages the building's security and cleaning.",
           "Noise from the market below, especially at night.",
           "Whether electricity and gas are on separate meters or shared.",
@@ -99,7 +99,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   apartments: {
-    seoTitle: "Apartments for Rent in Lahore – Furnished & Unfurnished",
+    seoTitle: "Apartments for Rent in Lahore | RentNest Lahore",
     metaDescription:
       "Rent an apartment in Lahore with lifts, security and backup power. Browse furnished and unfurnished apartments in Gulberg, DHA, Askari, Bahria Town and Johar Town.",
     sections: [
@@ -113,16 +113,16 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       {
         h: "Popular areas for apartments",
         ul: [
-          "[Gulberg](/rent/gulberg/) — high-rise and boutique apartment buildings close to offices, restaurants and shopping.",
-          "[DHA Lahore](/rent/dha-lahore/) — apartments in commercial and residential zones.",
-          "[Askari](/rent/askari/) — gated apartment complexes with strong security.",
-          "[Bahria Town](/rent/bahria-town/) — apartments above commercial blocks with easy access to amenities.",
+          "[Gulberg](/rent/gulberg/): high-rise and boutique apartment buildings close to offices, restaurants and shopping.",
+          "[DHA Lahore](/rent/dha-lahore/): apartments in commercial and residential zones.",
+          "[Askari](/rent/askari/): gated apartment complexes with strong security.",
+          "[Bahria Town](/rent/bahria-town/): apartments above commercial blocks with easy access to amenities.",
         ],
       },
       {
         h: "Questions to ask before renting an apartment",
         ul: [
-          "What is included in the monthly maintenance — security, lifts, backup power, water, cleaning?",
+          "What is included in the monthly maintenance? Security, lifts, backup power, water, cleaning?",
           "Is the generator/backup power for the whole apartment or only lights and fans?",
           "How many parking spaces come with the apartment?",
           "Are there building rules on guests, pets or moving-in times?",
@@ -130,52 +130,52 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       },
     ],
     faqs: [
-      { q: "What is the difference between a flat and an apartment?", a: "In Lahore, 'apartment' usually means a unit in a managed building with lifts, security and backup power, while 'flat' often refers to units in smaller buildings or above shops. Both are listed on RentNest Lahore — see flats for rent as well." },
-      { q: "Are furnished apartments available for short stays?", a: "Most listings are for standard monthly tenancies. Some landlords accept shorter terms for furnished apartments — ask the landlord or agent directly through the listing." },
+      { q: "What is the difference between a flat and an apartment?", a: "In Lahore, 'apartment' usually means a unit in a managed building with lifts, security and backup power, while 'flat' often refers to units in smaller buildings or above shops. Both are listed on RentNest Lahore, so check flats for rent as well." },
+      { q: "Are furnished apartments available for short stays?", a: "Most listings are for standard monthly tenancies. Some landlords accept shorter terms for furnished apartments, so ask the landlord or agent directly through the listing." },
       { q: "Is backup power included in apartment rent?", a: "Often the building provides generator backup, but coverage differs. Ask whether it runs the whole apartment (including air conditioners) and whether it is charged separately." },
     ],
   },
 
   portions: {
-    seoTitle: "Portions for Rent in Lahore – Upper & Lower Portions | RentNest Lahore",
+    seoTitle: "Upper and Lower Portions for Rent in Lahore | RentNest Lahore",
     metaDescription:
-      "Upper and lower portions for rent in Lahore. Live in a house-style home at a lower rent — compare portions in Johar Town, DHA, Wapda Town, Township and more.",
+      "Upper and lower portions for rent in Lahore. Live in a house-style home at a lower rent and compare portions in Johar Town, DHA, Wapda Town, Township and more.",
     sections: [
       {
         h: "What is a portion?",
         p: [
-          "A portion is one floor of a house rented separately — the ground floor is a **lower portion** and the first (or second) floor is an **upper portion**. Portions give you house-style living — bedrooms, a kitchen, often a TV lounge — for noticeably less than the rent of a whole house.",
+          "A portion is one floor of a house rented separately. The ground floor is a **lower portion** and the first (or second) floor is an **upper portion**. You get house-style living, with bedrooms, a kitchen and often a TV lounge, for noticeably less than the rent of a whole house.",
           "Portions are one of the most common rental types in Lahore, especially for small families and couples.",
         ],
       },
       {
         h: "Upper portion or lower portion?",
         ul: [
-          "**[Lower portions](/rent/lower-portions/)** usually come with the car porch, easier access and sometimes the lawn — good for elderly family members and young children.",
+          "**[Lower portions](/rent/lower-portions/)** usually come with the car porch, easier access and sometimes the lawn, which suits elderly family members and young children.",
           "**[Upper portions](/rent/upper-portions/)** are often a little cheaper and more private, but check water pressure and stairs.",
         ],
       },
       {
         h: "Must-check points when renting a portion",
         ul: [
-          "**Separate meters** for electricity and gas — shared meters are the most common cause of disputes.",
+          "**Separate meters** for electricity and gas. Shared meters are the most common cause of disputes.",
           "A **separate entrance**, or at least a clear arrangement for the gate and stairs.",
-          "Parking — who gets the car porch, and whether there is space outside.",
-          "Water tank — shared or separate, and who pays for the motor.",
+          "Parking: who gets the car porch, and whether there is space outside.",
+          "Water tank: shared or separate, and who pays for the motor.",
           "Whether the landlord's family lives in the other portion, and any house rules.",
         ],
       },
     ],
     faqs: [
       { q: "Is a portion cheaper than a full house?", a: "Yes. Renting one floor of a house typically costs considerably less than the whole house, which is why portions are popular with small families." },
-      { q: "Do portions have separate electricity and gas meters?", a: "Many do, but not all. Always confirm separate meters before renting — if meters are shared, agree in writing how bills will be split." },
+      { q: "Do portions have separate electricity and gas meters?", a: "Many do, but not all. Always confirm separate meters before renting. If meters are shared, agree in writing how bills will be split." },
       { q: "Which areas have the most portions for rent?", a: "Portions are common in established residential areas such as Johar Town, Wapda Town, Township, Allama Iqbal Town and many DHA phases. Use the rent snapshot and area links on this page to compare." },
     ],
   },
 
   "upper-portions": {
     seoTitle: "Upper Portions for Rent in Lahore | RentNest Lahore",
-    metaDescription: "Upper portion for rent in Lahore — first-floor homes with separate entrances in Johar Town, DHA, Wapda Town and more. Compare rents and contact owners directly.",
+    metaDescription: "First-floor homes with separate entrances in Johar Town, DHA, Wapda Town and more. Compare rents and contact owners directly.",
     sections: [
       {
         h: "Renting an upper portion",
@@ -184,7 +184,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
         ],
         ul: [
           "Check water pressure on the upper floor and whether there is a separate tank.",
-          "Ask about the roof/terrace — is it for your use?",
+          "Ask about the roof or terrace. Is it for your use?",
           "Confirm separate electricity and gas meters.",
           "Compare with [lower portions](/rent/lower-portions/) and all [portions for rent](/rent/portions/).",
         ],
@@ -198,12 +198,12 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
 
   "lower-portions": {
     seoTitle: "Lower Portions for Rent in Lahore | RentNest Lahore",
-    metaDescription: "Lower portion for rent in Lahore — ground-floor homes with car porch and easy access. Compare lower portions in Johar Town, DHA, Model Town and more.",
+    metaDescription: "Ground-floor homes with a car porch and easy access. Compare lower portions in Johar Town, DHA, Model Town and more.",
     sections: [
       {
         h: "Renting a lower portion",
         p: [
-          "A lower portion is the ground floor of a house. It usually includes the car porch and sometimes the lawn, and it avoids stairs — a practical choice for families with elderly members or small children.",
+          "A lower portion is the ground floor of a house. It usually includes the car porch and sometimes the lawn, and it avoids stairs, which makes it practical for families with elderly members or small children.",
         ],
         ul: [
           "Ask who uses the car porch and main gate if the upper floor is also occupied.",
@@ -219,22 +219,22 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   rooms: {
-    seoTitle: "Rooms for Rent in Lahore – For Students & Working Professionals",
+    seoTitle: "Rooms for Rent in Lahore for Students and Professionals",
     metaDescription:
       "Rooms for rent in Lahore for students and working professionals. Find furnished rooms with attached bath near universities and offices in Johar Town, Muslim Town and more.",
     sections: [
       {
         h: "Renting a room in Lahore",
         p: [
-          "A single room is the lowest-cost way to live in Lahore — ideal for students and working professionals who want to be near a university or office. Rooms are usually offered in houses or portions, often furnished, with an attached or shared bathroom.",
+          "A single room is the cheapest way to live in Lahore and suits students and working professionals who want to be near a university or office. Rooms are usually offered in houses or portions, often furnished, with an attached or shared bathroom.",
         ],
       },
       {
         h: "Good areas for rooms",
         ul: [
-          "[Johar Town](/rent/johar-town/) — close to several universities, hospitals and commercial areas.",
-          "[Muslim Town](/rent/muslim-town/) and [Allama Iqbal Town](/rent/allama-iqbal-town/) — central, with easy transport along the Canal and main roads.",
-          "[Garden Town](/rent/garden-town/) and [Faisal Town](/rent/faisal-town/) — central residential areas near Ferozepur Road.",
+          "[Johar Town](/rent/johar-town/): close to several universities, hospitals and commercial areas.",
+          "[Muslim Town](/rent/muslim-town/) and [Allama Iqbal Town](/rent/allama-iqbal-town/): central, with easy transport along the Canal and main roads.",
+          "[Garden Town](/rent/garden-town/) and [Faisal Town](/rent/faisal-town/): central residential areas near Ferozepur Road.",
         ],
       },
       {
@@ -243,7 +243,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
           "Is electricity, gas, water and internet **included** in the rent or split separately?",
           "Attached or shared bathroom, and kitchen access.",
           "Rules on guests, curfew timings and whether the room is for boys, girls or families only.",
-          "Security deposit and notice period — get these in writing even for a room.",
+          "Security deposit and notice period. Get these in writing, even for a room.",
         ],
       },
       {
@@ -261,7 +261,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   hostels: {
-    seoTitle: "Girls & Boys Hostels in Lahore – Hostel and Paying Guest (PG) Rooms",
+    seoTitle: "Girls and Boys Hostels in Lahore | RentNest Lahore",
     metaDescription:
       "Girls hostels, boys hostels and paying guest (PG) rooms in Lahore near universities and offices. Compare monthly charges, meals, facilities and rules, and contact owners directly.",
     sections: [
@@ -275,19 +275,19 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       {
         h: "Popular areas for hostels",
         ul: [
-          "[Johar Town](/rent/johar-town/) — near several private universities, Expo Centre and Jinnah Hospital; one of the largest hostel clusters in the city.",
-          "[Muslim Town](/rent/muslim-town/), [Garden Town](/rent/garden-town/) and [Allama Iqbal Town](/rent/allama-iqbal-town/) — close to Punjab University's New Campus and the Canal Road.",
-          "[Model Town](/rent/model-town/) and [Faisal Town](/rent/faisal-town/) — quieter residential streets with easy access to Ferozepur Road.",
-          "[Gulberg](/rent/gulberg/) — preferred by working professionals because of its offices, banks and shopping areas.",
+          "[Johar Town](/rent/johar-town/): near several private universities, Expo Centre and Jinnah Hospital; one of the largest hostel clusters in the city.",
+          "[Muslim Town](/rent/muslim-town/), [Garden Town](/rent/garden-town/) and [Allama Iqbal Town](/rent/allama-iqbal-town/): close to Punjab University's New Campus and the Canal Road.",
+          "[Model Town](/rent/model-town/) and [Faisal Town](/rent/faisal-town/): quieter residential streets with easy access to Ferozepur Road.",
+          "[Gulberg](/rent/gulberg/): preferred by working professionals because of its offices, banks and shopping areas.",
         ],
       },
       {
         h: "What the monthly charge usually includes",
         ul: [
-          "Room on a sharing basis (2–4 persons) or a single room at a higher rate",
+          "Room on a sharing basis (2 to 4 people) or a single room at a higher rate",
           "Bed, mattress, cupboard and study table",
-          "Meals — often two or three per day; confirm the menu and timings",
-          "Electricity, water and Wi-Fi — sometimes AC or heater use is charged separately",
+          "Meals, often two or three a day (ask about the menu and timings)",
+          "Electricity, water and Wi-Fi, though AC or heater use is sometimes charged separately",
           "Laundry, cleaning and a security guard or CCTV",
         ],
       },
@@ -296,7 +296,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
         ul: [
           "**Visit in person** (or send a family member) and see the actual room, washrooms and kitchen.",
           "Ask about **security**: guard, CCTV, entry timings, visitor rules and who holds keys.",
-          "Confirm what is **included** and what is extra — AC, UPS backup, meals on weekends.",
+          "Confirm what is **included** and what is extra, such as AC, UPS backup or weekend meals.",
           "Ask for a **written receipt** for every payment and clear refund rules for the security deposit.",
           "For girls' hostels, ask whether a female warden lives on site.",
         ],
@@ -317,7 +317,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   offices: {
-    seoTitle: "Offices for Rent in Lahore – Office Space in Gulberg, DHA & Johar Town",
+    seoTitle: "Office Space for Rent in Lahore | RentNest Lahore",
     metaDescription:
       "Office space for rent in Lahore, from small furnished offices to full floors. Compare offices in Gulberg, DHA, Johar Town and Model Town by size, floor and parking.",
     sections: [
@@ -331,18 +331,18 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       {
         h: "Where businesses rent offices",
         ul: [
-          "[Gulberg](/rent/gulberg/offices/) — the city's central business district, with high visibility and plenty of services nearby.",
-          "[DHA Lahore](/rent/dha-lahore/offices/) — offices in commercial areas with good parking and security.",
-          "[Johar Town](/rent/johar-town/) — cost-effective office space near universities, popular with IT and service companies.",
-          "[Model Town](/rent/model-town/) and [Garden Town](/rent/garden-town/) — central locations close to Ferozepur Road.",
+          "[Gulberg](/rent/gulberg/offices/): the city's central business district, with high visibility and plenty of services nearby.",
+          "[DHA Lahore](/rent/dha-lahore/offices/): offices in commercial areas with good parking and security.",
+          "[Johar Town](/rent/johar-town/): cost-effective office space near universities, popular with IT and service companies.",
+          "[Model Town](/rent/model-town/) and [Garden Town](/rent/garden-town/): central locations close to Ferozepur Road.",
         ],
       },
       {
         h: "Office rental checklist",
         ul: [
           "**Covered area** actually usable versus the quoted area (lobbies and shared washrooms).",
-          "**Backup power** — generator/UPS capacity for computers and air conditioning.",
-          "**Internet** — availability of fibre providers in the building.",
+          "**Backup power**: generator/UPS capacity for computers and air conditioning.",
+          "**Internet**: availability of fibre providers in the building.",
           "**Parking** allocation for staff and visitors.",
           "Building access hours, security, lift maintenance and monthly service charges.",
           "Whether the premises are approved for commercial use and signage is allowed.",
@@ -357,7 +357,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   shops: {
-    seoTitle: "Shops for Rent in Lahore – Commercial Shops on Main Roads",
+    seoTitle: "Shops for Rent in Lahore | RentNest Lahore",
     metaDescription: "Shops for rent in Lahore in markets, plazas and on main boulevards. Filter by floor, frontage, corner and main-road location to find the right retail space.",
     sections: [
       {
@@ -373,7 +373,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
           "**Frontage** (width facing the road) and visibility from traffic.",
           "Parking for customers and loading access for stock.",
           "Three-phase electricity if you run heavy equipment.",
-          "Whether the market has a **pagri/goodwill** arrangement — common in older markets — and exactly what it covers.",
+          "Whether the market has a **pagri/goodwill** arrangement (common in older markets) and exactly what it covers.",
           "Signage rules, market timings and any association charges.",
         ],
       },
@@ -385,22 +385,22 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   warehouses: {
-    seoTitle: "Warehouses for Rent in Lahore – Storage & Godowns | RentNest Lahore",
+    seoTitle: "Warehouses and Godowns for Rent in Lahore | RentNest Lahore",
     metaDescription: "Warehouses and godowns for rent in Lahore. Filter by covered area, clear height and loading access near Raiwind Road, Multan Road and Ring Road.",
     sections: [
       {
         h: "Renting a warehouse in Lahore",
         p: [
-          "Warehouses and godowns are concentrated along Lahore's industrial corridors — around **Raiwind Road** (including Sundar Industrial Estate), **Multan Road**, **Kot Lakhpat** and near **Ring Road** access points, where trucks can move without entering the city centre.",
+          "Warehouses and godowns are concentrated along Lahore's industrial corridors: around **Raiwind Road** (including Sundar Industrial Estate), **Multan Road**, **Kot Lakhpat** and near **Ring Road** access points, where trucks can move without entering the city centre.",
           "Use the filters for minimum clear height and loading area to shortlist spaces that fit your racking and vehicles.",
         ],
       },
       {
         h: "Warehouse checklist",
         ul: [
-          "**Clear height** — the usable height under the roof beams, not just the wall height.",
-          "**Truck access** — road width, gate width and turning space for containers.",
-          "**Loading** — dock or ground-level loading, and a covered loading area.",
+          "**Clear height**: the usable height under the roof beams, not just the wall height.",
+          "**Truck access**: road width, gate width and turning space for containers.",
+          "**Loading**: dock or ground-level loading, and a covered loading area.",
           "Electricity load (three-phase), fire safety, flooring strength and drainage during monsoon.",
           "Security, a guard room and whether 24/7 access is allowed.",
         ],
@@ -413,7 +413,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   },
 
   "commercial-properties": {
-    seoTitle: "Commercial Property for Rent in Lahore – Offices, Shops & Warehouses",
+    seoTitle: "Commercial Property for Rent in Lahore | RentNest Lahore",
     metaDescription: "Commercial property for rent in Lahore: offices, shops, showrooms, warehouses, factories and buildings. Filter by floor, frontage, main road and loading access.",
     sections: [
       {
@@ -425,10 +425,10 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       {
         h: "Matching the area to your business",
         ul: [
-          "**Client-facing offices and retail** — [Gulberg](/rent/gulberg/) and [DHA](/rent/dha-lahore/) commercial zones.",
-          "**Cost-effective offices** — [Johar Town](/rent/johar-town/) and [Model Town](/rent/model-town/).",
-          "**Neighbourhood retail** — markets in [Allama Iqbal Town](/rent/allama-iqbal-town/), [Township](/rent/township/) and [Bahria Town](/rent/bahria-town/).",
-          "**Storage and manufacturing** — [Raiwind Road](/rent/raiwind-road/) and other industrial corridors.",
+          "**Client-facing offices and retail**: [Gulberg](/rent/gulberg/) and [DHA](/rent/dha-lahore/) commercial zones.",
+          "**Cost-effective offices**: [Johar Town](/rent/johar-town/) and [Model Town](/rent/model-town/).",
+          "**Neighbourhood retail**: markets in [Allama Iqbal Town](/rent/allama-iqbal-town/), [Township](/rent/township/) and [Bahria Town](/rent/bahria-town/).",
+          "**Storage and manufacturing**: [Raiwind Road](/rent/raiwind-road/) and other industrial corridors.",
         ],
       },
       {
@@ -442,24 +442,24 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       },
     ],
     faqs: [
-      { q: "How long are commercial leases in Lahore?", a: "Commercial leases are often longer than residential ones — commonly a few years with a fixed annual increase. Terms are negotiable, so agree them in writing." },
+      { q: "How long are commercial leases in Lahore?", a: "Commercial leases are often longer than residential ones, commonly a few years with a fixed annual increase. Terms are negotiable, so agree them in writing." },
       { q: "Can I filter for main-road or corner properties?", a: "Yes. Open the Commercial filters and tick 'On main road' or 'Corner'. You can also set minimum frontage and floor." },
     ],
   },
 
   "farm-houses": {
     seoTitle: "Farm Houses for Rent in Lahore | RentNest Lahore",
-    metaDescription: "Farm houses for rent in Lahore on Bedian Road, Raiwind Road and the city outskirts — lawns, pools and privacy for long stays.",
+    metaDescription: "Farm houses for rent in Lahore on Bedian Road, Raiwind Road and the city outskirts, with lawns, pools and privacy for long stays.",
     sections: [
       {
         h: "Renting a farm house near Lahore",
         p: [
-          "Farm houses offer open space, lawns and privacy within reach of the city — mostly along [Bedian Road](/rent/bedian-road/) beyond DHA and on [Raiwind Road](/rent/raiwind-road/). They are rented for long stays by families who want space, and some owners also allow event bookings.",
+          "Farm houses offer open space, lawns and privacy within reach of the city, mostly along [Bedian Road](/rent/bedian-road/) beyond DHA and on [Raiwind Road](/rent/raiwind-road/). They are rented for long stays by families who want space, and some owners also allow event bookings.",
         ],
         ul: [
           "Check road access in the monsoon and the distance to the nearest hospital.",
           "Ask about water source, backup power and on-site staff (gardener, guard).",
-          "Confirm what is included — pool maintenance, lawn upkeep and security.",
+          "Confirm what is included, such as pool maintenance, lawn upkeep and security.",
         ],
       },
     ],
@@ -480,13 +480,13 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       },
     ],
     faqs: [
-      { q: "Is the terrace included with a penthouse?", a: "Usually yes — that is a key feature of a penthouse — but confirm whether it is private or shared." },
+      { q: "Is the terrace included with a penthouse?", a: "Usually yes, since that is the main appeal of a penthouse, but confirm whether it is private or shared." },
     ],
   },
 
   showrooms: {
     seoTitle: "Showrooms for Rent in Lahore | RentNest Lahore",
-    metaDescription: "Showrooms for rent on Lahore's main commercial roads — wide frontage and large display floors for car, furniture, apparel and electronics businesses.",
+    metaDescription: "Showrooms for rent on Lahore's main commercial roads, with wide frontage and large display floors for car, furniture, apparel and electronics businesses.",
     sections: [
       {
         h: "Renting a showroom",
@@ -502,7 +502,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
 
   "commercial-buildings": {
     seoTitle: "Commercial Buildings for Rent in Lahore | RentNest Lahore",
-    metaDescription: "Entire commercial buildings for rent in Lahore for corporate offices, schools, clinics and banks — multiple floors, separate entrance and parking.",
+    metaDescription: "Entire commercial buildings for rent in Lahore for corporate offices, schools, clinics and banks that need several floors, a separate entrance and parking.",
     sections: [
       {
         h: "Renting an entire building",
@@ -518,7 +518,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
 
   factories: {
     seoTitle: "Factories for Rent in Lahore | RentNest Lahore",
-    metaDescription: "Factories for rent in Lahore's industrial areas — covered sheds, offices and utilities for manufacturing businesses.",
+    metaDescription: "Factories for rent in Lahore's industrial areas, with covered sheds, offices and utilities for manufacturing businesses.",
     sections: [
       {
         h: "Renting a factory",
@@ -546,11 +546,11 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
 
   "industrial-spaces": {
     seoTitle: "Industrial Space for Rent in Lahore | RentNest Lahore",
-    metaDescription: "Industrial space for rent in Lahore — plots with sheds, yards and workshops for manufacturing, storage and fabrication.",
+    metaDescription: "Industrial space for rent in Lahore: plots with sheds, yards and workshops for manufacturing, storage and fabrication.",
     sections: [
       {
         h: "Industrial space",
-        p: ["Industrial spaces — open plots with sheds, yards and workshops — are rented for manufacturing, storage and fabrication on Lahore's outskirts. Check road access for heavy vehicles, boundary walls, security and utility connections. Compare with [warehouses](/rent/warehouses/)."],
+        p: ["Industrial spaces (open plots with sheds, yards and workshops) are rented for manufacturing, storage and fabrication on Lahore's outskirts. Check road access for heavy vehicles, boundary walls, security and utility connections. Compare with [warehouses](/rent/warehouses/)."],
       },
     ],
     faqs: [],

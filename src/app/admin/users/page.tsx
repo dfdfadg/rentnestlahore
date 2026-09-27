@@ -29,7 +29,7 @@ export default async function AdminUsers({ searchParams }: { searchParams: Promi
               <tr key={u.id} className={u.disabled ? "opacity-60" : ""}>
                 <td className="px-4 py-3"><p className="font-semibold">{u.name}</p><p className="text-ink-500">{u.email}{u.phone ? ` · ${u.phone}` : ""}</p></td>
                 <td className="px-4 py-3">{formatDate(u.createdAt)}</td>
-                <td className="px-4 py-3">{u.lastLoginAt ? formatDate(u.lastLoginAt) : "—"}</td>
+                <td className="px-4 py-3">{u.lastLoginAt ? formatDate(u.lastLoginAt) : "-"}</td>
                 <td className="px-4 py-3">{u.agent?._count.properties ?? 0}</td>
                 <td className="px-4 py-3">{u._count.favorites}</td>
                 <td className="px-4 py-3">{u.id === me.id ? <span className="text-xs text-ink-500">You ({u.role.toLowerCase()})</span> : <UserAdminControls id={u.id} role={u.role} disabled={u.disabled} />}</td>

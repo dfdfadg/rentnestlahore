@@ -4,7 +4,7 @@ import { StaticPage } from "@/components/StaticPage";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About RentNest Lahore — A Rent-Only Marketplace",
+  title: "About RentNest Lahore, a Rent-Only Marketplace",
   description: "RentNest Lahore is a rent-only property marketplace for Lahore: houses, flats, portions, rooms, offices, shops and warehouses for rent.",
   path: "/about/",
 });
@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <StaticPage title="About RentNest Lahore" path="/about/" intro="One city. One purpose. Helping people find a place to rent in Lahore.">
-      <p>RentNest Lahore is a property marketplace dedicated entirely to rentals in Lahore. We don&apos;t list properties for sale — every search, filter and page is built around finding a home or workspace to rent.</p>
+      <p>RentNest Lahore is a property marketplace dedicated entirely to rentals in Lahore. We don&apos;t list properties for sale. Every search, filter and page is built around finding a home or workspace to rent.</p>
       <h2>What we believe</h2>
       <ul>
         <li><strong>Clarity:</strong> monthly rent, size and location up front on every listing.</li>

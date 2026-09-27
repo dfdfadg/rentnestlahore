@@ -10,7 +10,7 @@ import { formatNumber } from "@/lib/format";
 export const revalidate = 600;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Lahore Areas — Rentals by Neighbourhood | RentNest Lahore",
+  title: "Lahore Areas: Rentals by Neighbourhood | RentNest Lahore",
   description: "Browse rental properties by Lahore area: DHA, Gulberg, Johar Town, Bahria Town, Model Town, Wapda Town and more. See how many rentals are live in each neighbourhood.",
   path: "/areas/",
 });

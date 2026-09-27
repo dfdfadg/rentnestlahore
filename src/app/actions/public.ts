@@ -8,7 +8,7 @@ import { enquirySchema, firstErrors, normalizePhone, reportSchema } from "@/lib/
 import type { FormState } from "./auth";
 
 export async function submitEnquiry(_: FormState, formData: FormData): Promise<FormState> {
-  if (formData.get("company")) return { ok: true, message: "Thank you — your enquiry has been sent." }; // honeypot
+  if (formData.get("company")) return { ok: true, message: "Thank you, your enquiry has been sent." }; // honeypot
   if (!(await rateLimit("enquiry", 6, 10 * 60_000))) {
     return { message: "You've sent several enquiries in a short time. Please wait a few minutes and try again." };
   }
@@ -29,7 +29,7 @@ export async function submitEnquiry(_: FormState, formData: FormData): Promise<F
     where: { propertyId: property.id, phone: normalizePhone(d.phone), createdAt: { gt: new Date(Date.now() - 86_400_000) } },
     select: { id: true },
   });
-  if (recent) return { ok: true, message: "We already have your enquiry for this property — the landlord/agent will be in touch." };
+  if (recent) return { ok: true, message: "We already have your enquiry for this property. The landlord or agent will be in touch." };
   const user = await getCurrentUser();
   await prisma.enquiry.create({
     data: {
@@ -43,7 +43,7 @@ export async function submitEnquiry(_: FormState, formData: FormData): Promise<F
       preferredContact: d.preferredContact,
     },
   });
-  return { ok: true, message: "Thank you — your enquiry has been sent to the landlord/agent." };
+  return { ok: true, message: "Thank you, your enquiry has been sent to the landlord or agent." };
 }
 
 export async function submitReport(_: FormState, formData: FormData): Promise<FormState> {

@@ -22,7 +22,7 @@ export default async function PhotosPage({ params, searchParams }: { params: Pro
   const canSubmit = ["DRAFT", "REJECTED", "EXPIRED"].includes(p.status);
   return (
     <AccountShell user={user} active="/my-properties/" title="Photos" actions={<Link href={`/my-properties/${id}/edit/`} className="btn-outline">Edit details</Link>}>
-      {isNew && <p className="mb-5 rounded-xl bg-emerald-50 p-3 text-sm text-emerald-800 ring-1 ring-emerald-200">Details saved. Now add photos — the first photo is used as the cover image.</p>}
+      {isNew && <p className="mb-5 rounded-xl bg-emerald-50 p-3 text-sm text-emerald-800 ring-1 ring-emerald-200">Details saved. Now add photos. The first photo is used as the cover image.</p>}
       <div className="mb-5 flex items-center gap-2 text-sm text-ink-600"><StatusBadge status={p.status} /> {p.title}</div>
       <ImageManager propertyId={p.id} initial={p.images} />
       <div className="mt-8 card flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">

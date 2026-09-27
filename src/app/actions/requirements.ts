@@ -32,7 +32,7 @@ export async function submitRequirement(_: FormState, formData: FormData): Promi
   const d = parsed.data;
   const phone = normalizePhone(d.phone);
   const recent = await prisma.rentRequirement.findFirst({ where: { phone, createdAt: { gt: new Date(Date.now() - 86_400_000) } }, select: { id: true } });
-  if (recent) return { ok: true, message: "We already have your requirement from today — our team will be in touch." };
+  if (recent) return { ok: true, message: "We already have your requirement from today. Our team will be in touch." };
   await prisma.rentRequirement.create({
     data: {
       name: d.name, phone, email: d.email, propertyType: d.propertyType || null, areas: d.areas,

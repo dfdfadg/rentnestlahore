@@ -115,7 +115,7 @@ export async function POST(req: Request) {
     try {
       const { data, width, height } = await processImage(Buffer.from(await file.arrayBuffer()));
       const url = await storeImage(data, property.id);
-      await prisma.propertyImage.create({ data: { propertyId: property.id, url, width, height, position: position++, alt: `${meta.title} — photo ${position}` } });
+      await prisma.propertyImage.create({ data: { propertyId: property.id, url, width, height, position: position++, alt: `${meta.title}, photo ${position}` } });
     } catch (e) {
       photoErrors.push(`${file.name}: ${(e as Error).message}`);
     }

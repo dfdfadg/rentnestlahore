@@ -11,7 +11,7 @@ export function EmptyResults({ clearHref, hasFilters }: { clearHref: string; has
       <p className="mt-2 max-w-md text-sm text-ink-500">
         {hasFilters
           ? "No active rentals match all of your filters right now. Try widening your rent range or removing a filter."
-          : "There are no active rentals here right now. New listings are added regularly — check back soon or explore nearby areas."}
+          : "There are no active rentals here right now. New listings are added regularly, so check back soon or explore nearby areas."}
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         {hasFilters && <Link href={clearHref} className="btn-dark">Clear Filters</Link>}

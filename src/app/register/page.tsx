@@ -15,7 +15,7 @@ export default async function RegisterPage({ searchParams }: { searchParams: Pro
   return (
     <AuthShell
       title="Create your account"
-      subtitle="Save rentals, list your property for rent and manage enquiries — free."
+      subtitle="Save rentals, list your property for rent and manage enquiries for free."
       footer={<>Already have an account? <Link href={`/login/${q}`} className="font-semibold text-brick-700 hover:underline">Log in</Link></>}
     >
       <RegisterForm next={next} />

@@ -5,7 +5,7 @@ import { GUIDES } from "@/content/guides";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Lahore Rental Guides — Tips for Tenants | RentNest Lahore",
+  title: "Rental Guides for Tenants in Lahore | RentNest Lahore",
   description: "Practical guides for renting in Lahore: finding a house, costs, the best areas, rental agreements, documents and what to check before you sign.",
   path: "/guides/",
 });

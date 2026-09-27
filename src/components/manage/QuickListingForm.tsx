@@ -58,7 +58,7 @@ export function QuickListingForm({ types, locations, whatsapp }: Props) {
         setMessage(data.error ?? "Something went wrong. Please try again.");
       }
     } catch {
-      setMessage("Could not send — please check your internet connection and try again.");
+      setMessage("Could not send. Please check your internet connection and try again.");
     } finally {
       setBusy(false);
     }
@@ -147,13 +147,13 @@ export function QuickListingForm({ types, locations, whatsapp }: Props) {
       </div>
 
       <div>
-        <label className="label" htmlFor="q-desc">Details <span className="normal-case text-ink-400">(optional — furnishing, parking, separate meters, nearby places)</span></label>
+        <label className="label" htmlFor="q-desc">Details <span className="normal-case text-ink-400">(optional: furnishing, parking, separate meters, nearby places)</span></label>
         <textarea id="q-desc" name="description" rows={4} maxLength={3000} className="input" />
         {err("description")}
       </div>
 
       <div>
-        <span className="label">Photos <span className="normal-case text-ink-400">(up to {MAX_PHOTOS} — optional but listings with photos get far more calls)</span></span>
+        <span className="label">Photos <span className="normal-case text-ink-400">(up to {MAX_PHOTOS}, optional, but listings with photos get far more calls)</span></span>
         <div className="flex flex-wrap gap-2">
           {photos.map((p, i) => (
             <div key={p.name + i} className="relative h-20 w-24 overflow-hidden rounded-lg bg-ink-100">

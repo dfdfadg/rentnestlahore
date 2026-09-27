@@ -14,7 +14,7 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="flex items-center gap-2.5" aria-label="RentNest Lahore — home">
+    <Link href="/" className="flex items-center gap-2.5" aria-label="RentNest Lahore home">
       <LogoMark />
       <span className="leading-none">
         <span className={`block font-display text-lg font-extrabold tracking-tight ${light ? "text-white" : "text-ink-900"}`}>

@@ -50,9 +50,12 @@ export function listingHeadings(ctx: ListingContext) {
   const typeName = ctx.landing?.pluralName ?? "Properties";
   const locName = ctx.location ? locationLabel(ctx.location) : "Lahore";
   const h1Loc = ctx.location ? (/lahore/i.test(ctx.location.name) ? ctx.location.name : `${ctx.location.name}, Lahore`) : "Lahore";
+  // The homepage targets "Properties for Rent in Lahore"; the unfiltered /rent/ index uses a
+  // distinct heading so the two pages don't compete for the same query.
+  const root = !ctx.landing && !ctx.location;
   return {
-    h1: `${typeName} for Rent in ${h1Loc}`,
-    titleBase: `${typeName} for Rent in ${locName}`,
+    h1: root ? "All Rental Listings in Lahore" : `${typeName} for Rent in ${h1Loc}`,
+    titleBase: root ? "All Rental Listings in Lahore" : `${typeName} for Rent in ${locName}`,
     typeName,
     locName,
   };

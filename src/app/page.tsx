@@ -96,10 +96,10 @@ export default async function HomePage() {
             <MapPin className="h-3.5 w-3.5" /> Lahore rentals only
           </p>
           <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
-            Find Your Place to Rent in <span className="text-brick-400">Lahore</span>
+            Properties for Rent in <span className="text-brick-400">Lahore</span>
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-200">
-            Search houses, flats, offices, shops and other rental properties across Lahore.
+            Find your place — search houses, flats, portions, offices and shops for rent across Lahore.
           </p>
           <div className="mt-8">
             <HeroSearch types={options.types} locations={options.locations} />

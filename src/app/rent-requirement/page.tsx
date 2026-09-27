@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Looking for a House on Rent in Lahore? Tell Us What You Need | RentNest Lahore",
+  title: "Post Your Rent Requirement – Tell Us What You Need in Lahore | RentNest Lahore",
   description:
     "Can't find the right rental? Post your requirement — area, budget and bedrooms — and we'll connect you with landlords and agents in Lahore who have matching houses, flats, portions or offices.",
   path: "/rent-requirement/",

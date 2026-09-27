@@ -5,7 +5,7 @@ test.afterAll(async () => prisma.$disconnect());
 
 test("homepage renders hero, search and key sections", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Find Your Place to Rent in Lahore/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Properties for Rent in Lahore/);
   await expect(page.getByRole("button", { name: "Search Rentals" })).toBeVisible();
   for (const h of ["Latest rental properties", "Popular rental categories", "Popular Lahore areas", "Why RentNest Lahore", "Rental guides", "Frequently asked questions"]) {
     await expect(page.getByRole("heading", { name: h })).toBeVisible();

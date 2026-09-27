@@ -30,6 +30,12 @@ const nextConfig: NextConfig = {
       { source: "/commercial", destination: "/rent/commercial-properties/", permanent: true },
       { source: "/houses", destination: "/rent/houses/", permanent: true },
       { source: "/flats", destination: "/rent/flats/", permanent: true },
+      // Merged into the rent agreement format guide (avoids two guides competing for the same query)
+      {
+        source: "/guides/rental-agreement-checklist-in-pakistan",
+        destination: "/guides/rent-agreement-format-pakistan/",
+        permanent: true,
+      },
     ];
   },
   async headers() {

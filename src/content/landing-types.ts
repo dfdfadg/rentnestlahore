@@ -45,7 +45,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
           "Separate electricity (LESCO) and gas (SNGPL) meters, and recent bills paid up to date.",
           "Water pressure on the upper floor, tank size and any seepage on walls and ceilings.",
           "Who pays society maintenance or security charges.",
-          "A written tenancy agreement covering rent, deposit, advance, notice period and annual increase — see our [rental agreement checklist](/guides/rental-agreement-checklist-in-pakistan/).",
+          "A written tenancy agreement covering rent, deposit, advance, notice period and annual increase — see our [rent agreement format and checklist](/guides/rent-agreement-format-pakistan/).",
         ],
       },
     ],

@@ -1,7 +1,7 @@
 "use client";
 
+import { useFormAction } from "@/components/ui/useFormAction";
 import Link from "next/link";
-import { useActionState } from "react";
 import {
   forgotPasswordAction,
   loginAction,
@@ -13,9 +13,9 @@ import {
 import { FieldError, FormMessage } from "../ui/FormBits";
 
 export function LoginForm({ next }: { next?: string }) {
-  const [state, action, pending] = useActionState(loginAction, undefined);
+  const [state, action, pending] = useFormAction(loginAction, undefined);
   return (
-    <form action={action} className="space-y-4" noValidate>
+    <form onSubmit={action} className="space-y-4" noValidate>
       <input type="hidden" name="next" value={next ?? ""} />
       <FormMessage state={state} />
       <div>
@@ -37,9 +37,9 @@ export function LoginForm({ next }: { next?: string }) {
 }
 
 export function RegisterForm({ next }: { next?: string }) {
-  const [state, action, pending] = useActionState(registerAction, undefined);
+  const [state, action, pending] = useFormAction(registerAction, undefined);
   return (
-    <form action={action} className="space-y-4" noValidate>
+    <form onSubmit={action} className="space-y-4" noValidate>
       <input type="hidden" name="next" value={next ?? ""} />
       <div className="hidden" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       <FormMessage state={state} />
@@ -80,11 +80,11 @@ export function RegisterForm({ next }: { next?: string }) {
 }
 
 export function VerifyEmailForm({ next }: { next?: string }) {
-  const [state, action, pending] = useActionState(verifyEmailAction, undefined);
-  const [resendState, resend, resending] = useActionState(resendVerificationAction, undefined);
+  const [state, action, pending] = useFormAction(verifyEmailAction, undefined);
+  const [resendState, resend, resending] = useFormAction(resendVerificationAction, undefined);
   return (
     <div className="space-y-4">
-      <form action={action} className="space-y-4" noValidate>
+      <form onSubmit={action} className="space-y-4" noValidate>
         <input type="hidden" name="next" value={next ?? ""} />
         <FormMessage state={state} />
         <div>
@@ -105,7 +105,7 @@ export function VerifyEmailForm({ next }: { next?: string }) {
         </div>
         <button type="submit" disabled={pending} className="btn-primary w-full">{pending ? "Checking…" : "Verify email"}</button>
       </form>
-      <form action={resend} className="text-center">
+      <form onSubmit={resend} className="text-center">
         <FormMessage state={resendState} />
         <button type="submit" disabled={resending} className="mt-2 text-sm font-semibold text-brick-700 hover:underline disabled:opacity-60">
           {resending ? "Sending…" : "Didn't get it? Send a new code"}
@@ -116,10 +116,10 @@ export function VerifyEmailForm({ next }: { next?: string }) {
 }
 
 export function ForgotPasswordForm() {
-  const [state, action, pending] = useActionState(forgotPasswordAction, undefined);
+  const [state, action, pending] = useFormAction(forgotPasswordAction, undefined);
   if (state?.ok) return <FormMessage state={state} />;
   return (
-    <form action={action} className="space-y-4" noValidate>
+    <form onSubmit={action} className="space-y-4" noValidate>
       <FormMessage state={state} />
       <div>
         <label htmlFor="email" className="label">Email</label>
@@ -132,9 +132,9 @@ export function ForgotPasswordForm() {
 }
 
 export function ResetPasswordForm({ token }: { token: string }) {
-  const [state, action, pending] = useActionState(resetPasswordAction, undefined);
+  const [state, action, pending] = useFormAction(resetPasswordAction, undefined);
   return (
-    <form action={action} className="space-y-4" noValidate>
+    <form onSubmit={action} className="space-y-4" noValidate>
       <input type="hidden" name="token" value={token} />
       <FormMessage state={state} />
       <div>

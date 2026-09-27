@@ -408,3 +408,38 @@ model RentRequirement {
 
   @@index([status, createdAt])
 }
+
+enum LeadIntent {
+  BUY
+  SELL
+}
+
+enum LeadStatus {
+  NEW
+  FORWARDED
+  CONVERTED
+  CLOSED
+  SPAM
+}
+
+/// Buy/sell consultation requests, forwarded to a partner property consultant.
+/// RentNest itself lists rentals only — these are leads, not listings.
+model PropertyLead {
+  id           String     @id @default(cuid())
+  intent       LeadIntent
+  name         String
+  phone        String
+  email        String?
+  propertyType String?
+  area         String
+  size         String?
+  budgetMin    Int?
+  budgetMax    Int?
+  timeline     String?
+  notes        String?    @db.Text
+  status       LeadStatus @default(NEW)
+  forwardedAt  DateTime?
+  createdAt    DateTime   @default(now())
+
+  @@index([status, createdAt])
+}

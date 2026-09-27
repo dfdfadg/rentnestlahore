@@ -11,6 +11,7 @@ test.afterAll(async () => {
   await prisma.property.deleteMany({ where: { agent: { phone: intl } } });
   await prisma.agent.deleteMany({ where: { phone: intl } });
   await prisma.rentRequirement.deleteMany({ where: { phone: intl } });
+  await prisma.propertyLead.deleteMany({ where: { phone: intl } });
   await prisma.$disconnect();
 });
 
@@ -90,4 +91,32 @@ test("category and area pages show editorial content with FAQs", async ({ page }
   await expect(page.getByRole("heading", { name: "Why Johar Town is so popular with renters" })).toBeVisible();
   const ld = await page.locator('script[type="application/ld+json"]').allInnerTexts();
   expect(ld.some((t) => t.includes('"FAQPage"'))).toBe(true);
+});
+
+test("buy/sell consultation stores a seller lead (page is noindex)", async ({ page }) => {
+  await page.goto("/buy-sell-consultation/?intent=sell");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  await expect(page.getByLabel("Sell my property")).toBeChecked();
+  await page.locator("#l-area").fill("DHA Phase 6, Block C");
+  await page.locator("#l-size").fill("1 Kanal");
+  await page.locator("#l-min").fill("95000000");
+  await page.locator("#l-name").fill("Seller E2E");
+  await page.locator("#l-phone").fill(phone);
+  await page.getByRole("button", { name: "Request free consultation" }).click();
+  await expect(page.getByText("Please agree to share your details")).toBeVisible();
+  await page.locator('input[name="consent"]').check();
+  await page.getByRole("button", { name: "Request free consultation" }).click();
+  await expect(page.getByText("A property consultant will call or WhatsApp you shortly")).toBeVisible();
+  const lead = await prisma.propertyLead.findFirstOrThrow({ where: { phone: intl } });
+  expect(lead.intent).toBe("SELL");
+  expect(lead.budgetMin).toBe(95_000_000);
+  expect(lead.status).toBe("NEW");
+});
+
+test("admin sees buy/sell leads", async ({ page }) => {
+  test.skip(!ADMIN_PASSWORD, "Set E2E_ADMIN_PASSWORD to run admin tests");
+  await login(page, ADMIN_EMAIL, ADMIN_PASSWORD);
+  await page.goto("/admin/property-leads/");
+  await expect(page.getByText("DHA Phase 6, Block C").first()).toBeVisible();
+  await expect(page.getByRole("button", { name: /Copy lead/ }).first()).toBeVisible();
 });

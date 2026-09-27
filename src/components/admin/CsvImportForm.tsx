@@ -1,17 +1,17 @@
 "use client";
 
-import { useActionState } from "react";
+import { useFormAction } from "@/components/ui/useFormAction";
 import { runCsvImport } from "@/app/actions/admin";
 import type { ImportReport } from "@/lib/csv-import";
 
 type State = { ok?: boolean; message?: string; report?: ImportReport } | undefined;
 
 export function CsvImportForm() {
-  const [state, action, pending] = useActionState(runCsvImport as (s: State, f: FormData) => Promise<State>, undefined);
+  const [state, action, pending] = useFormAction(runCsvImport as (s: State, f: FormData) => Promise<State>, undefined);
   const report = state?.report;
   return (
     <div className="space-y-6">
-      <form action={action} className="card space-y-4 p-6">
+      <form onSubmit={action} className="card space-y-4 p-6">
         <div>
           <label htmlFor="csv" className="label">CSV file</label>
           <input id="csv" name="file" type="file" accept=".csv,text/csv" required className="input py-2" />

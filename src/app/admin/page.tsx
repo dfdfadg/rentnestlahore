@@ -7,9 +7,10 @@ import { formatDate, formatPKR } from "@/lib/format";
 
 export default async function AdminHome() {
   await requireAdmin();
-  const [newReq, quickPending] = await Promise.all([
+  const [newReq, quickPending, newLeads] = await Promise.all([
     prisma.rentRequirement.count({ where: { status: "NEW" } }),
     prisma.property.count({ where: { status: "PENDING_REVIEW", source: "quick_form" } }),
+    prisma.propertyLead.count({ where: { status: "NEW" } }),
   ]);
   const [byStatus, users, agents, newEnq, openReports, demo, pending] = await Promise.all([
     prisma.property.groupBy({ by: ["status"], _count: { _all: true } }),
@@ -35,6 +36,7 @@ export default async function AdminHome() {
     ["Rejected", c("REJECTED"), "/admin/properties/?status=REJECTED"],
     ["New enquiries", newEnq, "/admin/enquiries/"],
     ["New requirements", newReq, "/admin/requirements/"],
+    ["New buy/sell leads", newLeads, "/admin/property-leads/"],
     ["Quick-form submissions", quickPending, "/admin/properties/?status=PENDING_REVIEW"],
     ["Open reports", openReports, "/admin/reports/"],
     ["Users", users, "/admin/users/"],

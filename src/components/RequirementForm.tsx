@@ -1,14 +1,14 @@
 "use client";
 
-import { useActionState } from "react";
+import { useFormAction } from "@/components/ui/useFormAction";
 import { submitRequirement } from "@/app/actions/requirements";
 import { FieldError, FormMessage } from "./ui/FormBits";
 
 export function RequirementForm({ types, areas }: { types: string[]; areas: string[] }) {
-  const [state, action, pending] = useActionState(submitRequirement, undefined);
+  const [state, action, pending] = useFormAction(submitRequirement, undefined);
   if (state?.ok) return <FormMessage state={state} />;
   return (
-    <form action={action} className="card space-y-4 p-5 sm:p-7" noValidate>
+    <form onSubmit={action} className="card space-y-4 p-5 sm:p-7" noValidate>
       <div className="hidden" aria-hidden="true"><label>Company<input name="company" tabIndex={-1} autoComplete="off" /></label></div>
       <FormMessage state={state} />
       <div className="grid gap-4 sm:grid-cols-2">

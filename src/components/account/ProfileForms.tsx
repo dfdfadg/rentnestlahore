@@ -1,13 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
+import { useFormAction } from "@/components/ui/useFormAction";
 import { changePassword, updateProfile } from "@/app/actions/account";
 import { FieldError, FormMessage } from "../ui/FormBits";
 
 export function ProfileForm({ values, hasAgent }: { values: { name: string; email: string; phone: string; agency: string; about: string; whatsapp: string }; hasAgent: boolean }) {
-  const [state, action, pending] = useActionState(updateProfile, undefined);
+  const [state, action, pending] = useFormAction(updateProfile, undefined);
   return (
-    <form action={action} className="card space-y-4 p-6" noValidate>
+    <form onSubmit={action} className="card space-y-4 p-6" noValidate>
       <h2 className="text-lg font-bold">Your details</h2>
       <FormMessage state={state} />
       <div className="grid gap-4 sm:grid-cols-2">
@@ -51,9 +51,9 @@ export function ProfileForm({ values, hasAgent }: { values: { name: string; emai
 }
 
 export function PasswordForm() {
-  const [state, action, pending] = useActionState(changePassword, undefined);
+  const [state, action, pending] = useFormAction(changePassword, undefined);
   return (
-    <form action={action} className="card space-y-4 p-6" noValidate>
+    <form onSubmit={action} className="card space-y-4 p-6" noValidate>
       <h2 className="text-lg font-bold">Change password</h2>
       <FormMessage state={state} />
       <div>

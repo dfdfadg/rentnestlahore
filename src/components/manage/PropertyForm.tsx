@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useFormAction } from "@/components/ui/useFormAction";
+import { useState } from "react";
 import { saveProperty } from "@/app/actions/properties";
 import { FieldError, FormMessage } from "../ui/FormBits";
 import { track } from "@/lib/analytics";
@@ -54,7 +55,7 @@ type Props = {
 };
 
 export function PropertyForm({ mode, values: v, types, locations, amenities, agents = [] }: Props) {
-  const [state, action, pending] = useActionState(saveProperty, undefined);
+  const [state, action, pending] = useFormAction(saveProperty, undefined);
   const [typeId, setTypeId] = useState(v.propertyTypeId ?? "");
   const category = types.find((t) => t.id === typeId)?.category;
   const commercial = category === "COMMERCIAL";
@@ -62,9 +63,9 @@ export function PropertyForm({ mode, values: v, types, locations, amenities, age
 
   return (
     <form
-      action={action}
-      onSubmit={() => {
+      onSubmit={(e) => {
         if (!v.id && mode === "user") track("property_submit", { step: "details" });
+        action(e);
       }}
       className="space-y-8"
       noValidate

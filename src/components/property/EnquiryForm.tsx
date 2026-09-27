@@ -1,13 +1,14 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useFormAction } from "@/components/ui/useFormAction";
+import { useEffect } from "react";
 import { submitEnquiry } from "@/app/actions/public";
 import { FieldError, FormMessage } from "../ui/FormBits";
 import { useSession } from "../SessionProvider";
 import { track } from "@/lib/analytics";
 
 export function EnquiryForm({ propertyId, title }: { propertyId: string; title: string }) {
-  const [state, action, pending] = useActionState(submitEnquiry, undefined);
+  const [state, action, pending] = useFormAction(submitEnquiry, undefined);
   const { user } = useSession();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export function EnquiryForm({ propertyId, title }: { propertyId: string; title: 
   }
 
   return (
-    <form action={action} className="space-y-3" noValidate>
+    <form onSubmit={action} className="space-y-3" noValidate>
       <input type="hidden" name="propertyId" value={propertyId} />
       <div className="hidden" aria-hidden="true">
         <label>Company<input name="company" tabIndex={-1} autoComplete="off" /></label>

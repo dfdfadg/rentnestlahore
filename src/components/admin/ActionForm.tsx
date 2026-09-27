@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useFormAction } from "@/components/ui/useFormAction";
 import type { FormState } from "@/app/actions/auth";
 import { FormMessage } from "../ui/FormBits";
 
@@ -16,9 +16,9 @@ export function ActionForm({
   submitLabel?: string;
   className?: string;
 }) {
-  const [state, formAction, pending] = useActionState(action, undefined);
+  const [state, formAction, pending] = useFormAction(action, undefined);
   return (
-    <form action={formAction} className={className}>
+    <form onSubmit={formAction} className={className}>
       <FormMessage state={state} />
       {state?.errors && (
         <ul className="text-sm text-red-600">

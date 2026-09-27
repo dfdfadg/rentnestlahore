@@ -1,13 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
+import { useFormAction } from "@/components/ui/useFormAction";
 import { Flag } from "lucide-react";
 import { submitReport } from "@/app/actions/public";
 import { REPORT_REASONS } from "@/lib/validation";
 import { FieldError, FormMessage } from "../ui/FormBits";
 
 export function ReportForm({ propertyId }: { propertyId: string }) {
-  const [state, action, pending] = useActionState(submitReport, undefined);
+  const [state, action, pending] = useFormAction(submitReport, undefined);
   return (
     <details className="group rounded-xl border border-ink-100 bg-white">
       <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 px-4 text-sm font-medium text-ink-600 hover:text-ink-900">
@@ -17,7 +17,7 @@ export function ReportForm({ propertyId }: { propertyId: string }) {
         {state?.ok ? (
           <FormMessage state={state} />
         ) : (
-          <form action={action} className="space-y-3">
+          <form onSubmit={action} className="space-y-3">
             <input type="hidden" name="propertyId" value={propertyId} />
             <FormMessage state={state} />
             <div>

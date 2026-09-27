@@ -12,6 +12,7 @@ const NAV = [
   ["/admin/import/", "CSV import"],
   ["/admin/enquiries/", "Enquiries"],
   ["/admin/requirements/", "Requirements"],
+  ["/admin/property-leads/", "Buy/sell leads"],
   ["/admin/reports/", "Reports"],
   ["/admin/agents/", "Agents"],
   ["/admin/users/", "Users"],

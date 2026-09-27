@@ -41,6 +41,7 @@ const COLUMNS = [
       { href: "/agents/", label: "Agents & landlords" },
       { href: "/add-property/", label: "List your property" },
       { href: "/rent-requirement/", label: "Post a rent requirement" },
+      { href: "/buy-sell-consultation/", label: "Buy or sell? Free consultation" },
       { href: "/contact/", label: "Contact" },
       { href: "/privacy/", label: "Privacy policy" },
       { href: "/terms/", label: "Terms of use" },

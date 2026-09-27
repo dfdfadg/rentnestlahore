@@ -221,6 +221,10 @@ export default async function HomePage() {
             </div>
             <Link href="/rent-requirement/" className="btn-dark">Post your requirement</Link>
           </div>
+          <p className="mt-4 text-sm text-ink-600">
+            Planning to buy or sell instead?{" "}
+            <Link href="/buy-sell-consultation/" className="font-semibold text-brick-700 hover:underline">Get a free consultation from our partner</Link>.
+          </p>
         </div>
       </section>
 

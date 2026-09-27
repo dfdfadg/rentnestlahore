@@ -48,6 +48,11 @@ export default async function AddPropertyPage() {
             <Link href="/my-properties/new/" className="btn-outline mt-4 w-full">Post with an account</Link>
             <p className="mt-3 text-xs text-ink-500">Have many listings? Send us a spreadsheet — we can bulk-import them for you.</p>
           </div>
+          <div className="card p-5">
+            <h2 className="font-bold">Want to sell instead?</h2>
+            <p className="mt-1 text-sm text-ink-600">RentNest lists rentals only, but our partner consultant can help you sell your property.</p>
+            <Link href="/buy-sell-consultation/?intent=sell" className="btn-outline mt-4 w-full">Free selling consultation</Link>
+          </div>
           <ul className="card space-y-3 p-5 text-sm text-ink-700">
             <li className="flex gap-2"><ImagePlus className="h-5 w-5 shrink-0 text-brick-600" /> Up to 8 photos — listings with photos get far more calls.</li>
             <li className="flex gap-2"><ShieldCheck className="h-5 w-5 shrink-0 text-brick-600" /> Every listing is reviewed before going live.</li>

@@ -49,6 +49,11 @@ export const PROPERTY_TYPES: SeedPropertyType[] = [
       "Single rooms for rent suit students and working professionals looking for a low monthly budget. Check whether utilities, internet and kitchen access are included in the rent.",
   },
   {
+    name: "Hostel", slug: "hostel", pluralName: "Hostels", pluralSlug: "hostels", category: "RESIDENTIAL",
+    description:
+      "Hostels and paying-guest (PG) accommodation for students and working professionals — shared or single rooms with meals, laundry and security often included in one monthly charge.",
+  },
+  {
     name: "Farm House", slug: "farm-house", pluralName: "Farm Houses", pluralSlug: "farm-houses", category: "RESIDENTIAL",
     description:
       "Farm houses around Lahore offer open space, lawns and privacy on the city's outskirts, such as Bedian Road and Raiwind Road. They are rented for long stays as well as for events.",

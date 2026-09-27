@@ -3,6 +3,8 @@
  * Inline syntax supported in text: [link text](/path/) and **bold**.
  * General information only — not legal advice.
  */
+import { RENT_AGREEMENT_EN, RENT_AGREEMENT_UR } from "./rent-agreement-template";
+
 export type GuideBlock =
   | { h2: string }
   | { h3: string }
@@ -10,11 +12,15 @@ export type GuideBlock =
   | { ul: string[] }
   | { ol: string[] }
   | { stats: "lahore-types" | "house-areas" }
-  | { note: string };
+  | { note: string }
+  /** A copyable / downloadable document, e.g. a rent agreement template. */
+  | { template: { id: string; title: string; lang?: "ur"; text: string } };
 
 export type Guide = {
   slug: string;
   title: string;
+  /** <title> override when the H1 is too long or misses the search phrasing. */
+  seoTitle?: string;
   description: string;
   category: "Renting basics" | "Area guides" | "Costs" | "Legal & documents";
   updated: string; // ISO date
@@ -22,6 +28,8 @@ export type Guide = {
   /** Related listing links shown at the end of the guide. */
   related: { href: string; label: string }[];
   body: GuideBlock[];
+  /** Rendered after the body with FAQPage structured data. */
+  faqs?: { q: string; a: string }[];
 };
 
 const LEGAL_NOTE =
@@ -256,7 +264,8 @@ export const GUIDES: Guide[] = [
         "**Handover** — condition of the property at move-in and move-out (attach photos or an inventory).",
       ] },
       { h2: "Registration with the police" },
-      { p: "Under the **Punjab Information of Temporary Residents Act, 2015**, landlords are required to provide information about their tenants to the local police. This is usually done at the local police station or a police facilitation centre using the tenant's CNIC copies and photographs. Tenants should co-operate and keep a copy of the registration." },
+      { p: "Under the **Punjab Information of Temporary Residents Act, 2015**, landlords are required to provide information about their tenants to the local police. This is usually done at the local police station or a police facilitation centre using the tenant's CNIC copies and photographs. Tenants should co-operate and keep a copy of the registration. See our step-by-step guide to [tenant registration in Lahore](/guides/tenant-registration-in-lahore/)." },
+      { p: "Need a ready-made format? Use our free [rent agreement template in English and Urdu](/guides/rent-agreement-format-pakistan/)." },
       { h2: "Before you sign" },
       { ul: ["Read every clause — don't sign a blank or partly filled agreement.", "Make sure the person signing as landlord is the owner or holds written authority.", "Keep signed copies, payment receipts and move-in photos safely."] },
       { note: LEGAL_NOTE },
@@ -280,7 +289,7 @@ export const GUIDES: Guide[] = [
       { h2: "Documents to ask the landlord for" },
       { ul: ["Copy of the owner's CNIC", "Proof of ownership (for example, the title or allotment document) or written authority if an agent or relative is renting on the owner's behalf", "Recent paid utility bills", "Any society permission or NOC required for tenants"] },
       { h2: "After signing" },
-      { ul: ["Signed tenancy agreement on stamp paper", "Receipts for the deposit, advance and rent", "Police tenant registration confirmation"] },
+      { ul: ["Signed tenancy agreement on stamp paper — see our [free rent agreement format](/guides/rent-agreement-format-pakistan/)", "Receipts for the deposit, advance and rent", "Police [tenant registration](/guides/tenant-registration-in-lahore/) confirmation"] },
       { note: LEGAL_NOTE },
     ],
   },
@@ -305,6 +314,351 @@ export const GUIDES: Guide[] = [
       { ul: ["Who handles repairs, and how quickly?", "Are pets, guests or home businesses allowed?", "Can I make small changes such as painting or fitting an AC?", "What notice is needed to leave?"] },
       { h2: "Availability" },
       { ul: ["When can I move in?", "Is anyone else considering the property?", "Can I see the ownership documents before paying?"] },
+    ],
+  },
+  {
+    slug: "tenant-registration-in-lahore",
+    title: "Tenant Registration in Lahore: How to Register a Tenant with Punjab Police",
+    seoTitle: "Tenant Registration in Lahore – Punjab Police Process & Documents",
+    description: "Who must register a tenant in Lahore, the documents needed, where to apply and what happens if you don't — explained simply for landlords and tenants.",
+    category: "Legal & documents",
+    updated: "2026-09-27",
+    readMinutes: 6,
+    related: [
+      { href: "/guides/rent-agreement-format-pakistan/", label: "Rent agreement format (English & Urdu)" },
+      { href: "/guides/documents-needed-to-rent-a-house/", label: "Documents needed to rent a house" },
+      { href: "/rent/houses/", label: "Houses for rent in Lahore" },
+    ],
+    body: [
+      { p: "If you rent out a house, portion, flat, room or hostel in Lahore, the law expects the police to know who is living there. Tenant registration is quick, free at the police counter, and protects both sides: the landlord meets a legal duty, and the tenant has an official record of where they live. Here is how it works." },
+      { h2: "What the law requires" },
+      { p: "Under the **Punjab Information of Temporary Residents Act, 2015**, a landlord who rents out a property — or anyone who gives accommodation to a temporary resident, such as a hostel or guest house — must give the tenant's details to the local police. The duty is on the **landlord**, but the tenant has to co-operate by providing documents. The same applies when a property is rented through an agent: the agent should make sure registration is done." },
+      { p: "Not registering a tenant is an offence under the Act and can lead to a fine and even imprisonment. Police carry out checks from time to time, especially in areas with many rented houses and hostels, so don't leave it until someone knocks on the door." },
+      { h2: "Documents you'll need" },
+      { ul: [
+        "Copy of the **landlord's CNIC**",
+        "Copy of the **tenant's CNIC** (and CNIC copies of other adult family members living in the property)",
+        "Recent **passport-size photographs** of the tenant",
+        "Copy of the **rent agreement** — see our [rent agreement format](/guides/rent-agreement-format-pakistan/)",
+        "The tenant's **permanent address** and mobile number, and details of their workplace or institution",
+        "For foreign nationals: passport and valid visa copies",
+      ] },
+      { h2: "Where to register" },
+      { ol: [
+        "**Local police station** — the police station whose area covers the rented property. Ask for the tenant registration (kirayedar indraj) form.",
+        "**Police Khidmat Markaz** — Punjab Police facilitation centres handle tenant registration along with other services such as character certificates.",
+        "**Online / helpline** — Punjab Police has offered tenant registration through its official website and apps. Services change, so check the official Punjab Police website or call **15** for the current process in Lahore.",
+      ] },
+      { h2: "Step by step" },
+      { ol: [
+        "Sign the rent agreement and collect the tenant's documents.",
+        "Fill in the tenant registration form with details of the landlord, the tenant and the property.",
+        "Submit the form with document copies at the police station or Khidmat Markaz (or online where available).",
+        "Get a **receipt or registration slip** — both landlord and tenant should keep a copy.",
+        "When the tenant leaves or a new tenant moves in, update the police record.",
+      ] },
+      { h2: "Tips for tenants" },
+      { ul: [
+        "Ask your landlord for a copy of the registration slip. If the landlord is unwilling to register, treat it as a warning sign.",
+        "Keep your CNIC copies, rent agreement and registration slip together — you may need them for utility, bank or school paperwork.",
+        "Students in hostels: the hostel owner is responsible for registering residents. Confirm this before paying — see our [hostel guide](/guides/girls-and-boys-hostels-in-lahore/).",
+      ] },
+      { note: LEGAL_NOTE },
+    ],
+    faqs: [
+      { q: "Is tenant registration compulsory in Lahore?", a: "Yes. Under the Punjab Information of Temporary Residents Act, 2015, landlords must give their tenants' details to the local police. Failing to do so is an offence." },
+      { q: "Who is responsible for tenant registration — landlord or tenant?", a: "The legal duty is on the landlord (or the hostel owner), but the tenant must provide CNIC copies, photos and other details so the registration can be completed." },
+      { q: "Is there a fee for tenant registration?", a: "Registration at the police station is normally free. If you use a Khidmat Markaz or another service, ask about any service charges at the counter." },
+      { q: "Can I register a tenant online in Punjab?", a: "Punjab Police has offered online options through its official website and apps. Because the process changes, check the official Punjab Police channels or call 15 for the current method." },
+    ],
+  },
+  {
+    slug: "rent-agreement-format-pakistan",
+    title: "Rent Agreement Format in Pakistan (English & Urdu) – Free Template",
+    seoTitle: "Rent Agreement Format in Urdu & English (Pakistan) – Free Template",
+    description: "A free, simple rent agreement format for Lahore and Punjab in English and Urdu (kiraya nama). Copy or download it, fill in the blanks and print it on stamp paper.",
+    category: "Legal & documents",
+    updated: "2026-09-27",
+    readMinutes: 8,
+    related: [
+      { href: "/guides/rental-agreement-checklist-in-pakistan/", label: "Rental agreement checklist" },
+      { href: "/guides/tenant-registration-in-lahore/", label: "Tenant registration in Lahore" },
+      { href: "/rent/", label: "Browse rentals in Lahore" },
+    ],
+    body: [
+      { p: "A written rent agreement (kiraya nama) is the single best protection for both landlord and tenant. Below you'll find a **free rent agreement format in English and in Urdu** written for residential rentals in Lahore — houses, portions, flats and rooms. Copy it, download it, fill in the blanks and get it printed on stamp paper." },
+      { h2: "How to use this template" },
+      { ol: [
+        "Agree the key terms first: monthly rent, security deposit, advance, start date, notice period and who pays which bills.",
+        "Fill in every blank. Strike out options that don't apply (for example \"Tenant / Landlord\").",
+        "Print the agreement on **stamp paper** bought from a licensed stamp vendor. The stamp value depends on the rent and the term, so ask the vendor what is required for your agreement.",
+        "Both parties sign every page in front of **two witnesses**, who also sign with their CNIC numbers.",
+        "Attach CNIC copies, an inventory of furniture and fittings, and move-in photos.",
+        "Keep one original each. Then complete [tenant registration with the police](/guides/tenant-registration-in-lahore/).",
+      ] },
+      { h2: "Rent agreement format in English" },
+      { template: { id: "rent-agreement-english", title: "Rent agreement (English)", text: RENT_AGREEMENT_EN } },
+      { h2: "Rent agreement format in Urdu (کرایہ نامہ)" },
+      { p: "Many landlords and tenants in Lahore prefer an agreement in Urdu. The Urdu version below has the same clauses as the English one." },
+      { template: { id: "rent-agreement-urdu", title: "کرایہ نامہ (Urdu)", lang: "ur", text: RENT_AGREEMENT_UR } },
+      { h2: "Clauses people often forget" },
+      { ul: [
+        "**Rent increase** — write the percentage. If the agreement is silent, the Punjab Rented Premises Act, 2009 provides its own default increase, which may not be what either side expects. See [tenant rights in Punjab](/guides/tenant-rights-in-punjab/).",
+        "**Deposit refund timeline** — how many days after vacating, and what can be deducted.",
+        "**Meter readings** at handover, so the final electricity and gas bills can be split fairly. Our [LESCO & SNGPL guide](/guides/lesco-and-sngpl-bills-for-tenants/) explains how to check bills.",
+        "**Subletting** and the number of people allowed to live in the property.",
+        "**Notice period** — one month is common for houses and portions in Lahore.",
+      ] },
+      { h2: "Registering the agreement" },
+      { p: "The **Punjab Rented Premises Act, 2009** requires tenancy agreements in its area to be in writing and a copy to be given to the **Rent Registrar**. Keep proof that this was done. Separately, the landlord must register the tenant with the police." },
+      { note: LEGAL_NOTE + " This template is a general format; for commercial premises or unusual terms, have it reviewed by a lawyer." },
+    ],
+    faqs: [
+      { q: "Is a rent agreement on plain paper valid in Pakistan?", a: "A written agreement on plain paper is better than nothing, but agreements are normally executed on stamp paper of the required value and signed before witnesses. This makes them much stronger evidence if a dispute reaches the Rent Tribunal or a court." },
+      { q: "What stamp paper value is needed for a rent agreement in Punjab?", a: "Stamp duty depends on the monthly rent, advance and the length of the tenancy, and rates are revised from time to time. Ask a licensed stamp vendor or lawyer for the value needed for your agreement." },
+      { q: "Can I write a rent agreement in Urdu?", a: "Yes. An agreement in Urdu is common in Lahore and is as valid as one in English, as long as it clearly states the parties, property, rent, term and other terms and is properly signed and witnessed." },
+      { q: "How long should a rent agreement be for?", a: "Eleven months or one year is most common for houses and portions in Lahore, with renewal by mutual consent. Commercial tenancies are often longer." },
+    ],
+  },
+  {
+    slug: "tenant-rights-in-punjab",
+    title: "Tenant Rights in Punjab: The Punjab Rented Premises Act 2009 Explained",
+    seoTitle: "Tenant Rights in Punjab – Punjab Rented Premises Act 2009 Explained",
+    description: "Tenant and landlord rights in Lahore under the Punjab Rented Premises Act 2009 — written agreements, rent increases, eviction grounds, deposits and the Rent Tribunal, in plain language.",
+    category: "Legal & documents",
+    updated: "2026-09-27",
+    readMinutes: 8,
+    related: [
+      { href: "/guides/rent-agreement-format-pakistan/", label: "Rent agreement format (English & Urdu)" },
+      { href: "/guides/tenant-registration-in-lahore/", label: "Tenant registration in Lahore" },
+      { href: "/rent/", label: "Browse rentals in Lahore" },
+    ],
+    body: [
+      { p: "Most landlord–tenant problems in Lahore come down to three things: nothing was written down, the rent increase wasn't agreed, or the deposit isn't returned. The **Punjab Rented Premises Act, 2009** is the main law for rented houses, flats and shops in urban Punjab, including Lahore. This guide explains the parts that matter most in everyday renting." },
+      { note: "Properties inside cantonment limits may be governed by a different rent law. If your property is in a cantonment area, check with a lawyer which law applies." },
+      { h2: "1. The agreement must be in writing" },
+      { p: "The Act requires a tenancy to be based on a **written agreement**, and a copy is to be given to the **Rent Registrar** of the area. A written agreement is your main evidence if anything goes wrong — without one, it becomes your word against the other side's. Use our free [rent agreement format](/guides/rent-agreement-format-pakistan/) as a starting point." },
+      { h2: "2. Rent increases" },
+      { p: "Landlord and tenant are free to agree the rent and how it will increase, and should write this into the agreement. Where the agreement says nothing about increases, the Act sets a default **annual increase of 10%**. A landlord cannot simply demand a much higher rent in the middle of an agreed term." },
+      { h2: "3. Paying rent" },
+      { ul: [
+        "Pay on time as agreed — **default in paying rent** is one of the most common grounds for eviction.",
+        "Pay by bank transfer where possible, or take a signed receipt for cash. Proof of payment is essential.",
+        "If a landlord refuses to accept rent (sometimes done to build a default case), keep evidence of your attempt to pay and get legal advice promptly.",
+      ] },
+      { h2: "4. When can a tenant be evicted?" },
+      { p: "A landlord cannot throw a tenant out, change the locks or cut off utilities to force them out. Eviction has to go through the **Rent Tribunal**. The grounds recognised by the Act include, for example:" },
+      { ul: [
+        "The agreed tenancy period has ended",
+        "The tenant has not paid rent as agreed",
+        "The tenant has sublet the premises without the landlord's written consent",
+        "The premises are used for a purpose other than the one agreed, or for illegal activity",
+        "The tenant has caused serious damage to the property or is a persistent nuisance to neighbours",
+        "The landlord genuinely needs the premises for personal use, subject to the conditions in the law",
+      ] },
+      { h2: "5. Security deposit" },
+      { p: "The deposit belongs to the tenant and is held as security. The agreement should state the amount, what can be deducted (unpaid rent, unpaid bills, damage beyond normal wear and tear) and **how many days after vacating** it will be returned. Before handing back the keys:" },
+      { ul: [
+        "Do a joint walk-through with the landlord and take dated photos or a video.",
+        "Record final meter readings and settle the last bills.",
+        "Get the deposit return (or the list of deductions) confirmed in writing.",
+      ] },
+      { h2: "6. Repairs and access" },
+      { p: "The agreement should split responsibility: the tenant usually handles day-to-day upkeep, while the landlord handles structural and major repairs such as roof leakage, seepage and main supply lines. The landlord may inspect the property, but at reasonable times and with prior notice." },
+      { h2: "7. The Rent Tribunal" },
+      { p: "Disputes under the Act — eviction, rent, deposits — are heard by the **Rent Tribunal**. The Act is designed for quicker decisions than an ordinary civil suit. If a dispute is heading there, speak to a lawyer early and bring your agreement, receipts, bank records, photos and WhatsApp messages." },
+      { h2: "Tenant checklist" },
+      { ul: [
+        "Written agreement signed by the owner (or an authorised person) and two witnesses",
+        "Rent increase percentage and notice period written in the agreement",
+        "Proof of every payment",
+        "Move-in photos and an inventory",
+        "Police [tenant registration](/guides/tenant-registration-in-lahore/) slip",
+      ] },
+      { note: LEGAL_NOTE },
+    ],
+    faqs: [
+      { q: "Can a landlord increase rent at any time in Punjab?", a: "No. Rent and increases are set by the tenancy agreement. If the agreement doesn't mention an increase, the Punjab Rented Premises Act 2009 provides a default increase of 10% per year." },
+      { q: "Can a landlord evict a tenant without going to court in Lahore?", a: "A landlord should not force a tenant out by changing locks or cutting utilities. Eviction on the grounds recognised by the law is sought through the Rent Tribunal." },
+      { q: "How long does a landlord have to return the security deposit?", a: "The timeline should be written in the rent agreement. If it isn't, ask for it in writing before you move out, and keep proof of the property's condition and final bills." },
+      { q: "Does the Punjab Rented Premises Act apply to DHA and Cantt?", a: "The Act applies to urban areas of Punjab, but properties inside cantonment limits may fall under different rent legislation. Check with a lawyer for a property in a cantonment area." },
+    ],
+  },
+  {
+    slug: "girls-and-boys-hostels-in-lahore",
+    title: "Girls & Boys Hostels in Lahore: How to Choose a Safe Hostel or PG",
+    seoTitle: "Girls & Boys Hostels in Lahore – How to Choose a Safe Hostel or PG",
+    description: "Moving to Lahore for university or a job? How to choose a safe girls or boys hostel or paying guest (PG) room — areas near universities, what's included, costs to ask about and red flags.",
+    category: "Renting basics",
+    updated: "2026-09-27",
+    readMinutes: 7,
+    related: [
+      { href: "/rent/hostels/", label: "Hostels & PG in Lahore" },
+      { href: "/rent/rooms/", label: "Rooms for rent in Lahore" },
+      { href: "/rent-requirement/", label: "Post your requirement" },
+    ],
+    body: [
+      { p: "For many students and young professionals, a hostel or paying guest (PG) room is their first home in Lahore. A good one gives you a safe place, decent food and a quiet space to study or rest. A bad one can mean poor security, surprise charges and a deposit you never see again. Here's how to choose well." },
+      { h2: "Hostel, PG or a shared room?" },
+      { ul: [
+        "**Hostel** — a building with many residents, a warden, fixed rules and usually meals. Easiest for first-year students and parents who want structure.",
+        "**Paying guest (PG)** — a few rooms in a family home or small house, often with home-cooked food. Quieter and more personal.",
+        "**Shared [room](/rent/rooms/) or flat** — more freedom and often cheaper per person, but you manage bills, cooking and cleaning yourself.",
+      ] },
+      { h2: "Choose the area around your daily commute" },
+      { p: "Lahore traffic makes distance expensive in time and fares. Pick a hostel close to your university or office, or on a direct route along the Canal Road or the Metro bus line." },
+      { ul: [
+        "**Punjab University (New Campus)** — [Muslim Town](/rent/muslim-town/), [Garden Town](/rent/garden-town/), [Allama Iqbal Town](/rent/allama-iqbal-town/) and [Johar Town](/rent/johar-town/).",
+        "**Private universities in Johar Town and nearby** — [Johar Town](/rent/johar-town/), [Wapda Town](/rent/wapda-town/) and [Township](/rent/township/).",
+        "**LUMS and DHA-based offices** — [DHA Lahore](/rent/dha-lahore/) and [Cantt](/rent/cantt/).",
+        "**Gulberg offices, banks and colleges** — [Gulberg](/rent/gulberg/) and [Model Town](/rent/model-town/).",
+      ] },
+      { h2: "What to ask about money" },
+      { ul: [
+        "Monthly charge per bed — for a single room and for 2, 3 or 4-person sharing",
+        "Security deposit amount and **refund rules in writing**",
+        "Is the first month payable in advance?",
+        "What is included: meals, electricity, AC/heater use, UPS backup, Wi-Fi, laundry",
+        "Extra charges for AC in summer, guests or late meals",
+        "Charges if you leave mid-semester, and the notice period",
+      ] },
+      { h2: "Safety checklist (especially for girls' hostels)" },
+      { ul: [
+        "Visit in person — with a family member if possible — and see the actual room, not just photos.",
+        "Security guard, CCTV at entrances and a controlled gate",
+        "A resident **female warden** in girls' hostels",
+        "Clear entry and exit timings and a visitor policy",
+        "Fire safety: more than one exit, working extinguishers, safe wiring",
+        "The hostel should register residents with the police — ask about [tenant registration](/guides/tenant-registration-in-lahore/)",
+        "Talk to one or two current residents when the owner isn't around",
+      ] },
+      { h2: "Red flags" },
+      { ul: [
+        "Asking for money before you've seen the hostel",
+        "No receipts, or refusing to put the deposit terms in writing",
+        "Many more beds in a room than advertised",
+        "No warden, guard or working locks",
+        "Pressure to decide immediately \"because the last bed is going\"",
+      ] },
+      { h2: "Can't find the right place?" },
+      { p: "Tell us what you need — area, budget, girls/boys and move-in date — using the [rent requirement form](/rent-requirement/), and we'll share suitable options when they're listed. Hostel owners can [list their hostel for free](/add-property/)." },
+    ],
+    faqs: [
+      { q: "Which area is best for a hostel in Lahore?", a: "The best area is the one closest to your university or office. Johar Town, Muslim Town, Garden Town and Allama Iqbal Town are popular with students; Gulberg and Model Town with working professionals." },
+      { q: "What should a hostel's monthly charge include?", a: "Usually the bed and furniture, electricity and water, Wi-Fi and often meals and laundry. AC use, UPS backup and weekend meals are sometimes extra — confirm before booking." },
+      { q: "Is a written agreement needed for a hostel?", a: "Ask for at least a written receipt that states the monthly charge, the deposit and the refund rules. A short written agreement is better." },
+    ],
+  },
+  {
+    slug: "lesco-and-sngpl-bills-for-tenants",
+    title: "LESCO & SNGPL Bills for Tenants: How to Check Bills and Avoid Unpaid Dues",
+    seoTitle: "LESCO Bill Check & SNGPL Bill for Tenants – Lahore Renters' Guide",
+    description: "How tenants in Lahore can check LESCO electricity and SNGPL gas bills online, spot unpaid arrears before moving in, record meter readings and settle the final bill when moving out.",
+    category: "Costs",
+    updated: "2026-09-27",
+    readMinutes: 6,
+    related: [
+      { href: "/guides/moving-house-in-lahore-checklist/", label: "Moving house checklist" },
+      { href: "/guides/what-to-check-before-renting-a-house/", label: "What to check before renting" },
+      { href: "/rent/houses/", label: "Houses for rent in Lahore" },
+    ],
+    body: [
+      { p: "In most Lahore rentals the tenant pays the electricity and gas bills, but the connections stay in the owner's name. That makes bills a common source of disputes: old arrears, shared meters, and who pays the last bill. A few minutes of checking before you move in avoids all of that." },
+      { h2: "How to check a LESCO bill online" },
+      { ol: [
+        "Find the **reference number** on a recent LESCO bill — it is printed near the top of the bill (14 digits).",
+        "Open the bill-check page on **LESCO's official website (lesco.gov.pk)**.",
+        "Enter the reference number to see the current bill, due date, units consumed and any **arrears**.",
+        "Download or print the duplicate bill if you need to pay it at a bank, through mobile banking or a wallet app.",
+      ] },
+      { note: "Only enter your reference number on official LESCO/PITC pages or your bank's app. Be careful with unofficial websites and anyone asking for payment to a personal account to \"clear\" a bill." },
+      { h2: "How to check an SNGPL gas bill" },
+      { p: "SNGPL bills have a **consumer number** (11 digits) printed on the bill. Enter it on the bill-check page of **SNGPL's official website (sngpl.com.pk)** to see the current bill and any outstanding amount." },
+      { h2: "Before you move in" },
+      { ul: [
+        "Ask the landlord for the **last 2–3 months' paid bills** for electricity and gas, and check them online with the reference/consumer numbers.",
+        "Make sure there are **no arrears**. Old dues should be cleared by the landlord before you take possession — write this into the [rent agreement](/guides/rent-agreement-format-pakistan/).",
+        "For a [portion](/rent/portions/), confirm your portion has its **own separate meters**. Shared meters lead to arguments every month.",
+        "Take a clear, dated **photo of each meter reading** on the day you get the keys, and send it to the landlord on WhatsApp.",
+        "Ask whether the connection is **residential** — a commercial tariff costs more.",
+      ] },
+      { h2: "While you live there" },
+      { ul: [
+        "Pay before the due date — late-payment surcharges add up quickly.",
+        "Keep payment receipts or screenshots; your landlord may ask for them.",
+        "Summer bills in Lahore can be several times higher than winter bills because of AC use. Budget for it when you compare rents.",
+      ] },
+      { h2: "When you move out" },
+      { ol: [
+        "Take a final meter reading photo on the day you hand over the keys.",
+        "Agree with the landlord how the last partial bill will be split — paid by you when it arrives, or adjusted from the security deposit.",
+        "Get the settlement confirmed in writing so the deposit can be returned without delay.",
+      ] },
+    ],
+    faqs: [
+      { q: "Who pays electricity and gas bills in a rented house in Lahore?", a: "Usually the tenant, while the connection stays in the owner's name. The rent agreement should say this clearly, along with who pays society maintenance and water charges." },
+      { q: "Do I need to transfer the LESCO connection to my name as a tenant?", a: "Normally no. Tenants pay the bills on the owner's connection. What matters is that there are no arrears when you move in and that final bills are settled when you leave." },
+      { q: "What if the previous tenant left unpaid bills?", a: "Ask the landlord to clear all arrears before you take possession and write it into the agreement. Check the bill online with the reference number before paying any advance." },
+    ],
+  },
+  {
+    slug: "moving-house-in-lahore-checklist",
+    title: "Moving House in Lahore: Packers & Movers Checklist",
+    seoTitle: "Packers and Movers in Lahore – Moving House Checklist for Tenants",
+    description: "How to hire packers and movers in Lahore, what a fair quote should include, and a complete checklist for moving into a rented house — from utilities to police registration.",
+    category: "Renting basics",
+    updated: "2026-09-27",
+    readMinutes: 7,
+    related: [
+      { href: "/guides/lesco-and-sngpl-bills-for-tenants/", label: "LESCO & SNGPL bills for tenants" },
+      { href: "/guides/tenant-registration-in-lahore/", label: "Tenant registration in Lahore" },
+      { href: "/rent/houses/", label: "Houses for rent in Lahore" },
+    ],
+    body: [
+      { p: "Found your new rental? The move itself is where most of the stress — and hidden cost — comes from. This checklist covers choosing packers and movers in Lahore and everything to sort out in the first week." },
+      { h2: "Hiring packers and movers" },
+      { ol: [
+        "**Get at least three quotes.** Share a list or a quick video of your furniture and appliances, both addresses and the floors involved.",
+        "**Ask for an itemised quote** covering the vehicle (and how many trips), labour, packing material, stairs, and dismantling/re-fitting beds and wardrobes.",
+        "**AC shifting is usually separate.** Uninstalling, gas top-up and reinstalling split ACs is often done by an AC technician — confirm who does it and the charge per unit.",
+        "**Confirm the vehicle size** so everything fits in one trip where possible.",
+        "**Ask about damage.** Most local movers don't offer insurance; agree in writing what happens if something breaks.",
+        "**Pay a small advance only**, and the balance after delivery.",
+      ] },
+      { h2: "Timing tips for Lahore" },
+      { ul: [
+        "The start and end of the month are the busiest times for movers — book a few days ahead.",
+        "Move early in the morning to avoid heat and traffic, especially in summer.",
+        "Some housing societies require a **gate pass or prior permission** for goods vehicles. Check with the society office for both the old and new address.",
+        "Keep valuables, documents and jewellery with you, not in the truck.",
+      ] },
+      { h2: "Packing checklist" },
+      { ul: [
+        "Label every box with its room and contents",
+        "Pack a first-night bag: clothes, medicines, chargers, toiletries, bedsheets",
+        "Wrap glassware and crockery individually",
+        "Photograph TV and computer cable connections before unplugging",
+        "Defrost and dry the fridge a day before",
+      ] },
+      { h2: "Moving-in day at the rental" },
+      { ul: [
+        "Walk through the house with the landlord and note any existing damage — take dated photos.",
+        "Photograph electricity, gas and water meter readings. See our [LESCO & SNGPL guide](/guides/lesco-and-sngpl-bills-for-tenants/).",
+        "Check that all keys work and consider changing the main door lock.",
+        "Test taps, geysers, switches and the water motor.",
+      ] },
+      { h2: "First week" },
+      { ul: [
+        "Make sure your landlord completes [police tenant registration](/guides/tenant-registration-in-lahore/).",
+        "Arrange internet — ask neighbours which providers work well in that street.",
+        "Update your address with your bank, employer and children's school.",
+        "Save your landlord's, the society office's and a local plumber's and electrician's numbers.",
+      ] },
+    ],
+    faqs: [
+      { q: "How do I choose good packers and movers in Lahore?", a: "Get at least three itemised quotes, confirm vehicle size, labour and packing material, agree what happens if anything is damaged, and pay only a small advance with the balance after delivery." },
+      { q: "Is AC shifting included in the movers' charges?", a: "Often not. Uninstalling and reinstalling split ACs is usually charged per unit and may be done by a separate AC technician. Confirm before the moving day." },
+      { q: "Do I need permission to move into a housing society?", a: "Some societies require a gate pass or prior permission for goods vehicles and a tenant form. Check with the society office before moving day." },
     ],
   },
 ];

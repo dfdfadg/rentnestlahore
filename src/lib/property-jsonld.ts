@@ -10,6 +10,7 @@ const RESIDENCE_TYPE: Record<string, string> = {
   apartment: "Apartment",
   penthouse: "Apartment",
   room: "Room",
+  hostel: "Accommodation",
 };
 
 /** schema.org RealEstateListing for a rental (lease) offer. */

@@ -246,11 +246,73 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
           "Security deposit and notice period — get these in writing even for a room.",
         ],
       },
+      {
+        h: "Looking for a hostel or PG instead?",
+        p: [
+          "If you want meals, laundry and security included in one monthly charge, see [hostels and paying guest rooms in Lahore](/rent/hostels/) and our guide to [choosing a safe hostel](/guides/girls-and-boys-hostels-in-lahore/).",
+        ],
+      },
     ],
     faqs: [
       { q: "Are utilities included in room rent?", a: "Sometimes. Many room rents include electricity and gas up to a limit, while others split bills among tenants. Always ask what is included before you pay the deposit." },
       { q: "Can girls find safe rooms for rent in Lahore?", a: "Yes. Some landlords rent rooms only to female students or professionals, often in family homes. Ask the landlord about the household, security and house rules, and visit before paying anything." },
       { q: "Do I need a written agreement for a room?", a: "It's strongly recommended. A short written agreement covering rent, deposit, what's included and notice period avoids misunderstandings later." },
+    ],
+  },
+
+  hostels: {
+    seoTitle: "Girls & Boys Hostels in Lahore – Hostel and Paying Guest (PG) Rooms",
+    metaDescription:
+      "Girls hostels, boys hostels and paying guest (PG) rooms in Lahore near universities and offices. Compare monthly charges, meals, facilities and rules, and contact owners directly.",
+    sections: [
+      {
+        h: "Hostels and paying guest accommodation in Lahore",
+        p: [
+          "Every year thousands of students and working professionals move to Lahore for university or a new job. For most of them, a **hostel** or **paying guest (PG)** room is the first home in the city: one monthly charge usually covers the room, furniture, and often meals, laundry, internet and security.",
+          "Hostels are normally separate for girls and boys, and many are run in converted houses close to universities, colleges and hospitals. Before paying, read our guide on [how to choose a safe hostel in Lahore](/guides/girls-and-boys-hostels-in-lahore/).",
+        ],
+      },
+      {
+        h: "Popular areas for hostels",
+        ul: [
+          "[Johar Town](/rent/johar-town/) — near several private universities, Expo Centre and Jinnah Hospital; one of the largest hostel clusters in the city.",
+          "[Muslim Town](/rent/muslim-town/), [Garden Town](/rent/garden-town/) and [Allama Iqbal Town](/rent/allama-iqbal-town/) — close to Punjab University's New Campus and the Canal Road.",
+          "[Model Town](/rent/model-town/) and [Faisal Town](/rent/faisal-town/) — quieter residential streets with easy access to Ferozepur Road.",
+          "[Gulberg](/rent/gulberg/) — preferred by working professionals because of its offices, banks and shopping areas.",
+        ],
+      },
+      {
+        h: "What the monthly charge usually includes",
+        ul: [
+          "Room on a sharing basis (2–4 persons) or a single room at a higher rate",
+          "Bed, mattress, cupboard and study table",
+          "Meals — often two or three per day; confirm the menu and timings",
+          "Electricity, water and Wi-Fi — sometimes AC or heater use is charged separately",
+          "Laundry, cleaning and a security guard or CCTV",
+        ],
+      },
+      {
+        h: "Checks before you book",
+        ul: [
+          "**Visit in person** (or send a family member) and see the actual room, washrooms and kitchen.",
+          "Ask about **security**: guard, CCTV, entry timings, visitor rules and who holds keys.",
+          "Confirm what is **included** and what is extra — AC, UPS backup, meals on weekends.",
+          "Ask for a **written receipt** for every payment and clear refund rules for the security deposit.",
+          "For girls' hostels, ask whether a female warden lives on site.",
+        ],
+      },
+      {
+        h: "Hostel owners: list your hostel for free",
+        p: [
+          "Run a hostel or PG in Lahore? [Post it here](/add-property/) with photos, charges per bed and facilities. Our team reviews every listing before it goes live, so students and parents can trust what they see.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What is the difference between a hostel and paying guest (PG)?", a: "The terms are used loosely in Lahore. A hostel is usually a dedicated building with many residents and a warden, while PG often means a few rooms in a family home or small house. Both normally include furniture and utilities in one monthly charge." },
+      { q: "Is a security deposit charged for hostels?", a: "Most hostels charge a refundable security deposit, commonly equal to one month's charge, plus the first month in advance. Ask for a receipt and the refund conditions in writing." },
+      { q: "Are meals included in hostel charges?", a: "Many hostels include two or three meals a day, while others charge for meals separately. Ask for the weekly menu and meal timings before you book." },
+      { q: "Are hostels in Lahore safe for girls?", a: "Many girls' hostels have a female warden, CCTV, guards and strict entry timings. Visit before booking, speak to current residents if you can, and make sure the hostel is registered with the local police where required." },
     ],
   },
 

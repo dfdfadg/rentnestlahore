@@ -11,6 +11,7 @@ const COLUMNS = [
       { href: "/rent/apartments/", label: "Apartments for rent" },
       { href: "/rent/portions/", label: "Portions for rent" },
       { href: "/rent/rooms/", label: "Rooms for rent" },
+      { href: "/rent/hostels/", label: "Hostels & PG" },
     ],
   },
   {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Inline } from "../ui/Inline";
+import { TemplateBox } from "./TemplateBox";
 import { Fragment } from "react";
 import type { GuideBlock } from "@/content/guides";
 import { rentStatsByType } from "@/lib/stats";
@@ -68,6 +69,7 @@ export function GuideBody({ blocks }: { blocks: GuideBlock[] }) {
           {"ul" in b && <ul>{b.ul.map((li, j) => <li key={j}><Inline text={li} /></li>)}</ul>}
           {"ol" in b && <ol>{b.ol.map((li, j) => <li key={j}><Inline text={li} /></li>)}</ol>}
           {"stats" in b && <StatsBlock kind={b.stats} />}
+          {"template" in b && <TemplateBox {...b.template} />}
           {"note" in b && <p className="rounded-xl bg-sand-100 p-4 text-sm text-ink-600 ring-1 ring-sand-200">{b.note}</p>}
         </Fragment>
       ))}

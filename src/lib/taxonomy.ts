@@ -35,7 +35,7 @@ export const getPropertyTypes = unstable_cache(
       orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
       select: { id: true, name: true, slug: true, pluralName: true, pluralSlug: true, category: true, description: true },
     }),
-  ["property-types-v2"],
+  ["property-types-v3"],
   { tags: [TAXONOMY_TAG], revalidate: 3600 },
 );
 

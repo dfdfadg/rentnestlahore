@@ -145,7 +145,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
         h: "What is a portion?",
         p: [
           "A portion is one floor of a house rented separately. The ground floor is a **lower portion** and the first (or second) floor is an **upper portion**. You get house-style living, with bedrooms, a kitchen and often a TV lounge, for noticeably less than the rent of a whole house.",
-          "Portions are one of the most common rental types in Lahore, especially for small families and couples.",
+          "Portions are one of the most common rental types in Lahore, especially for small families and couples. Not sure which floor suits you? See our comparison of [upper portion, lower portion or a full house](/guides/upper-portion-vs-lower-portion-vs-full-house/).",
         ],
       },
       {

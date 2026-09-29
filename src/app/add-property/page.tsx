@@ -58,6 +58,14 @@ export default async function AddPropertyPage() {
             <li className="flex gap-2"><ShieldCheck className="h-5 w-5 shrink-0 text-brick-600" /> Every listing is reviewed before going live.</li>
             <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 shrink-0 text-brick-600" /> Rental properties in Lahore only, no sale listings.</li>
           </ul>
+          <div className="card p-5 text-sm">
+            <h2 className="font-bold">Guides for landlords</h2>
+            <ul className="mt-2 space-y-2">
+              <li><Link href="/guides/how-to-rent-out-your-house-in-lahore/" className="text-brick-700 hover:underline">How to rent out your house in Lahore</Link></li>
+              <li><Link href="/guides/renting-out-property-in-lahore-from-abroad/" className="text-brick-700 hover:underline">Renting out your property from abroad</Link></li>
+              <li><Link href="/guides/rent-agreement-format-pakistan/" className="text-brick-700 hover:underline">Free rent agreement format</Link></li>
+            </ul>
+          </div>
         </aside>
       </div>
     </div>

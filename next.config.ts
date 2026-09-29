@@ -17,6 +17,20 @@ const nextConfig: NextConfig = {
     qualities: [60, 75],
     remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
   },
+  // Keep serverless bundles small (Vercel stores them for every deployment). Prisma only needs the
+  // native PostgreSQL engine, not the wasm engines for other databases, and sharp only needs the
+  // glibc build Vercel runs on. .uploads is the local dev image store.
+  outputFileTracingExcludes: {
+    "/**": [
+      "node_modules/@prisma/client/runtime/query_engine_bg.*",
+      "node_modules/@prisma/client/runtime/query_compiler_bg.*",
+      "node_modules/@prisma/client/runtime/*.wasm",
+      "node_modules/@img/sharp-libvips-linuxmusl-*/**",
+      "node_modules/@img/sharp-linuxmusl-*/**",
+      "node_modules/@img/sharp-wasm32/**",
+      ".uploads/**",
+    ],
+  },
   async redirects() {
     return [
       // Canonical host is the apex domain (www and the production *.vercel.app alias redirect to it).

@@ -221,7 +221,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
   rooms: {
     seoTitle: "Rooms for Rent in Lahore for Students and Professionals",
     metaDescription:
-      "Rooms for rent in Lahore for students and working professionals. Find furnished rooms with attached bath near universities and offices in Johar Town, Muslim Town and more.",
+      "Single rooms for rent in Lahore at a low monthly rent, for students and working professionals. Furnished rooms with attached bath near universities and offices in Johar Town, Muslim Town and more.",
     sections: [
       {
         h: "Renting a room in Lahore",

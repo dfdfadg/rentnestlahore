@@ -365,6 +365,78 @@ export const AREA_CONTENT: Record<string, LandingContent> = {
     ],
     faqs: [],
   },
+
+  "lda-avenue": {
+    seoTitle: "Houses for Rent in LDA Avenue Lahore | RentNest Lahore",
+    metaDescription: "Houses and portions for rent in LDA Avenue, Lahore, a Lahore Development Authority scheme on Raiwind Road. See current listings and contact owners directly.",
+    sections: [
+      {
+        h: "Renting in LDA Avenue",
+        p: [
+          "LDA Avenue is a housing scheme developed by the Lahore Development Authority off Raiwind Road. Much of it has been built in recent years, so most rentals are newer houses and upper or lower portions, usually at lower rents than older central areas.",
+          "Because it is a government-planned scheme, roads and plots are laid out on a regular plan, and families who want a newer home at a moderate rent often look here alongside [Valencia Town](/rent/valencia-town/), [Bahria Orchard](/rent/bahria-orchard/) and [Wapda Town](/rent/wapda-town/).",
+        ],
+      },
+      {
+        h: "Things to check before renting",
+        ul: [
+          "**Development in the block:** some blocks are fully built and lived in, others still have empty plots and construction. Visit the street, not just the house.",
+          "**Commute:** test your route to work or school at peak time, especially if you will use Raiwind Road or the Ring Road every day.",
+          "**Utilities:** confirm the house has its own electricity and gas meters, and ask about water supply and any pending connections.",
+          "**Security and markets:** ask where the nearest market, mosque, school and pharmacy are, and how the area feels in the evening.",
+        ],
+      },
+      {
+        h: "Nearby areas to compare",
+        ul: [
+          "[Valencia Town](/rent/valencia-town/) and [Wapda Town](/rent/wapda-town/): more established, often at higher rents.",
+          "[Bahria Orchard](/rent/bahria-orchard/) and [Bahria Town](/rent/bahria-town/): gated communities with their own facilities.",
+          "[Fazaia Housing Scheme](/rent/fazaia-housing-scheme/) and [Lake City](/rent/lake-city/): other newer communities on Raiwind Road.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Where is LDA Avenue in Lahore?", a: "LDA Avenue is a Lahore Development Authority housing scheme off Raiwind Road, in the south-west of the city, near areas such as Valencia Town and Bahria Orchard." },
+      { q: "Is LDA Avenue good for renting a house?", a: "It suits families who want a newer house or portion at a moderate rent and don't mind a longer drive to central Lahore. Check how developed the specific block is before you decide." },
+      { q: "What kind of rentals are available in LDA Avenue?", a: "Mostly newly built houses and upper or lower portions. The listings on this page show what is currently available." },
+    ],
+  },
+
+  "fazaia-housing-scheme": {
+    seoTitle: "Houses for Rent in Fazaia Housing Scheme Lahore | RentNest Lahore",
+    metaDescription: "Houses and portions for rent in Fazaia Housing Scheme, Lahore, a planned community on Raiwind Road. See current listings and contact owners directly.",
+    sections: [
+      {
+        h: "Renting in Fazaia Housing Scheme",
+        p: [
+          "Fazaia Housing Scheme is a planned residential community on Raiwind Road, developed for Pakistan Air Force personnel and their families, with many homes also rented out to civilians. It is newer than most of Lahore's established areas, so rentals are mostly recently built houses and portions.",
+          "Tenants usually choose it for a calm, organised neighbourhood at a lower rent than central Lahore, accepting a longer commute in return.",
+        ],
+      },
+      {
+        h: "Things to check before renting",
+        ul: [
+          "**Society rules for tenants:** ask the owner whether the society office needs tenant details or verification, and what documents it asks for. This is in addition to [police tenant registration](/guides/tenant-registration-in-lahore/).",
+          "**Which phase and block:** development differs from one part of the scheme to another. Visit the street and see how many houses are occupied.",
+          "**Meters and water:** confirm separate electricity and gas meters for portions, and ask how water is supplied.",
+          "**Commute:** check your daily route along Raiwind Road at peak hours.",
+        ],
+      },
+      {
+        h: "Nearby areas to compare",
+        ul: [
+          "[LDA Avenue](/rent/lda-avenue/) and [Lake City](/rent/lake-city/): other newer communities in the same part of the city.",
+          "[Bahria Town](/rent/bahria-town/) and [Bahria Orchard](/rent/bahria-orchard/): gated societies with their own commercial areas.",
+          "[Valencia Town](/rent/valencia-town/): more established, closer to Johar Town.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Can civilians rent a house in Fazaia Housing Scheme Lahore?", a: "Yes. Many owners rent their homes to civilian families. The society may ask for tenant details, so ask the owner about its requirements before you move in." },
+      { q: "Where is Fazaia Housing Scheme in Lahore?", a: "It is on Raiwind Road in the south-west of Lahore, in the same part of the city as LDA Avenue, Lake City and Bahria Town." },
+      { q: "What should I check before renting in Fazaia Housing Scheme?", a: "Check the society's tenant requirements, how developed your block is, separate meters, water supply and your commute along Raiwind Road." },
+    ],
+  },
 };
 
 /** Area + property type pages with enough demand for dedicated content. */

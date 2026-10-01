@@ -36,7 +36,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
           "**Condition**: brand-new and recently renovated houses command a premium.",
           "**Portions**: renting the full house costs more than an [upper or lower portion](/rent/portions/) of the same house.",
           "**Extras**: solar/UPS backup, a servant quarter, a lawn, gas availability and a corner or park-facing plot.",
-          "**Furnishing**: most houses in Lahore are rented unfurnished; furnished houses cost more.",
+          "**Furnishing**: most houses in Lahore are rented unfurnished; furnished houses cost more. See [furnished or unfurnished](/guides/furnished-vs-unfurnished-rent-in-lahore/) to compare.",
         ],
       },
       {
@@ -324,7 +324,7 @@ export const TYPE_CONTENT: Record<string, LandingContent> = {
       {
         h: "Finding office space in Lahore",
         p: [
-          "Lahore's main office districts are **Gulberg** (Main Boulevard, MM Alam Road), **DHA** commercial areas and **Johar Town**, with growing supply along Ferozepur Road and Model Town Link Road. Options range from small furnished offices for startups and freelancers to full floors and standalone buildings for larger companies.",
+          "Lahore's main office districts are **Gulberg** (Main Boulevard, MM Alam Road), **DHA** commercial areas and **Johar Town**, with growing supply along Ferozepur Road and Model Town Link Road. Options range from small furnished offices for startups and freelancers to full floors and standalone buildings for larger companies. Small team? Compare a [coworking space with your own office](/guides/coworking-space-vs-private-office-in-lahore/) first.",
           "Use the filters to set the area in square feet, floor and whether you need a main-road location, then compare parking, backup power and access hours.",
         ],
       },
